@@ -1,0 +1,50 @@
+# ad-libs.js
+
+
+A collection of cross-browser methods for use with front-end development. Ad-Libs is a tool that supports various browser
+and OS combinations dating back to IE5. It uses feature detection to determine the user's environment and outputs details
+pertaining to that OS and browser.
+
+## Installation
+
+npm install {path to open source repo}/web-common
+
+## Usage
+
+Each function is exported as a single commonjs module, allowing only the needed modules to be
+bundled into a project to keep minified bundles as small as possible.
+
+In Node.js:
+```js
+// Load the full web-common build.
+var web-common = require('web-common');
+
+// Load a single module for smaller builds with webpack.
+var domReady = require('web-common/lib/dom/domReady');
+var browser = require('web-common/lib/detect/browser');
+```
+
+## Detection Modules
+
+There are several modules that use feature detection to determine the user's environment. In order to populate the resulting
+objects, the detect function must be executed.
+
+For example, in order to populate the browser object:
+```js
+var browser = require('web-common/lib/detect/browser').detect();
+
+// outputs the name of the os
+console.log(browser.os.name)
+```
+
+# API Reference
+
+{{#modules}}
+    {{>body~}}
+    {{>member-index~}}
+    {{>members~}}
+{{/modules}}
+
+
+
+* * *

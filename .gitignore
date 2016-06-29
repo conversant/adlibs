@@ -1,0 +1,9 @@
+.idea
+node_modules
+coverage
+mocha.json
+clover.xml
+checkstyle.xml
+*.log
+*.iml
+atlassian-ide-plugin.xml
