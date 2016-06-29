@@ -7,7 +7,7 @@ pertaining to that OS and browser.
 
 ## Installation
 
-npm install {path to open source repo}/web-common
+npm install https://github.com/conversant/ad-libs.js
 
 ## Usage
 
@@ -16,12 +16,12 @@ bundled into a project to keep minified bundles as small as possible.
 
 In Node.js:
 ```js
-// Load the full web-common build.
-var web-common = require('web-common');
+// Load the full ad-libs.js build.
+var ad-libs = require('ad-libs.js');
 
 // Load a single module for smaller builds with webpack.
-var domReady = require('web-common/lib/dom/domReady');
-var browser = require('web-common/lib/detect/browser');
+var domReady = require('ad-libs.js/lib/dom/domReady');
+var browser = require('ad-libs.js/lib/detect/browser');
 ```
 
 ## Detection Modules
@@ -31,7 +31,7 @@ objects, the detect function must be executed.
 
 For example, in order to populate the browser object:
 ```js
-var browser = require('web-common/lib/detect/browser').detect();
+var browser = require('ad-libs.js/lib/detect/browser').detect();
 
 // outputs the name of the os
 console.log(browser.os.name)
