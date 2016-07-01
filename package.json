@@ -6,7 +6,7 @@
     "test": "karma start --single-run",
     "test-cov": "karma start --single-run --with-coverage",
     "test-coverall": "karma start --single-run --with-coverage && cat ./coverage/Chrome*/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "doc": "jsdoc2md --no-gfm -t doc/README.hbs 'lib/**/*.js' > README.md; echo"
+    "doc": "jsdoc2md -t doc/README.hbs 'lib/**/*.js' > README.md; echo"
   },
   "repository": {
     "type": "git",

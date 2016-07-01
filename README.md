@@ -56,19 +56,11 @@ console.log(browser.os.name)
 Can this object use this property
 
 **Kind**: static method of <code>[canHas](#module_canHas)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>obj</td>
-    </tr><tr>
-    <td>propertyName</td>
-    </tr>  </tbody>
-</table>
+
+| Param |
+| --- |
+| obj | 
+| propertyName | 
 
 **Example**  
 ```js
@@ -80,20 +72,11 @@ var can = require('ad-libs/lib/canHas').can;
 Does this window have this object in it
 
 **Kind**: static method of <code>[canHas](#module_canHas)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>globalObjectName</td><td></td>
-    </tr><tr>
-    <td>[scope]</td><td><p>Optional scope to use. Alternatively, you can call &quot;run&quot; with a more sane method signature.</p>
-</td>
-    </tr>  </tbody>
-</table>
+
+| Param | Description |
+| --- | --- |
+| globalObjectName |  |
+| [scope] | Optional scope to use. Alternatively, you can call "run" with a more sane method signature. |
 
 <a name="module_canHas.own"></a>
 
@@ -101,19 +84,11 @@ Does this window have this object in it
 Check to see if this object own's the method as opposed to just inheriting it from another object
 
 **Kind**: static method of <code>[canHas](#module_canHas)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>obj</td>
-    </tr><tr>
-    <td>propertyName</td>
-    </tr>  </tbody>
-</table>
+
+| Param |
+| --- |
+| obj | 
+| propertyName | 
 
 <a name="module_canHas.run"></a>
 
@@ -121,21 +96,11 @@ Check to see if this object own's the method as opposed to just inheriting it fr
 Return a runnable method by default
 
 **Kind**: static method of <code>[canHas](#module_canHas)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>obj</td><td><p>Scope to use or method to run when not providing a method as the second param</p>
-</td>
-    </tr><tr>
-    <td>[methodName]</td><td><p>The method to check for</p>
-</td>
-    </tr>  </tbody>
-</table>
+
+| Param | Description |
+| --- | --- |
+| obj | Scope to use or method to run when not providing a method as the second param |
+| [methodName] | The method to check for |
 
 <a name="module_canHas.forIn"></a>
 
@@ -143,39 +108,22 @@ Return a runnable method by default
 For each in, shorthanded because manually writing hasOwnProperty each and every time is not a good use of time.
 
 **Kind**: static method of <code>[canHas](#module_canHas)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>obj</td>
-    </tr><tr>
-    <td>callback</td>
-    </tr>  </tbody>
-</table>
+
+| Param |
+| --- |
+| obj | 
+| callback | 
 
     <a name="module_createSpy"></a>
 
 ## createSpy ⇒ <code>sinon.spy</code>
 Helper method to create Sinon.JS Spies directly on the value of module.exports for a required module. To spy on a method you need access to the object it is attached to, which is problematic when the function is directly returned from a "require" call. By accessing the require.cache we can get handle to the module's exports and inject the spy.
 
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>loadedModule</td><td></td><td></td>
-    </tr><tr>
-    <td>mockType</td><td><code>String</code></td><td><p>defaults to &#39;spy&#39;, can also be &#39;stub&#39;</p>
-</td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type | Description |
+| --- | --- | --- |
+| loadedModule |  |  |
+| mockType | <code>String</code> | defaults to 'spy', can also be 'stub' |
 
 **Example**  
 incrementCounter.js:
@@ -231,17 +179,10 @@ Check for MathML support in browsers to help detect certain browser version numb
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>boolean</code> - Returns true if browser has mathml support  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>d</td><td><code>Document</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| d | <code>Document</code> | 
 
 <a name="module_Browser.isMobile"></a>
 
@@ -250,17 +191,10 @@ Performs a simple test to see if we're on mobile or not
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>boolean</code> - Returns true if mobile  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>[win]</td><td><code>Window</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| [win] | <code>Window</code> | 
 
 <a name="module_Browser.getVersion"></a>
 
@@ -269,21 +203,12 @@ Uses the min and max versions of a browser to determine its version
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>number</code> - Returns version number  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>uaVersion</td><td><code>number</code></td>
-    </tr><tr>
-    <td>minVersion</td><td><code>number</code></td>
-    </tr><tr>
-    <td>[maxVersion]</td><td><code>number</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| uaVersion | <code>number</code> | 
+| minVersion | <code>number</code> | 
+| [maxVersion] | <code>number</code> | 
 
 <a name="module_Browser.looksLike"></a>
 
@@ -292,19 +217,11 @@ Searches for a match between the regex and specified string
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>\*</code> &#124; <code>boolean</code> - Returns true if match found  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>regex</td><td><code>RegExp</code></td>
-    </tr><tr>
-    <td>ua</td><td><code>string</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| regex | <code>RegExp</code> | 
+| ua | <code>string</code> | 
 
 <a name="module_Browser.parseIntIfMatch"></a>
 
@@ -314,21 +231,12 @@ Gracefully falls back to the default version if not
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>number</code> - Returns the regex match or default version  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>ua</td><td><code>string</code></td>
-    </tr><tr>
-    <td>regex</td><td><code>RegExp</code></td>
-    </tr><tr>
-    <td>[radix]</td><td><code>number</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| ua | <code>string</code> | 
+| regex | <code>RegExp</code> | 
+| [radix] | <code>number</code> | 
 
 <a name="module_Browser.parseFloatIfMatch"></a>
 
@@ -338,19 +246,11 @@ Gracefully falls back to the default if not
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: Returns the regex match or the default version  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>ua</td><td><code>string</code></td>
-    </tr><tr>
-    <td>regex</td><td><code>RegExp</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| ua | <code>string</code> | 
+| regex | <code>RegExp</code> | 
 
 <a name="module_Browser.getAndroidVersion"></a>
 
@@ -359,19 +259,11 @@ Determines the version of Android being used
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>number</code> - Returns the Android version  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>win</td><td><code>Window</code></td>
-    </tr><tr>
-    <td>uaVersion</td><td><code>number</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| win | <code>Window</code> | 
+| uaVersion | <code>number</code> | 
 
 <a name="module_Browser.getChromiumVersion"></a>
 
@@ -380,19 +272,11 @@ Determines the version of Chrome being used
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>number</code> - Returns the Chrome version  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>win</td><td><code>Window</code></td>
-    </tr><tr>
-    <td>uaVersion</td><td><code>number</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| win | <code>Window</code> | 
+| uaVersion | <code>number</code> | 
 
 <a name="module_Browser.getSafariVersion"></a>
 
@@ -401,19 +285,11 @@ Returns the version of the Safari browser
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>number</code> - Returns the version of Safari  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>win</td><td><code>Window</code></td>
-    </tr><tr>
-    <td>uaVersion</td><td><code>number</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| win | <code>Window</code> | 
+| uaVersion | <code>number</code> | 
 
 <a name="module_Browser.getKindleVersion"></a>
 
@@ -421,19 +297,11 @@ Returns the version of the Safari browser
 Creates a Browser instance with its attributed Kindle values
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>win</td><td><code>Window</code></td>
-    </tr><tr>
-    <td>uaVersion</td><td><code>number</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| win | <code>Window</code> | 
+| uaVersion | <code>number</code> | 
 
 <a name="module_Browser.getOtherOS"></a>
 
@@ -442,19 +310,11 @@ Creates a Browser instance with its attributed OS and device type values
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>Browser</code> - Returns the browser instance  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>win</td><td><code>Window</code></td>
-    </tr><tr>
-    <td>ua</td><td><code>string</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| win | <code>Window</code> | 
+| ua | <code>string</code> | 
 
 <a name="module_Browser.getAppleOS"></a>
 
@@ -463,19 +323,11 @@ Creates a Browser instance with its attributed Apple values
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>Browser</code> - Returns the Browser instance  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>win</td><td><code>Window</code></td>
-    </tr><tr>
-    <td>ua</td><td><code>string</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| win | <code>Window</code> | 
+| ua | <code>string</code> | 
 
 <a name="module_Browser.getMicrosoftOS"></a>
 
@@ -484,19 +336,11 @@ Creates a Browser instance with its attributed Windows values
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>Browser</code> - Returns the Browser instance  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>win</td><td><code>Window</code></td>
-    </tr><tr>
-    <td>ua</td><td><code>string</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| win | <code>Window</code> | 
+| ua | <code>string</code> | 
 
 <a name="module_Browser.getAndroidOS"></a>
 
@@ -505,19 +349,11 @@ Creates a Browser instance with its attributed Android values
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>Browser</code> - Returns the Browser instance  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>win</td><td><code>Window</code></td>
-    </tr><tr>
-    <td>ua</td><td><code>string</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| win | <code>Window</code> | 
+| ua | <code>string</code> | 
 
 <a name="module_Browser.getKindleOS"></a>
 
@@ -526,19 +362,11 @@ Returns the Kindle's OS
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>Browser</code> - Returns the Browser instance  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>win</td><td><code>Window</code></td>
-    </tr><tr>
-    <td>ua</td><td><code>string</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| win | <code>Window</code> | 
+| ua | <code>string</code> | 
 
 <a name="module_Browser.getOsFromUa"></a>
 
@@ -547,19 +375,11 @@ Reads the user agent string to determine OS
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>Browser</code> - Returns the Browser instance  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>win</td><td><code>Window</code></td>
-    </tr><tr>
-    <td>ua</td><td><code>string</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| win | <code>Window</code> | 
+| ua | <code>string</code> | 
 
 <a name="module_Browser.detect"></a>
 
@@ -568,19 +388,11 @@ Returns an object containing browser details (e.g. name, os, version, etc.)
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>Browser</code> - Returns the Browser instance  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>[win]</td><td><code>Window</code></td>
-    </tr><tr>
-    <td>[userAgent]</td><td><code>string</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| [win] | <code>Window</code> | 
+| [userAgent] | <code>string</code> | 
 
 **Example**  
 ```js
@@ -676,20 +488,11 @@ console.log(mraid.getVersion()) // outputs mraid version;
 Executes cb when mraid is ready
 
 **Kind**: static method of <code>[Mraid](#module_Mraid)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>cb</td><td><code>function</code></td><td></td>
-    </tr><tr>
-    <td>[win]</td><td><code>Window</code></td><td><p>is an optional param. If not given, uses the current window</p>
-</td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cb | <code>function</code> |  |
+| [win] | <code>Window</code> | is an optional param. If not given, uses the current window |
 
 <a name="module_Mraid.getVersion"></a>
 
@@ -697,18 +500,10 @@ Executes cb when mraid is ready
 Gets mraid version
 
 **Kind**: static method of <code>[Mraid](#module_Mraid)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>[Win]</td><td><code>Window</code></td><td><p>is an optional param. If not given, uses the current window</p>
-</td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [Win] | <code>Window</code> | is an optional param. If not given, uses the current window |
 
     <a name="module_Safeframe"></a>
 
@@ -736,17 +531,10 @@ var safeframe = require("ad-libs.js/lib/detect/safeframe");
 Get version of safeframe
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>[win]</td><td><code>Window</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| [win] | <code>Window</code> | 
 
 <a name="module_Safeframe.getSpecVersion"></a>
 
@@ -754,17 +542,10 @@ Get version of safeframe
 Gets specVersion of sf
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>[win]</td><td><code>Window</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| [win] | <code>Window</code> | 
 
 <a name="module_Safeframe.getInfo"></a>
 
@@ -772,17 +553,10 @@ Gets specVersion of sf
 Gets info of sf
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>[win]</td><td><code>Window</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| [win] | <code>Window</code> | 
 
 <a name="module_Safeframe.getConf"></a>
 
@@ -790,17 +564,10 @@ Gets info of sf
 Gets conf of safeframe host
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>[win]</td><td><code>Window</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| [win] | <code>Window</code> | 
 
 <a name="module_Safeframe.getSupport"></a>
 
@@ -808,17 +575,10 @@ Gets conf of safeframe host
 Returns array of supported fields for sf.ext
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>[win]</td><td><code>Window</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| [win] | <code>Window</code> | 
 
 <a name="module_Safeframe.getInView"></a>
 
@@ -826,17 +586,10 @@ Returns array of supported fields for sf.ext
 Gets inview percentage of safeframe
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>[win]</td><td><code>Window</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| [win] | <code>Window</code> | 
 
 <a name="module_Safeframe.getWinFocus"></a>
 
@@ -844,17 +597,10 @@ Gets inview percentage of safeframe
 Returns if safeframe window has focus
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>[win]</td><td><code>Window</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| [win] | <code>Window</code> | 
 
 <a name="module_Safeframe.getMetrics"></a>
 
@@ -862,17 +608,10 @@ Returns if safeframe window has focus
 Returns safeframe metrics
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>[win]</td><td><code>Window</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| [win] | <code>Window</code> | 
 
     <a name="module_addEventListener"></a>
 
@@ -880,21 +619,12 @@ Returns safeframe metrics
 Add an event listener to the element, which will execute the given callback.
 
 **Returns**: <code>function</code> - Returns a function, that when executed, will remove the event listener from the element.  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>element</td><td><code>Element</code></td>
-    </tr><tr>
-    <td>eventName</td><td><code>String</code></td>
-    </tr><tr>
-    <td>callback</td><td><code>function</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| element | <code>Element</code> | 
+| eventName | <code>String</code> | 
+| callback | <code>function</code> | 
 
 **Example**  
 ```js
@@ -909,19 +639,11 @@ addEventListener(el, 'onLoad', cb);
 Appends all elements in the html string to the parent element. Correctly handles scripts with src attributes and inline javascript and ensures that the script will execute.  NOTE: Only Element nodes in the html string will be appended. All other node types will be ignored (i.e. Text, Comment).
 
 **Returns**: <code>Array</code> - a list of any exceptions that occurred.  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>parentEl</td><td><code>Element</code></td>
-    </tr><tr>
-    <td>html</td><td><code>string</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| parentEl | <code>Element</code> | 
+| html | <code>string</code> | 
 
 **Example**  
 ```js
@@ -933,23 +655,12 @@ var appendHtml = require('ad-libs.js/lib/dom/appendHtml');
 ## domReady
 Executes the provided callback when the DOM is ready. Allows code to act on the DOM before the window "load" event fires.
 
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>callback</td><td><code>function</code></td><td></td>
-    </tr><tr>
-    <td>[targetWindow]</td><td><code>window</code></td><td><p>Optionally, you can provide your own window reference for cases where you&#39;d have an iframe.</p>
-</td>
-    </tr><tr>
-    <td>[isInteractiveOk]</td><td><code>Boolean</code></td><td><p>Optionally, interactive mode can be checked for faster responses.</p>
-</td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type | Description |
+| --- | --- | --- |
+| callback | <code>function</code> |  |
+| [targetWindow] | <code>window</code> | Optionally, you can provide your own window reference for cases where you'd have an iframe. |
+| [isInteractiveOk] | <code>Boolean</code> | Optionally, interactive mode can be checked for faster responses. |
 
 **Example**  
 ```js
@@ -961,17 +672,10 @@ var domReady = require('ad-libs.js/lib/dom/domReady');
 ## getExecutingScript ⇒ <code>HTMLScriptElement</code>
 Returns the script element that loaded the currently executing javascript code. The detectScript function takes a script Element as a single argument, and should return a boolean value. Allows more specific filtering in the case of multiple  scripts on the page where document.currentScript is not supported. When the executing script has been located it will be marked with an attribute  key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScript.LOAD_STARTED.
 
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>[detectScript]</td><td><code>function</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| [detectScript] | <code>function</code> | 
 
 **Example**  
 ```js
@@ -983,36 +687,21 @@ var getExecutingScript = require('ad-libs.js/lib/dom/getExecutingScript');
 ## triggerEvent
 Creates a new DOM Event and triggers it on the provided element.
 
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>element</td><td><code>Element</code></td>
-    </tr><tr>
-    <td>eventName</td><td><code>String</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| element | <code>Element</code> | 
+| eventName | <code>String</code> | 
 
     <a name="module_evaluator"></a>
 
 ## evaluator ⇒ <code>Object</code>
 Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly. Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won't function for this module. That's right - we have one letter vars in our source code, ain't eval grand? For more info on eval visit: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
 
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>v</td><td><code>String</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| v | <code>String</code> | 
 
     <a name="module_jsonp"></a>
 
@@ -1020,20 +709,11 @@ Runs eval against the value passed to it. This function exists because eval prev
 Perform a cross domain request via JSONP. Provides the same interface as xhr.js.   The request is made by appending a 'callback' parameter to the request url,  and it is expected that the server will respond with the content wrapped in  a function call using the provided value of the callback parameter.   If callbackFn isn't defined, a unique name will be generated.
 
 **Returns**: <code>Object</code> - Returns object with send function  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>options</td><td><code>Object</code></td><td></td>
-    </tr><tr>
-    <td>callback</td><td><code>function</code></td><td><p>executed on response with the signature (status: Number, body: String)</p>
-</td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> |  |
+| callback | <code>function</code> | executed on response with the signature (status: Number, body: String) |
 
 **Example**  
 ```js
@@ -1047,31 +727,13 @@ CB_1433519761916('response from server');
 ## loadScript
 Dynamically loads scripts in parallel, and executes a single callback after all scripts have loaded.
 
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>urls</td><td><code>String</code> | <code>Array</code></td><td><p>a single url, or a list of urls of scripts to load</p>
-</td>
-    </tr><tr>
-    <td>onLoaded</td><td><code>function</code></td><td><p>callback executed when all scripts have finished loading</p>
-</td>
-    </tr><tr>
-    <td>onError</td><td><code>function</code></td><td><p>callback executed if one or more scripts fail to load, passed
-                              a single argument, the list of script urls that failed to load</p>
-</td>
-    </tr><tr>
-    <td>[requestTimeout]</td><td><code>Number</code></td><td><p>when supplied, this will explicitly timeout the script request
-                              and report back to onError or if onError is not supplied, to onLoaded.
-                              IMPORTANT: This does not cancel the script load, just reports that it
-                              has exceeded the timeout duration.</p>
-</td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type | Description |
+| --- | --- | --- |
+| urls | <code>String</code> &#124; <code>Array</code> | a single url, or a list of urls of scripts to load |
+| onLoaded | <code>function</code> | callback executed when all scripts have finished loading |
+| onError | <code>function</code> | callback executed if one or more scripts fail to load, passed 							  a single argument, the list of script urls that failed to load |
+| [requestTimeout] | <code>Number</code> | when supplied, this will explicitly timeout the script request 							  and report back to onError or if onError is not supplied, to onLoaded. 							  IMPORTANT: This does not cancel the script load, just reports that it 							  has exceeded the timeout duration. |
 
     <a name="module_measurePerformance"></a>
 
@@ -1093,17 +755,10 @@ Create a new instance of the performance module
 Tie into an existing instance of the performance module
 
 **Kind**: static method of <code>[measurePerformance](#module_measurePerformance)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>packageName</td>
-    </tr>  </tbody>
-</table>
+
+| Param |
+| --- |
+| packageName | 
 
     <a name="module_parseConfig"></a>
 
@@ -1111,22 +766,12 @@ Tie into an existing instance of the performance module
 Parses a json config from the provided Element. The defaults is expected to be a JSON string in the attribute value.
 
 **Returns**: <code>Object</code> - the parsed json config  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>el</td><td><code>Element</code></td><td><p>the HTML Element that contains the config defaults</p>
-</td>
-    </tr><tr>
-    <td>attrName</td><td><code>String</code></td><td></td>
-    </tr><tr>
-    <td>[defaults]</td><td><code>Object</code></td><td></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type | Description |
+| --- | --- | --- |
+| el | <code>Element</code> | the HTML Element that contains the config defaults |
+| attrName | <code>String</code> |  |
+| [defaults] | <code>Object</code> |  |
 
 **Example**  
 ```js
@@ -1156,18 +801,10 @@ Creates a new instance of PerfMarker
 Ties into existing instance of PerfMarker
 
 **Kind**: static method of <code>[perfMarker](#module_perfMarker)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>[pkgName]</td><td><code>string</code></td><td><p>The name of the instance</p>
-</td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [pkgName] | <code>string</code> | The name of the instance |
 
     <a name="module_reportData"></a>
 
@@ -1183,21 +820,11 @@ Ties into existing instance of PerfMarker
 Create a new instance of the reportData module
 
 **Kind**: static method of <code>[reportData](#module_reportData)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>[baseURL]</td><td><code>string</code></td><td><p>Base url for reporting pixel info</p>
-</td>
-    </tr><tr>
-    <td>[measurePerformanceInstance]</td><td><code>MeasurePerformance</code></td><td><p>performance instance to provide measurement timestamps</p>
-</td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [baseURL] | <code>string</code> | Base url for reporting pixel info |
+| [measurePerformanceInstance] | <code>MeasurePerformance</code> | performance instance to provide measurement timestamps |
 
 <a name="module_reportData.reportDataProvider"></a>
 
@@ -1205,52 +832,30 @@ Create a new instance of the reportData module
 Tie into an existing instance of the reportData module
 
 **Kind**: static method of <code>[reportData](#module_reportData)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>packageName</td>
-    </tr>  </tbody>
-</table>
+
+| Param |
+| --- |
+| packageName | 
 
     <a name="module_format"></a>
 
 ## format ⇒ <code>String</code>
 Constructs a URL from its parsed components. 1) host takes precedence over hostname and port 2) query takes precedence over search
 
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>components</td><td><code>Object</code></td><td><p>the url components, as generated by url/parse.js</p>
-</td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type | Description |
+| --- | --- | --- |
+| components | <code>Object</code> | the url components, as generated by url/parse.js |
 
     <a name="module_parse"></a>
 
 ## parse ⇒ <code>Object</code>
 Deconstructs a URL into its components. It also parses the search component (the query string) into decoded key/value pairs on a query object.
 
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>url</td><td><code>String</code></td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type |
+| --- | --- |
+| url | <code>String</code> | 
 
     <a name="module_xhr"></a>
 
@@ -1266,20 +871,11 @@ Deconstructs a URL into its components. It also parses the search component (the
 Cross browser wrapper for XMLHttpRequest. If you need Cookies and HTTP Auth data to be included in the request you must set withCredentials to true in the options.
 
 **Kind**: static method of <code>[xhr](#module_xhr)</code>  
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>options</td><td><code>Object</code></td><td></td>
-    </tr><tr>
-    <td>callback</td><td><code>function</code></td><td><p>executed on response with the signature (status: Number, body: String)</p>
-</td>
-    </tr>  </tbody>
-</table>
+
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> |  |
+| callback | <code>function</code> | executed on response with the signature (status: Number, body: String) |
 
 **Example**  
 ```js
