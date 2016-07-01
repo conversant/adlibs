@@ -45,7 +45,7 @@ module.exports = function(config) {
 
 		config.coverageReporter = {
 			dir: 'coverage',
-			type: 'html'
+			type: 'lcovonly'
 		};
 	}
 
