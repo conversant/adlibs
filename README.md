@@ -440,7 +440,7 @@ var environment = require("ad-libs.js/lib/detect/environment");
 <a name="module_Environment.detect"></a>
 
 ### environment.detect() ⇒ <code>Object</code>
-Detect environmental variables and return them as an array with standard read accessor method and map.
+Detect environmental variables and return them wrapped within an object.
 
 **Kind**: static method of <code>[Environment](#module_Environment)</code>  
 **Returns**: <code>Object</code> - Returns the environment object  
@@ -749,6 +749,13 @@ Dynamically loads scripts in parallel, and executes a single callback after all 
 Create a new instance of the performance module
 
 **Kind**: static method of <code>[measurePerformance](#module_measurePerformance)</code>  
+**Example**  
+```js
+var perf = require('ad-libs.js/lib/measurePerformance').factory();
+
+console.log(perf.now() - perf.startTime); // outputs duration since script start
+console.log(perf.report()); // outputs report based on performance events such as domLoading, navigationStart, etc.
+```
 <a name="module_measurePerformance.performanceProvider"></a>
 
 ### measurePerformance.performanceProvider(packageName) ⇒ <code>MeasurePerformance</code>
@@ -857,6 +864,13 @@ Deconstructs a URL into its components. It also parses the search component (the
 | --- | --- |
 | url | <code>String</code> | 
 
+**Example**  
+```js
+var parseUrl = require('ad-libs.js/lib/url/parse');
+
+var queryObj = parseUrl('http://foo.com/query?cb=1234&userid=9999');
+
+```
     <a name="module_xhr"></a>
 
 ## xhr
