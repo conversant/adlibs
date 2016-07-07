@@ -39,10 +39,8 @@ console.log(browser.os.name)
 
 # API Reference
 
-    <a name="module_canHas"></a>
-
 ## canHas
-
+    
 * [canHas](#module_canHas)
     * [.can(obj, propertyName)](#module_canHas.can) ⇒ <code>boolean</code>
     * [.has(globalObjectName, [scope])](#module_canHas.has) ⇒ <code>\*</code>
@@ -114,10 +112,8 @@ For each in, shorthanded because manually writing hasOwnProperty each and every 
 | obj | 
 | callback | 
 
-    <a name="module_createSpy"></a>
-
-## createSpy ⇒ <code>sinon.spy</code>
-Helper method to create Sinon.JS Spies directly on the value of module.exports for a required module. To spy on a method you need access to the object it is attached to, which is problematic when the function is directly returned from a "require" call. By accessing the require.cache we can get handle to the module's exports and inject the spy.
+## createSpy
+    Helper method to create Sinon.JS Spies directly on the value of module.exports for a required module. To spy on a method you need access to the object it is attached to, which is problematic when the function is directly returned from a "require" call. By accessing the require.cache we can get handle to the module's exports and inject the spy.
 
 
 | Param | Type | Description |
@@ -143,10 +139,8 @@ assert(spy.callCount, 4);
 spy.restore();
 
 ```
-    <a name="module_Browser"></a>
-
 ## Browser
-Browser Detection - Gets Data Pertaining to User's Browser and OS
+    Browser Detection - Gets Data Pertaining to User's Browser and OS
 
 **Example**  
 ```
@@ -400,10 +394,8 @@ var os = browser.detect().os.name;
 
 console.log(os); // outputs OS name (e.g. Windows, Mac, Android, etc.)
 ```
-    <a name="module_Capabilities"></a>
-
 ## Capabilities
-Determines browser's capabilities (e.g. CORS support, sandboxable, video support, etc.)
+    Determines browser's capabilities (e.g. CORS support, sandboxable, video support, etc.)
 
 **Example**  
 ```javascript
@@ -420,10 +412,8 @@ Detect browser's capabilities and returns an object
 // Outputs whether the browser supports h264 video ( 1 if yes, else 0)
 var h264 = capabilities.detect().h264;
 ```
-    <a name="module_Environment"></a>
-
 ## Environment
-Environment Detection - Gets Data Pertaining to User's Environment
+    Environment Detection - Gets Data Pertaining to User's Environment
 
 **Example**  
 ```
@@ -466,10 +456,8 @@ console.log(flash) // outputs the version of Flash
 
 ### environment.getAdDocSize() ⇒ <code>Object</code>
 **Kind**: static method of <code>[Environment](#module_Environment)</code>  
-    <a name="module_Mraid"></a>
-
 ## Mraid
-Mraid Detection
+    Mraid Detection
 
 **Example**  
 ```js
@@ -505,10 +493,8 @@ Gets mraid version
 | --- | --- | --- |
 | [Win] | <code>Window</code> | is an optional param. If not given, uses the current window |
 
-    <a name="module_Safeframe"></a>
-
 ## Safeframe
-Safeframe Detection
+    Safeframe Detection
 
 **Example**  
 ```js
@@ -613,10 +599,8 @@ Returns safeframe metrics
 | --- | --- |
 | [win] | <code>Window</code> | 
 
-    <a name="module_addEventListener"></a>
-
-## addEventListener ⇒ <code>function</code>
-Add an event listener to the element, which will execute the given callback.
+## addEventListener
+    Add an event listener to the element, which will execute the given callback.
 
 **Returns**: <code>function</code> - Returns a function, that when executed, will remove the event listener from the element.  
 
@@ -633,10 +617,8 @@ var addEventListener = require('ad-libs.js/lib/dom/addEventListener');
 addEventListener(el, 'onLoad', cb);
 
 ```
-    <a name="module_appendHtml"></a>
-
-## appendHtml ⇒ <code>Array</code>
-Appends all elements in the html string to the parent element. Correctly handles scripts with src attributes and inline javascript and ensures that the script will execute.  NOTE: Only Element nodes in the html string will be appended. All other node types will be ignored (i.e. Text, Comment).
+## appendHtml
+    Appends all elements in the html string to the parent element. Correctly handles scripts with src attributes and inline javascript and ensures that the script will execute.  NOTE: Only Element nodes in the html string will be appended. All other node types will be ignored (i.e. Text, Comment).
 
 **Returns**: <code>Array</code> - a list of any exceptions that occurred.  
 
@@ -650,10 +632,8 @@ Appends all elements in the html string to the parent element. Correctly handles
 var appendHtml = require('ad-libs.js/lib/dom/appendHtml');
 
 ```
-    <a name="module_domReady"></a>
-
 ## domReady
-Executes the provided callback when the DOM is ready. Allows code to act on the DOM before the window "load" event fires.
+    Executes the provided callback when the DOM is ready. Allows code to act on the DOM before the window "load" event fires.
 
 
 | Param | Type | Description |
@@ -667,10 +647,8 @@ Executes the provided callback when the DOM is ready. Allows code to act on the 
 var domReady = require('ad-libs.js/lib/dom/domReady');
 
 ```
-    <a name="module_getExecutingScript"></a>
-
-## getExecutingScript ⇒ <code>HTMLScriptElement</code>
-Returns the script element that loaded the currently executing javascript code. The detectScript function takes a script Element as a single argument, and should return a boolean value. Allows more specific filtering in the case of multiple  scripts on the page where document.currentScript is not supported. When the executing script has been located it will be marked with an attribute  key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScript.LOAD_STARTED.
+## getExecutingScript
+    Returns the script element that loaded the currently executing javascript code. The detectScript function takes a script Element as a single argument, and should return a boolean value. Allows more specific filtering in the case of multiple  scripts on the page where document.currentScript is not supported. When the executing script has been located it will be marked with an attribute  key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScript.LOAD_STARTED.
 
 
 | Param | Type |
@@ -682,10 +660,8 @@ Returns the script element that loaded the currently executing javascript code. 
 var getExecutingScript = require('ad-libs.js/lib/dom/getExecutingScript');
 
 ```
-    <a name="module_triggerEvent"></a>
-
 ## triggerEvent
-Creates a new DOM Event and triggers it on the provided element.
+    Creates a new DOM Event and triggers it on the provided element.
 
 
 | Param | Type |
@@ -693,20 +669,16 @@ Creates a new DOM Event and triggers it on the provided element.
 | element | <code>Element</code> | 
 | eventName | <code>String</code> | 
 
-    <a name="module_evaluator"></a>
-
-## evaluator ⇒ <code>Object</code>
-Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly. Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won't function for this module. That's right - we have one letter vars in our source code, ain't eval grand? For more info on eval visit: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
+## evaluator
+    Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly. Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won't function for this module. That's right - we have one letter vars in our source code, ain't eval grand? For more info on eval visit: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
 
 
 | Param | Type |
 | --- | --- |
 | v | <code>String</code> | 
 
-    <a name="module_jsonp"></a>
-
-## jsonp ⇒ <code>Object</code>
-Perform a cross domain request via JSONP. Provides the same interface as xhr.js.   The request is made by appending a 'callback' parameter to the request url,  and it is expected that the server will respond with the content wrapped in  a function call using the provided value of the callback parameter.   If callbackFn isn't defined, a unique name will be generated.
+## jsonp
+    Perform a cross domain request via JSONP. Provides the same interface as xhr.js.   The request is made by appending a 'callback' parameter to the request url,  and it is expected that the server will respond with the content wrapped in  a function call using the provided value of the callback parameter.   If callbackFn isn't defined, a unique name will be generated.
 
 **Returns**: <code>Object</code> - Returns object with send function  
 
@@ -722,10 +694,8 @@ Perform a cross domain request via JSONP. Provides the same interface as xhr.js.
 CB_1433519761916('response from server');
 
 ```
-    <a name="module_loadScript"></a>
-
 ## loadScript
-Dynamically loads scripts in parallel, and executes a single callback after all scripts have loaded.
+    Dynamically loads scripts in parallel, and executes a single callback after all scripts have loaded.
 
 
 | Param | Type | Description |
@@ -735,10 +705,8 @@ Dynamically loads scripts in parallel, and executes a single callback after all 
 | onError | <code>function</code> | callback executed if one or more scripts fail to load, passed 							  a single argument, the list of script urls that failed to load |
 | [requestTimeout] | <code>Number</code> | when supplied, this will explicitly timeout the script request 							  and report back to onError or if onError is not supplied, to onLoaded. 							  IMPORTANT: This does not cancel the script load, just reports that it 							  has exceeded the timeout duration. |
 
-    <a name="module_measurePerformance"></a>
-
 ## measurePerformance
-
+    
 * [measurePerformance](#module_measurePerformance)
     * [.performanceFactory()](#module_measurePerformance.performanceFactory) ⇒ <code>MeasurePerformance</code>
     * [.performanceProvider(packageName)](#module_measurePerformance.performanceProvider) ⇒ <code>MeasurePerformance</code>
@@ -767,10 +735,8 @@ Tie into an existing instance of the performance module
 | --- |
 | packageName | 
 
-    <a name="module_parseConfig"></a>
-
-## parseConfig ⇒ <code>Object</code>
-Parses a json config from the provided Element. The defaults is expected to be a JSON string in the attribute value.
+## parseConfig
+    Parses a json config from the provided Element. The defaults is expected to be a JSON string in the attribute value.
 
 **Returns**: <code>Object</code> - the parsed json config  
 
@@ -786,10 +752,8 @@ var parseConfig = require('ad-libs/lib/parseConfig');
 
 console.log(parseConfig(htmlElement, attributeName, defaultVals)) // outputs the parsed object from the element
 ```
-    <a name="module_perfMarker"></a>
-
 ## perfMarker
-A module to mark the timestamps for script performance
+    A module to mark the timestamps for script performance
 
 
 * [perfMarker](#module_perfMarker)
@@ -813,10 +777,8 @@ Ties into existing instance of PerfMarker
 | --- | --- | --- |
 | [pkgName] | <code>string</code> | The name of the instance |
 
-    <a name="module_reportData"></a>
-
 ## reportData
-
+    
 * [reportData](#module_reportData)
     * [.reportDataFactory([baseURL], [measurePerformanceInstance])](#module_reportData.reportDataFactory) ⇒ <code>ReportData</code>
     * [.reportDataProvider(packageName)](#module_reportData.reportDataProvider) ⇒ <code>ReportData</code>
@@ -844,20 +806,16 @@ Tie into an existing instance of the reportData module
 | --- |
 | packageName | 
 
-    <a name="module_format"></a>
-
-## format ⇒ <code>String</code>
-Constructs a URL from its parsed components. 1) host takes precedence over hostname and port 2) query takes precedence over search
+## format
+    Constructs a URL from its parsed components. 1) host takes precedence over hostname and port 2) query takes precedence over search
 
 
 | Param | Type | Description |
 | --- | --- | --- |
 | components | <code>Object</code> | the url components, as generated by url/parse.js |
 
-    <a name="module_parse"></a>
-
-## parse ⇒ <code>Object</code>
-Deconstructs a URL into its components. It also parses the search component (the query string) into decoded key/value pairs on a query object.
+## parse
+    Deconstructs a URL into its components. It also parses the search component (the query string) into decoded key/value pairs on a query object.
 
 
 | Param | Type |
@@ -871,10 +829,8 @@ var parseUrl = require('ad-libs.js/lib/url/parse');
 var queryObj = parseUrl('http://foo.com/query?cb=1234&userid=9999');
 
 ```
-    <a name="module_xhr"></a>
-
 ## xhr
-
+    
 * [xhr](#module_xhr)
     * [.xhr(options, callback)](#module_xhr.xhr) ⇒ <code>Object</code>
     * [.supportsCORS()](#module_xhr.supportsCORS) ⇒ <code>boolean</code>
