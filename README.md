@@ -130,7 +130,7 @@ module.exports = function() { ... async call ...  };
 my-test.js
 ```js
 var incrementCounter = require('./incrementCounter'),
-	createSpy = require('cse-common/lib/createSpy');
+createSpy = require('cse-common/lib/createSpy');
 
 var spy = createSpy(incrementCounter);
 
@@ -631,6 +631,8 @@ addEventListener(el, 'onLoad', cb);
 ```js
 var appendHtml = require('ad-libs.js/lib/dom/appendHtml');
 
+appendHtml(parentElement, htmlMarkup);
+
 ```
 ## domReady
     Executes the provided callback when the DOM is ready. Allows code to act on the DOM before the window "load" event fires.
@@ -708,15 +710,15 @@ CB_1433519761916('response from server');
 ## measurePerformance
     
 * [measurePerformance](#module_measurePerformance)
-    * [.performanceFactory()](#module_measurePerformance.performanceFactory) ⇒ <code>MeasurePerformance</code>
-    * [.performanceProvider(packageName)](#module_measurePerformance.performanceProvider) ⇒ <code>MeasurePerformance</code>
+    * [.factory](#module_measurePerformance.factory) ⇒ <code>MeasurePerformance</code>
+    * [.provider](#module_measurePerformance.provider) ⇒ <code>MeasurePerformance</code>
 
-<a name="module_measurePerformance.performanceFactory"></a>
+<a name="module_measurePerformance.factory"></a>
 
-### measurePerformance.performanceFactory() ⇒ <code>MeasurePerformance</code>
+### measurePerformance.factory ⇒ <code>MeasurePerformance</code>
 Create a new instance of the performance module
 
-**Kind**: static method of <code>[measurePerformance](#module_measurePerformance)</code>  
+**Kind**: static property of <code>[measurePerformance](#module_measurePerformance)</code>  
 **Example**  
 ```js
 var perf = require('ad-libs.js/lib/measurePerformance').factory();
@@ -724,12 +726,12 @@ var perf = require('ad-libs.js/lib/measurePerformance').factory();
 console.log(perf.now() - perf.startTime); // outputs duration since script start
 console.log(perf.report()); // outputs report based on performance events such as domLoading, navigationStart, etc.
 ```
-<a name="module_measurePerformance.performanceProvider"></a>
+<a name="module_measurePerformance.provider"></a>
 
-### measurePerformance.performanceProvider(packageName) ⇒ <code>MeasurePerformance</code>
+### measurePerformance.provider ⇒ <code>MeasurePerformance</code>
 Tie into an existing instance of the performance module
 
-**Kind**: static method of <code>[measurePerformance](#module_measurePerformance)</code>  
+**Kind**: static property of <code>[measurePerformance](#module_measurePerformance)</code>  
 
 | Param |
 | --- |
@@ -757,21 +759,21 @@ console.log(parseConfig(htmlElement, attributeName, defaultVals)) // outputs the
 
 
 * [perfMarker](#module_perfMarker)
-    * [.markerFactory()](#module_perfMarker.markerFactory) ⇒ <code>PerfMarker</code>
-    * [.markerProvider([pkgName])](#module_perfMarker.markerProvider) ⇒ <code>PerfMarker</code>
+    * [.factory](#module_perfMarker.factory) ⇒ <code>PerfMarker</code>
+    * [.provider](#module_perfMarker.provider) ⇒ <code>PerfMarker</code>
 
-<a name="module_perfMarker.markerFactory"></a>
+<a name="module_perfMarker.factory"></a>
 
-### perfMarker.markerFactory() ⇒ <code>PerfMarker</code>
+### perfMarker.factory ⇒ <code>PerfMarker</code>
 Creates a new instance of PerfMarker
 
-**Kind**: static method of <code>[perfMarker](#module_perfMarker)</code>  
-<a name="module_perfMarker.markerProvider"></a>
+**Kind**: static property of <code>[perfMarker](#module_perfMarker)</code>  
+<a name="module_perfMarker.provider"></a>
 
-### perfMarker.markerProvider([pkgName]) ⇒ <code>PerfMarker</code>
+### perfMarker.provider ⇒ <code>PerfMarker</code>
 Ties into existing instance of PerfMarker
 
-**Kind**: static method of <code>[perfMarker](#module_perfMarker)</code>  
+**Kind**: static property of <code>[perfMarker](#module_perfMarker)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -780,27 +782,27 @@ Ties into existing instance of PerfMarker
 ## reportData
     
 * [reportData](#module_reportData)
-    * [.reportDataFactory([baseURL], [measurePerformanceInstance])](#module_reportData.reportDataFactory) ⇒ <code>ReportData</code>
-    * [.reportDataProvider(packageName)](#module_reportData.reportDataProvider) ⇒ <code>ReportData</code>
+    * [.factory](#module_reportData.factory) ⇒ <code>ReportData</code>
+    * [.provider](#module_reportData.provider) ⇒ <code>ReportData</code>
 
-<a name="module_reportData.reportDataFactory"></a>
+<a name="module_reportData.factory"></a>
 
-### reportData.reportDataFactory([baseURL], [measurePerformanceInstance]) ⇒ <code>ReportData</code>
+### reportData.factory ⇒ <code>ReportData</code>
 Create a new instance of the reportData module
 
-**Kind**: static method of <code>[reportData](#module_reportData)</code>  
+**Kind**: static property of <code>[reportData](#module_reportData)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | [baseURL] | <code>string</code> | Base url for reporting pixel info |
 | [measurePerformanceInstance] | <code>MeasurePerformance</code> | performance instance to provide measurement timestamps |
 
-<a name="module_reportData.reportDataProvider"></a>
+<a name="module_reportData.provider"></a>
 
-### reportData.reportDataProvider(packageName) ⇒ <code>ReportData</code>
+### reportData.provider ⇒ <code>ReportData</code>
 Tie into an existing instance of the reportData module
 
-**Kind**: static method of <code>[reportData](#module_reportData)</code>  
+**Kind**: static property of <code>[reportData](#module_reportData)</code>  
 
 | Param |
 | --- |
@@ -832,15 +834,24 @@ var queryObj = parseUrl('http://foo.com/query?cb=1234&userid=9999');
 ## xhr
     
 * [xhr](#module_xhr)
-    * [.xhr(options, callback)](#module_xhr.xhr) ⇒ <code>Object</code>
-    * [.supportsCORS()](#module_xhr.supportsCORS) ⇒ <code>boolean</code>
+    * _static_
+        * [.supportsCORS()](#module_xhr.supportsCORS) ⇒ <code>boolean</code>
+    * _inner_
+        * [~xhr(options, callback)](#module_xhr..xhr) ⇒ <code>Object</code>
 
-<a name="module_xhr.xhr"></a>
+<a name="module_xhr.supportsCORS"></a>
 
-### xhr.xhr(options, callback) ⇒ <code>Object</code>
-Cross browser wrapper for XMLHttpRequest. If you need Cookies and HTTP Auth data to be included in the request you must set withCredentials to true in the options.
+### xhr.supportsCORS() ⇒ <code>boolean</code>
+Determines if CORS is supported
 
 **Kind**: static method of <code>[xhr](#module_xhr)</code>  
+**Returns**: <code>boolean</code> - returns whether CORS is supported  
+<a name="module_xhr..xhr"></a>
+
+### xhr~xhr(options, callback) ⇒ <code>Object</code>
+Cross browser wrapper for XMLHttpRequest. If you need Cookies and HTTP Auth data to be included in the request you must set withCredentials to true in the options.
+
+**Kind**: inner method of <code>[xhr](#module_xhr)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -849,18 +860,12 @@ Cross browser wrapper for XMLHttpRequest. If you need Cookies and HTTP Auth data
 
 **Example**  
 ```js
-var xhr = require('ad-libs/lib/xhr').xhr;
+var xhr = require('ad-libs/lib/xhr');
 
-xhr.send();
+// performs a GET request
+var resp = xhr({url: 'www.example.com').send();
 
 ```
-<a name="module_xhr.supportsCORS"></a>
-
-### xhr.supportsCORS() ⇒ <code>boolean</code>
-Determines if CORS is supported
-
-**Kind**: static method of <code>[xhr](#module_xhr)</code>  
-**Returns**: <code>boolean</code> - returns whether CORS is supported  
 
 
 
