@@ -423,6 +423,7 @@ var environment = require("ad-libs.js/lib/detect/environment");
 * [Environment](#module_Environment)
     * [.detect()](#module_Environment.detect) ⇒ <code>Object</code>
     * [.getFlashVersion()](#module_Environment.getFlashVersion) ⇒ <code>Number</code>
+    * [.getFrameDepth()](#module_Environment.getFrameDepth) ⇒ <code>String</code>
     * [.getAvailableScreenSize()](#module_Environment.getAvailableScreenSize) ⇒ <code>Object</code>
     * [.getScreenSize()](#module_Environment.getScreenSize) ⇒ <code>Object</code>
     * [.getAdDocSize()](#module_Environment.getAdDocSize) ⇒ <code>Object</code>
@@ -443,6 +444,10 @@ console.log(flash) // outputs the version of Flash
 <a name="module_Environment.getFlashVersion"></a>
 
 ### environment.getFlashVersion() ⇒ <code>Number</code>
+**Kind**: static method of <code>[Environment](#module_Environment)</code>  
+<a name="module_Environment.getFrameDepth"></a>
+
+### environment.getFrameDepth() ⇒ <code>String</code>
 **Kind**: static method of <code>[Environment](#module_Environment)</code>  
 <a name="module_Environment.getAvailableScreenSize"></a>
 
@@ -832,7 +837,13 @@ var queryObj = parseUrl('http://foo.com/query?cb=1234&userid=9999');
 
 ```
 ## xhr
-    
+    Cross browser wrapper for XMLHttpRequest. If you need Cookies and HTTP Auth data to be included in the request you must set withCredentials to true in the options.
+
+**Example**  
+```js
+var xhr = require('ad-libs/lib/xhr');
+```
+
 * [xhr](#module_xhr)
     * _static_
         * [.supportsCORS()](#module_xhr.supportsCORS) ⇒ <code>boolean</code>
@@ -849,8 +860,6 @@ Determines if CORS is supported
 <a name="module_xhr..xhr"></a>
 
 ### xhr~xhr(options, callback) ⇒ <code>Object</code>
-Cross browser wrapper for XMLHttpRequest. If you need Cookies and HTTP Auth data to be included in the request you must set withCredentials to true in the options.
-
 **Kind**: inner method of <code>[xhr](#module_xhr)</code>  
 
 | Param | Type | Description |
@@ -860,10 +869,8 @@ Cross browser wrapper for XMLHttpRequest. If you need Cookies and HTTP Auth data
 
 **Example**  
 ```js
-var xhr = require('ad-libs/lib/xhr');
-
 // performs a GET request
-var resp = xhr({url: 'www.example.com').send();
+var resp = xhr({url: 'www.example.com'}).send();
 
 ```
 

@@ -72,5 +72,11 @@ describe('url/parse', function() {
 		expect(parsed.someothervalue).to.eql('true');
 		expect(parsed['']).to.be(undefined); // in <= 5.0.5, this would be defined using the url above
 	});
+
+	it('does not blow up with a URIError when a badly-encoded query string is passed to it.', function() {
+		var parsed = parseUrl('http://example.com?badQueryParam=%T');
+		expect(parsed.query.badQueryParam).to.be.a('string');
+		expect(parsed.query.badQueryParam).to.equal('%T');
+	});
 	
 });

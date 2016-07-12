@@ -8,6 +8,7 @@ var environment = require('../../lib/detect/environment'),
 describe('Environment Test', function(){
 	var details = environment.detect();
 
+	//TODO: Each function in environment should have it's own 'describe' statement
 	it('Reports and Properties should have the appropriate number of entries', function(){
 		// The count from parent ads to doc mode is expected to be 14 items
 		expect(Object.keys(details).length).to.eql(14);
@@ -33,5 +34,11 @@ describe('Environment Test', function(){
 
 	it('Flash version should be present', function(){
 		expect(environment.getFlashVersion()).to.not.eql('');
+	});
+
+	describe('getFrameDepth', function() {
+		it('correctly detects the frame depth on the Karma test page', function() {
+			expect(environment.getFrameDepth()).to.be('1');
+		});
 	});
 });

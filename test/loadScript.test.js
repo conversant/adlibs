@@ -24,6 +24,14 @@ describe('loadScript', function() {
 		});
 	});
 
+	it('Should load the script and attach it to a given target', function(done) {
+		expect(document.body.children[document.body.children.length-1].src.indexOf('loader-test.js')).to.equal(-1);
+		loadScript('/base/public/loader-test.js', function() {
+			expect(document.body.children[document.body.children.length-1].src.indexOf('loader-test.js')).to.not.equal(-1);
+			done();
+		}, function() {}, 0, document.body);
+	});
+
 	it('Should load all scripts and execute the success callback after all scripts load.', function(done) {
 		loadScript(
 			[
