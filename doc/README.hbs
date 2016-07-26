@@ -1,4 +1,4 @@
-<img src="https://github.com/conversant/ad-libs.js/tree/master/doc/Ad-libs-js.png" align="center" />
+<img src="https://github.com/conversant/ad-libs.js/raw/master/doc/Ad-libs-js.png" align="center" />
 
 # ad-libs.js
 
