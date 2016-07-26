@@ -1,9 +1,11 @@
+<img src="https://github.com/conversant/ad-libs.js/tree/master/doc/Ad-libs-js.png" align="center" />
+
 # ad-libs.js
 
-
 A collection of cross-browser methods for use with front-end development. Ad-Libs is a tool that supports various browser
-and OS combinations dating back to IE5. It uses feature detection to determine the user's environment and outputs details
-pertaining to that OS and browser.
+and OS combinations dating back to IE9. It uses feature detection to determine the user's environment and outputs details
+pertaining to that OS and browser. Ad-libs also allows developers to safely execute front end methods such as domReady
+and XMLHttpRequests across all browsers.
 
 ## Installation
 ```bash
@@ -76,6 +78,10 @@ Does this window have this object in it
 | globalObjectName |  |
 | [scope] | Optional scope to use. Alternatively, you can call "run" with a more sane method signature. |
 
+**Example**  
+```js
+var has = require('ad-libs/lib/canHas').has;
+```
 <a name="module_canHas.own"></a>
 
 ### canHas.own(obj, propertyName) ⇒ <code>boolean</code>
@@ -653,20 +659,29 @@ appendHtml(parentElement, htmlMarkup);
 ```js
 var domReady = require('ad-libs.js/lib/dom/domReady');
 
-```
-## getExecutingScript
-    Returns the script element that loaded the currently executing javascript code. The detectScript function takes a script Element as a single argument, and should return a boolean value. Allows more specific filtering in the case of multiple  scripts on the page where document.currentScript is not supported. When the executing script has been located it will be marked with an attribute  key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScript.LOAD_STARTED.
+// executes the cb on dom ready
+domReady(cb, window);
 
+```
+## dom/getExecutingScript
+    <a name="module_dom/getExecutingScript..getExecutingScript"></a>
+
+### dom/getExecutingScript~getExecutingScript([detectScript]) ⇒ <code>HTMLScriptElement</code> &#124; <code>null</code>
+Returns the script element that loaded the currently executing javascript code.
+
+The detectScript function takes a script Element as a single argument, and should
+return a boolean value. Allows more specific filtering in the case of multiple
+scripts on the page where document.currentScript is not supported.
+
+When the executing script has been located it will be marked with an attribute
+key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScript.LOAD_STARTED.
+
+**Kind**: inner method of <code>[dom/getExecutingScript](#module_dom/getExecutingScript)</code>  
 
 | Param | Type |
 | --- | --- |
 | [detectScript] | <code>function</code> | 
 
-**Example**  
-```js
-var getExecutingScript = require('ad-libs.js/lib/dom/getExecutingScript');
-
-```
 ## triggerEvent
     Creates a new DOM Event and triggers it on the provided element.
 
