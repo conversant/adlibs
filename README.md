@@ -1,6 +1,4 @@
-<img src="https://github.com/conversant/ad-libs.js/raw/master/doc/Ad-libs-js.png" align="center" />
-
-# ad-libs.js
+# ad-libs.js ![alt text](https://github.com/conversant/ad-libs.js/raw/master/doc/Ad-libs-js.png "Ad-libs.js")
 
 A collection of cross-browser methods for use with front-end development. Ad-Libs is a tool that supports various browser
 and OS combinations dating back to IE9. It uses feature detection to determine the user's environment and outputs details
@@ -666,10 +664,10 @@ domReady(cb, window);
 ## dom/getExecutingScript
     <a name="module_dom/getExecutingScript..getExecutingScript"></a>
 
-### dom/getExecutingScript~getExecutingScript([detectScript]) ⇒ <code>HTMLScriptElement</code> &#124; <code>null</code>
+### dom/getExecutingScript~getExecutingScript([validatorFunc], [testScript]) ⇒ <code>HTMLScriptElement</code> &#124; <code>null</code>
 Returns the script element that loaded the currently executing javascript code.
 
-The detectScript function takes a script Element as a single argument, and should
+The validatorFunc function takes a script Element as a single argument, and should
 return a boolean value. Allows more specific filtering in the case of multiple
 scripts on the page where document.currentScript is not supported.
 
@@ -678,9 +676,10 @@ key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScrip
 
 **Kind**: inner method of <code>[dom/getExecutingScript](#module_dom/getExecutingScript)</code>  
 
-| Param | Type |
-| --- | --- |
-| [detectScript] | <code>function</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| [validatorFunc] | <code>function</code> |  |
+| [testScript] | <code>HTMLScriptElement</code> | Used for IoC/testing |
 
 ## triggerEvent
     Creates a new DOM Event and triggers it on the provided element.
