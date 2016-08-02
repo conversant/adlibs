@@ -1,6 +1,6 @@
 {
-  "name": "ad-libs.js",
-  "version": "1.0.1",
+  "name": "ad-libs",
+  "version": "1.0.0",
   "description": "A collection of common client side commonjs modules",
   "scripts": {
     "test": "karma start --single-run",
