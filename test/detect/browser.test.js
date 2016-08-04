@@ -147,6 +147,14 @@ describe('detect/browser/browserTypes', function () {
 	});
 });
 
+describe('detect/browser/validate result datatypes', function () {
+	it('Should have results with the correct data types', function () {
+		browser.detect();
+		var results = browser.results;
+		validateResults(results);
+	});
+});
+
 // Compares an honest and dishonest array of results
 // This should be consistent across platforms
 function ensureHonestResults (honestUA, dishonestUA) {
@@ -190,6 +198,23 @@ function validateDetails(details) {
 	expect(details.isOpera).to.be.a('boolean');
 	expect(details.isChrome).to.be.a('boolean');
 	expect(details.isSafari).to.be.a('boolean');
+}
+
+// Universal function for validating the results from the detect function
+function validateResults(results) {
+	expect(results.length).to.be(12);
+	expect(results[0]).to.be.a('string');
+	expect(results[1]).to.be.a('string');
+	expect(results[2]).to.be.a('string');
+	expect(results[3]).to.be.a('string');
+	expect(results[4]).to.be.a('string');
+	expect(results[5]).to.be.a('string');
+	expect(results[6]).to.be.ok();
+	expect(results[7]).to.be.a('string');
+	expect(results[8]).to.be.a('string');
+	expect(results[9]).to.be.a('string');
+	expect(results[10]).to.be.a('string');
+	expect(results[11]).to.be.a('string');
 }
 
 describe('detect/browser/ validate details datatypes', function () {

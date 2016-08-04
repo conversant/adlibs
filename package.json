@@ -1,5 +1,5 @@
 {
-  "name": "ad-libs",
+  "name": "adlibs",
   "version": "1.0.0",
   "description": "A collection of common client side commonjs modules",
   "scripts": {

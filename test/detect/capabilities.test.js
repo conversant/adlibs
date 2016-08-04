@@ -77,48 +77,14 @@ describe('Capabilities Test', function() {
 	it('should generate a report with 1 or 0 for each entry in the capability list.', function() {
 		var details = capabilities.detect();
 
-		var indexNames = [
-			'CANVAS',
-			'H264',
-			'OGG',
-			'WEBM',
-			'WEBGL',
-			'PERF',
-			'PERF_TIME',
-			'PERF_NAV',
-			'JSON',
-			'POST_MESSAGE',
-			'CORS',
-			'ORIENTATION',
-			'MOTION',
-			'TOUCH',
-			'SANDBOXABLE',
-			'SEAMLESS',
-			'FRAMED',
-			'ONE_DEEP',
-			'FRIENDLY',
-			'QUIRKS',
-			'ACTIVEX',
-			'SPEECHSYNTH',
-			'INTERNATIONAL',
-			'PERMISSIONS',
-			'AMBIENT',
-			'SET_IMMEDIATE',
-			'MATCHMEDIA',
-			'IS_FINITE',
-			'NOTIFICATION',
-			'EVENT_SOURCE',
-			'PUSH_MESSAGE_DATA',
-			'POINTER_EVENTS',
-			'IME_API',
-			'PROXIMITY',
-			'BROADCAST_CHANNEL',
-			'SPEECH_RECOGNITION',
-			'POINTER_LOCK',
-			'PROXY'
-		];
-
 		// The count from canvas to active x is expected to be the same as the indexed names
-		expect(Object.keys(details).length).to.eql(indexNames.length);
+		expect(Object.keys(details).length).to.eql(capabilities.indexNames.length);
+	});
+
+	it('Should read the requested result given an index name', function () {
+		capabilities.detect();
+		var results = capabilities.results;
+
+		expect(capabilities.read('JSON')).to.equal(results[8]);
 	});
 });
