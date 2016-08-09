@@ -1,13 +1,13 @@
-#ad-libs.js
-__________
+# ad-libs.js ![alt text](https://github.com/conversant/ad-libs.js/raw/master/doc/Ad-libs-js.png "Ad-libs.js")
 
-| ________________ | The gist of it... |
-|:---|:---|
-| ![ad-libs.js](https://github.com/conversant/ad-libs.js/raw/master/doc/Ad-libs-js.png "Ad-libs.js") | A collection of cross-browser methods for use with front-end development. Ad-Libs is a tool that supports various browser and OS combinations dating back to IE9. It uses feature detection to determine the user's environment and outputs details pertaining to that OS and browser. Ad-libs also allows developers to safely execute front end methods such as domReady and XMLHttpRequests across all browsers. |
+A collection of cross-browser methods for use with front-end development. Ad-Libs is a tool that supports various browser
+and OS combinations dating back to IE9. It uses feature detection to determine the user's environment and outputs details
+pertaining to that OS and browser. Ad-libs also allows developers to safely execute front end methods such as domReady
+and XMLHttpRequests across all browsers.
 
 ## Installation
 ```bash
-npm install https://github.com/conversant/ad-libs.js
+npm install adlibs
 ```
 ## Usage
 
@@ -152,23 +152,27 @@ var browser = require("ad-libs.js/lib/detect/browser")
 ```
 
 * [Browser](#module_Browser)
-    * [.mathMLSupport(d)](#module_Browser.mathMLSupport) ⇒ <code>boolean</code>
-    * [.isMobile([win])](#module_Browser.isMobile) ⇒ <code>boolean</code>
-    * [.getVersion(uaVersion, minVersion, [maxVersion])](#module_Browser.getVersion) ⇒ <code>number</code>
-    * [.looksLike(regex, ua)](#module_Browser.looksLike) ⇒ <code>\*</code> &#124; <code>boolean</code>
-    * [.parseIntIfMatch(ua, regex, [radix])](#module_Browser.parseIntIfMatch) ⇒ <code>number</code>
-    * [.parseFloatIfMatch(ua, regex)](#module_Browser.parseFloatIfMatch) ⇒
-    * [.getAndroidVersion(win, uaVersion)](#module_Browser.getAndroidVersion) ⇒ <code>number</code>
-    * [.getChromiumVersion(win, uaVersion)](#module_Browser.getChromiumVersion) ⇒ <code>number</code>
-    * [.getSafariVersion(win, uaVersion)](#module_Browser.getSafariVersion) ⇒ <code>number</code>
-    * [.getKindleVersion(win, uaVersion)](#module_Browser.getKindleVersion) ⇒ <code>number</code>
-    * [.getOtherOS(win, ua)](#module_Browser.getOtherOS) ⇒ <code>Browser</code>
-    * [.getAppleOS(win, ua)](#module_Browser.getAppleOS) ⇒ <code>Browser</code>
-    * [.getMicrosoftOS(win, ua)](#module_Browser.getMicrosoftOS) ⇒ <code>Browser</code>
-    * [.getAndroidOS(win, ua)](#module_Browser.getAndroidOS) ⇒ <code>Browser</code>
-    * [.getKindleOS(win, ua)](#module_Browser.getKindleOS) ⇒ <code>Browser</code>
-    * [.getOsFromUa(win, ua)](#module_Browser.getOsFromUa) ⇒ <code>Browser</code>
-    * [.detect([win], [userAgent])](#module_Browser.detect) ⇒ <code>Browser</code>
+    * _static_
+        * [.mathMLSupport(d)](#module_Browser.mathMLSupport) ⇒ <code>boolean</code>
+        * [.isMobile([win])](#module_Browser.isMobile) ⇒ <code>boolean</code>
+        * [.getVersion(uaVersion, minVersion, [maxVersion])](#module_Browser.getVersion) ⇒ <code>number</code>
+        * [.looksLike(regex, ua)](#module_Browser.looksLike) ⇒ <code>\*</code> &#124; <code>boolean</code>
+        * [.parseIntIfMatch(ua, regex, [radix])](#module_Browser.parseIntIfMatch) ⇒ <code>number</code>
+        * [.parseFloatIfMatch(ua, regex)](#module_Browser.parseFloatIfMatch) ⇒
+        * [.getAndroidVersion(win, uaVersion)](#module_Browser.getAndroidVersion) ⇒ <code>number</code>
+        * [.getChromiumVersion(win, uaVersion)](#module_Browser.getChromiumVersion) ⇒ <code>number</code>
+        * [.getSafariVersion(win, uaVersion)](#module_Browser.getSafariVersion) ⇒ <code>number</code>
+        * [.getKindleVersion(win, uaVersion)](#module_Browser.getKindleVersion) ⇒ <code>number</code>
+        * [.getOtherOS(win, ua)](#module_Browser.getOtherOS) ⇒ <code>Browser</code>
+        * [.getAppleOS(win, ua)](#module_Browser.getAppleOS) ⇒ <code>Browser</code>
+        * [.getMicrosoftOS(win, ua)](#module_Browser.getMicrosoftOS) ⇒ <code>Browser</code>
+        * [.getAndroidOS(win, ua)](#module_Browser.getAndroidOS) ⇒ <code>Browser</code>
+        * [.getKindleOS(win, ua)](#module_Browser.getKindleOS) ⇒ <code>Browser</code>
+        * [.getOsFromUa(win, ua)](#module_Browser.getOsFromUa) ⇒ <code>Browser</code>
+        * [.detect([win], [userAgent])](#module_Browser.detect) ⇒ <code>Browser</code>
+        * [.read(key)](#module_Browser.read) ⇒ <code>\*</code>
+    * _inner_
+        * [~save(result)](#module_Browser..save) ⇒ <code>number</code>
 
 <a name="module_Browser.mathMLSupport"></a>
 
@@ -398,6 +402,28 @@ var os = browser.detect().os.name;
 
 console.log(os); // outputs OS name (e.g. Windows, Mac, Android, etc.)
 ```
+<a name="module_Browser.read"></a>
+
+### browser.read(key) ⇒ <code>\*</code>
+Retrieve any results in the map by name because they're returned in an array without names
+
+**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+
+| Param | Type |
+| --- | --- |
+| key | <code>string</code> | 
+
+<a name="module_Browser..save"></a>
+
+### browser~save(result) ⇒ <code>number</code>
+Saves a property to the results array and returns its index
+
+**Kind**: inner method of <code>[Browser](#module_Browser)</code>  
+
+| Param | Type |
+| --- | --- |
+| result | <code>\*</code> | 
+
 ## Capabilities
     Determines browser's capabilities (e.g. CORS support, sandboxable, video support, etc.)
 
@@ -405,6 +431,11 @@ console.log(os); // outputs OS name (e.g. Windows, Mac, Android, etc.)
 ```javascript
 var capabilities = require("ad-libs.js/lib/detect/capabilities");
 ```
+
+* [Capabilities](#module_Capabilities)
+    * [.detect()](#module_Capabilities.detect) ⇒ <code>Object</code>
+    * [.read(key)](#module_Capabilities.read) ⇒ <code>\*</code>
+
 <a name="module_Capabilities.detect"></a>
 
 ### capabilities.detect() ⇒ <code>Object</code>
@@ -416,6 +447,17 @@ Detect browser's capabilities and returns an object
 // Outputs whether the browser supports h264 video ( 1 if yes, else 0)
 var h264 = capabilities.detect().h264;
 ```
+<a name="module_Capabilities.read"></a>
+
+### capabilities.read(key) ⇒ <code>\*</code>
+**Kind**: static method of <code>[Capabilities](#module_Capabilities)</code>  
+**Todo:**: indexOf is only supported in IE9+, this needs to be updated to account for IE8
+probably wont have this here. instead, it will be methods calling to only the properties that need to be exposed and nothing else.  
+
+| Param | Type |
+| --- | --- |
+| key | <code>String</code> | 
+
 ## Environment
     Environment Detection - Gets Data Pertaining to User's Environment
 
@@ -895,5 +937,6 @@ var resp = xhr({url: 'www.example.com'}).send();
 * [jeffreytgilbert](https://github.com/jeffreytgilbert)
 * [msahagu2](https://github.com/msahagu2)
 * [ggustilo](https://github.com/ggustilo)
+
 
 * * *
