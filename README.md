@@ -1,3 +1,5 @@
+# AdLibs
+
 | ________________ | The gist of it... |
 |:---|:---|
 | ![ad-libs.js](https://github.com/conversant/ad-libs.js/raw/master/doc/Ad-libs-js.png "Ad-libs.js") | A collection of cross-browser methods for use with front-end development. Ad-Libs is a tool that supports various browser and OS combinations dating back to IE9. It uses feature detection to determine the user's environment and outputs details pertaining to that OS and browser. Ad-libs also allows developers to safely execute front end methods such as domReady and XMLHttpRequests across all browsers. |
