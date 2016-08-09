@@ -894,5 +894,6 @@ var resp = xhr({url: 'www.example.com'}).send();
 * [j-brown](https://github.com/j-brown)
 * [jeffreytgilbert](https://github.com/jeffreytgilbert)
 * [msahagu2](https://github.com/msahagu2)
+* [ggustilo](https://github.com/ggustilo)
 
 * * *
