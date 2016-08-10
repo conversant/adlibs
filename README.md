@@ -51,7 +51,7 @@ console.log(browser.os.name)
 <a name="module_canHas.can"></a>
 
 ### canHas.can(obj, propertyName) ⇒ <code>boolean</code>
-Can this object use this property
+Can this object use this property.
 
 **Kind**: static method of <code>[canHas](#module_canHas)</code>  
 
@@ -67,7 +67,7 @@ var can = require('ad-libs/lib/canHas').can;
 <a name="module_canHas.has"></a>
 
 ### canHas.has(globalObjectName, [scope]) ⇒ <code>\*</code>
-Does this window have this object in it
+Does this window have this object in it?
 
 **Kind**: static method of <code>[canHas](#module_canHas)</code>  
 
@@ -83,7 +83,7 @@ var has = require('ad-libs/lib/canHas').has;
 <a name="module_canHas.own"></a>
 
 ### canHas.own(obj, propertyName) ⇒ <code>boolean</code>
-Check to see if this object own's the method as opposed to just inheriting it from another object
+Check to see if this object owns the method as opposed to just inheriting it from another object.
 
 **Kind**: static method of <code>[canHas](#module_canHas)</code>  
 
@@ -95,13 +95,13 @@ Check to see if this object own's the method as opposed to just inheriting it fr
 <a name="module_canHas.run"></a>
 
 ### canHas.run(obj, [methodName]) ⇒ <code>function</code>
-Return a runnable method by default
+Return a runnable method by default.
 
 **Kind**: static method of <code>[canHas](#module_canHas)</code>  
 
 | Param | Description |
 | --- | --- |
-| obj | Scope to use or method to run when not providing a method as the second param |
+| obj | Scope to use or method to run when not providing a method as the second param. |
 | [methodName] | The method to check for |
 
 <a name="module_canHas.forIn"></a>
@@ -117,13 +117,13 @@ For each in, shorthanded because manually writing hasOwnProperty each and every 
 | callback | 
 
 ## createSpy
-    Helper method to create Sinon.JS Spies directly on the value of module.exports for a required module. To spy on a method you need access to the object it is attached to, which is problematic when the function is directly returned from a "require" call. By accessing the require.cache we can get handle to the module's exports and inject the spy.
+    Helper method to create Sinon.JS spies directly on the value of module.exports for a required module. To spy on a method you need access to the object it is attached to, which is problematic when the function is directly returned from a "require" call. By accessing the require.cache we can get handle to the module's exports and inject the spy.
 
 
 | Param | Type | Description |
 | --- | --- | --- |
 | loadedModule |  |  |
-| mockType | <code>String</code> | defaults to 'spy', can also be 'stub' |
+| mockType | <code>String</code> | Defaults to 'spy'. Can also be 'stub'. |
 
 **Example**  
 incrementCounter.js:
@@ -173,10 +173,10 @@ var browser = require("ad-libs.js/lib/detect/browser")
 <a name="module_Browser.mathMLSupport"></a>
 
 ### browser.mathMLSupport(d) ⇒ <code>boolean</code>
-Check for MathML support in browsers to help detect certain browser version numbers where this is the only difference
+Check for MathML support in browsers to help detect certain browser version numbers where this is the only difference.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>boolean</code> - Returns true if browser has mathml support  
+**Returns**: <code>boolean</code> - Returns true if browser has mathml support
 
 | Param | Type |
 | --- | --- |
@@ -185,10 +185,10 @@ Check for MathML support in browsers to help detect certain browser version numb
 <a name="module_Browser.isMobile"></a>
 
 ### browser.isMobile([win]) ⇒ <code>boolean</code>
-Performs a simple test to see if we're on mobile or not
+Performs a simple test to see if we're on mobile or not.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>boolean</code> - Returns true if mobile  
+**Returns**: <code>boolean</code> - Returns true if mobile
 
 | Param | Type |
 | --- | --- |
@@ -197,35 +197,35 @@ Performs a simple test to see if we're on mobile or not
 <a name="module_Browser.getVersion"></a>
 
 ### browser.getVersion(uaVersion, minVersion, [maxVersion]) ⇒ <code>number</code>
-Uses the min and max versions of a browser to determine its version
+Uses the min and max versions of a browser to determine its version.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>number</code> - Returns version number  
+**Returns**: <code>number</code> - Returns version number
 
 | Param | Type |
 | --- | --- |
-| uaVersion | <code>number</code> | 
-| minVersion | <code>number</code> | 
-| [maxVersion] | <code>number</code> | 
+| uaVersion | <code>number</code> |
+| minVersion | <code>number</code> |
+| [maxVersion] | <code>number</code> |
 
 <a name="module_Browser.looksLike"></a>
 
 ### browser.looksLike(regex, ua) ⇒ <code>\*</code> &#124; <code>boolean</code>
-Searches for a match between the regex and specified string
+Searches for a match between the regex and specified string.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>\*</code> &#124; <code>boolean</code> - Returns true if match found  
+**Returns**: <code>\*</code> &#124; <code>boolean</code> - Returns true if match found
 
 | Param | Type |
 | --- | --- |
 | regex | <code>RegExp</code> | 
-| ua | <code>string</code> | 
+| ua | <code>string</code> |
 
 <a name="module_Browser.parseIntIfMatch"></a>
 
 ### browser.parseIntIfMatch(ua, regex, [radix]) ⇒ <code>number</code>
 Parses the result of the RegExp match if it exists.
-Gracefully falls back to the default version if not
+Gracefully falls back to the default version if not.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>number</code> - Returns the regex match or default version  
@@ -240,10 +240,10 @@ Gracefully falls back to the default version if not
 
 ### browser.parseFloatIfMatch(ua, regex) ⇒
 Parses the floating point value of the RegExp match if found.
-Gracefully falls back to the default if not
+Gracefully falls back to the default if not.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: Returns the regex match or the default version  
+**Returns**: Returns the regex match or the default version
 
 | Param | Type |
 | --- | --- |
@@ -266,7 +266,7 @@ Determines the version of Android being used
 <a name="module_Browser.getChromiumVersion"></a>
 
 ### browser.getChromiumVersion(win, uaVersion) ⇒ <code>number</code>
-Determines the version of Chrome being used
+Determines the version of Chrome being used.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>number</code> - Returns the Chrome version  
@@ -279,7 +279,7 @@ Determines the version of Chrome being used
 <a name="module_Browser.getSafariVersion"></a>
 
 ### browser.getSafariVersion(win, uaVersion) ⇒ <code>number</code>
-Returns the version of the Safari browser
+Returns the version of the Safari browser.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>number</code> - Returns the version of Safari  
@@ -292,7 +292,7 @@ Returns the version of the Safari browser
 <a name="module_Browser.getKindleVersion"></a>
 
 ### browser.getKindleVersion(win, uaVersion) ⇒ <code>number</code>
-Creates a Browser instance with its attributed Kindle values
+Creates a Browser instance with its attributed Kindle values.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 
@@ -304,7 +304,7 @@ Creates a Browser instance with its attributed Kindle values
 <a name="module_Browser.getOtherOS"></a>
 
 ### browser.getOtherOS(win, ua) ⇒ <code>Browser</code>
-Creates a Browser instance with its attributed OS and device type values
+Creates a Browser instance with its attributed OS and device type values.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>Browser</code> - Returns the browser instance  
@@ -317,7 +317,7 @@ Creates a Browser instance with its attributed OS and device type values
 <a name="module_Browser.getAppleOS"></a>
 
 ### browser.getAppleOS(win, ua) ⇒ <code>Browser</code>
-Creates a Browser instance with its attributed Apple values
+Creates a Browser instance with its attributed Apple values.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>Browser</code> - Returns the Browser instance  
@@ -330,7 +330,7 @@ Creates a Browser instance with its attributed Apple values
 <a name="module_Browser.getMicrosoftOS"></a>
 
 ### browser.getMicrosoftOS(win, ua) ⇒ <code>Browser</code>
-Creates a Browser instance with its attributed Windows values
+Creates a Browser instance with its attributed Windows values.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>Browser</code> - Returns the Browser instance  
@@ -343,7 +343,7 @@ Creates a Browser instance with its attributed Windows values
 <a name="module_Browser.getAndroidOS"></a>
 
 ### browser.getAndroidOS(win, ua) ⇒ <code>Browser</code>
-Creates a Browser instance with its attributed Android values
+Creates a Browser instance with its attributed Android values.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>Browser</code> - Returns the Browser instance  
@@ -356,7 +356,7 @@ Creates a Browser instance with its attributed Android values
 <a name="module_Browser.getKindleOS"></a>
 
 ### browser.getKindleOS(win, ua) ⇒ <code>Browser</code>
-Returns the Kindle's OS
+Returns the Kindle's OS.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>Browser</code> - Returns the Browser instance  
@@ -369,7 +369,7 @@ Returns the Kindle's OS
 <a name="module_Browser.getOsFromUa"></a>
 
 ### browser.getOsFromUa(win, ua) ⇒ <code>Browser</code>
-Reads the user agent string to determine OS
+Reads the user agent string to determine OS.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>Browser</code> - Returns the Browser instance  
@@ -382,7 +382,7 @@ Reads the user agent string to determine OS
 <a name="module_Browser.detect"></a>
 
 ### browser.detect([win], [userAgent]) ⇒ <code>Browser</code>
-Returns an object containing browser details (e.g. name, os, version, etc.)
+Returns an object containing browser details (e.g. name, os, version, etc.).
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
 **Returns**: <code>Browser</code> - Returns the Browser instance  
@@ -399,7 +399,7 @@ var os = browser.detect().os.name;
 console.log(os); // outputs OS name (e.g. Windows, Mac, Android, etc.)
 ```
 ## Capabilities
-    Determines browser's capabilities (e.g. CORS support, sandboxable, video support, etc.)
+    Determines browser's capabilities (e.g. CORS support, sandboxable, video support, etc.).
 
 **Example**  
 ```javascript
@@ -408,7 +408,7 @@ var capabilities = require("ad-libs.js/lib/detect/capabilities");
 <a name="module_Capabilities.detect"></a>
 
 ### capabilities.detect() ⇒ <code>Object</code>
-Detect browser's capabilities and returns an object
+Detects browser's capabilities and returns an object.
 
 **Kind**: static method of <code>[Capabilities](#module_Capabilities)</code>  
 **Example**  
@@ -482,25 +482,25 @@ console.log(mraid.getVersion()) // outputs mraid version;
 <a name="module_Mraid.ready"></a>
 
 ### mraid.ready(cb, [win])
-Executes cb when mraid is ready
+Executes cb when mraid is ready.
 
 **Kind**: static method of <code>[Mraid](#module_Mraid)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | cb | <code>function</code> |  |
-| [win] | <code>Window</code> | is an optional param. If not given, uses the current window |
+| [win] | <code>Window</code> | Optional param. If not given, uses the current window. |
 
 <a name="module_Mraid.getVersion"></a>
 
 ### mraid.getVersion([Win]) ⇒ <code>String</code>
-Gets mraid version
+Gets mraid version.
 
 **Kind**: static method of <code>[Mraid](#module_Mraid)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [Win] | <code>Window</code> | is an optional param. If not given, uses the current window |
+| [Win] | <code>Window</code> | Optional param. If not given, uses the current window. |
 
 ## Safeframe
     Safeframe Detection
@@ -523,7 +523,7 @@ var safeframe = require("ad-libs.js/lib/detect/safeframe");
 <a name="module_Safeframe.getVersion"></a>
 
 ### Safeframe.getVersion([win]) ⇒ <code>String</code>
-Get version of safeframe
+Get version of safeframe.
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
 
@@ -534,7 +534,7 @@ Get version of safeframe
 <a name="module_Safeframe.getSpecVersion"></a>
 
 ### Safeframe.getSpecVersion([win]) ⇒ <code>String</code>
-Gets specVersion of sf
+Gets specVersion of safeframe.
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
 
@@ -545,7 +545,7 @@ Gets specVersion of sf
 <a name="module_Safeframe.getInfo"></a>
 
 ### Safeframe.getInfo([win]) ⇒ <code>Array</code>
-Gets info of sf
+Gets info of safeframe.
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
 
@@ -556,7 +556,7 @@ Gets info of sf
 <a name="module_Safeframe.getConf"></a>
 
 ### Safeframe.getConf([win]) ⇒ <code>Array</code>
-Gets conf of safeframe host
+Gets conf of safeframe host.
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
 
@@ -665,13 +665,13 @@ domReady(cb, window);
     <a name="module_dom/getExecutingScript..getExecutingScript"></a>
 
 ### dom/getExecutingScript~getExecutingScript([validatorFunc], [testScript]) ⇒ <code>HTMLScriptElement</code> &#124; <code>null</code>
-Returns the script element that loaded the currently executing javascript code.
+Returns the script element that loaded the currently executing Javascript code.
 
 The validatorFunc function takes a script Element as a single argument, and should
 return a boolean value. Allows more specific filtering in the case of multiple
 scripts on the page where document.currentScript is not supported.
 
-When the executing script has been located it will be marked with an attribute
+When the executing script has been located, it will be marked with an attribute
 key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScript.LOAD_STARTED.
 
 **Kind**: inner method of <code>[dom/getExecutingScript](#module_dom/getExecutingScript)</code>  
@@ -679,7 +679,7 @@ key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScrip
 | Param | Type | Description |
 | --- | --- | --- |
 | [validatorFunc] | <code>function</code> |  |
-| [testScript] | <code>HTMLScriptElement</code> | Used for IoC/testing |
+| [testScript] | <code>HTMLScriptElement</code> | Used for IoC/testing. |
 
 ## triggerEvent
     Creates a new DOM Event and triggers it on the provided element.
@@ -691,7 +691,7 @@ key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScrip
 | eventName | <code>String</code> | 
 
 ## evaluator
-    Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly. Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won't function for this module. That's right - we have one letter vars in our source code, ain't eval grand? For more info on eval visit: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
+    Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly. Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won't function for this module. That's right - we have one letter vars in our source code.  Ain't eval grand? For more info on eval visit: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
 
 
 | Param | Type |
