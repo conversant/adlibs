@@ -530,7 +530,7 @@ Executes cb when mraid is ready.
 | Param | Type | Description |
 | --- | --- | --- |
 | cb | <code>Function</code> |  |
-| [If] | <code>Window</code> | If not given, uses the current window. |
+| [win] | <code>Window</code> | If not given, uses the current window. |
 
 <a name="module_Mraid.getVersion"></a>
 
