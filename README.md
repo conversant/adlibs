@@ -74,7 +74,7 @@ Does this window have this object in it?
 | Param | Description |
 | --- | --- |
 | globalObjectName |  |
-| [scope] | Optional scope to use. Alternatively, you can call "run" with a more sane method signature. |
+| [scope] | Alternatively, you can call "run" with a more sane method signature. |
 
 **Example**  
 ```js
@@ -94,7 +94,7 @@ Check to see if this object owns the method as opposed to just inheriting it fro
 
 <a name="module_canHas.run"></a>
 
-### canHas.run(obj, [methodName]) ⇒ <code>function</code>
+### canHas.run(obj, [methodName]) ⇒ <code>Function</code>
 Return a runnable method by default.
 
 **Kind**: static method of <code>[canHas](#module_canHas)</code>  
@@ -452,7 +452,7 @@ var h264 = capabilities.detect().h264;
 ### capabilities.read(key) ⇒ <code>\*</code>
 **Kind**: static method of <code>[Capabilities](#module_Capabilities)</code>  
 **Todo:**: indexOf is only supported in IE9+, this needs to be updated to account for IE8
-Probably wont have this here. instead, it will be methods calling to only the properties that need to be exposed and nothing else.  
+Probably won't have this here. instead, it will be methods calling to only the properties that need to be exposed and nothing else.  
 
 | Param | Type |
 | --- | --- |
@@ -530,8 +530,8 @@ Executes cb when mraid is ready.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| cb | <code>function</code> |  |
-| [If] | <code>Window</code> | not given, uses the current window. |
+| cb | <code>Function</code> |  |
+| [If] | <code>Window</code> | If not given, uses the current window. |
 
 <a name="module_Mraid.getVersion"></a>
 
@@ -542,7 +542,7 @@ Gets mraid version.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [If] | <code>Window</code> | not given, uses the current window. |
+| [If] | <code>Window</code> | If not given, uses the current window. |
 
 ## Safeframe
     Safeframe Detection
@@ -653,13 +653,13 @@ Returns safeframe metrics.
 ## addEventListener
     Add an event listener to the element, which will execute the given callback.
 
-**Returns**: <code>function</code> - Returns a function that, when executed, will remove the event listener from the element.  
+**Returns**: <code>Function</code> - returns a function that, when executed, will remove the event listener from the element
 
 | Param | Type |
 | --- | --- |
 | element | <code>Element</code> | 
 | eventName | <code>String</code> | 
-| callback | <code>function</code> | 
+| callback | <code>Function</code> |
 
 **Example**  
 ```js
@@ -691,7 +691,7 @@ appendHtml(parentElement, htmlMarkup);
 
 | Param | Type | Description |
 | --- | --- | --- |
-| callback | <code>function</code> |  |
+| callback | <code>Function</code> |  |
 | [targetWindow] | <code>Window</code> | You can provide your own window reference for cases where you'd have an iframe. |
 | [isInteractiveOk] | <code>Boolean</code> | Interactive mode can be checked for faster responses. |
 
@@ -720,7 +720,7 @@ key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScrip
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [validatorFunc] | <code>function</code> |  |
+| [validatorFunc] | <code>Function</code> |  |
 | [testScript] | <code>HTMLScriptElement</code> | Used for IoC/testing. |
 
 ## triggerEvent
@@ -743,12 +743,12 @@ key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScrip
 ## jsonp
     Perform a cross domain request via JSONP. Provides the same interface as xhr.js. The request is made by appending a 'callback' parameter to the request url, and it is expected that the server will respond with the content wrapped in a function call, using the provided value of the callback parameter. If callbackFn isn't defined, a unique name will be generated.
 
-**Returns**: <code>Object</code> - Returns object with send function  
+**Returns**: <code>Object</code> - returns object with send function  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | options | <code>Object</code> |  |
-| callback | <code>function</code> | Executed on response with the signature (status: Number, body: String). |
+| callback | <code>Function</code> | Executed on response with the signature (status: Number, body: String). |
 
 **Example**  
 ```js
@@ -764,8 +764,8 @@ CB_1433519761916('response from server');
 | Param | Type | Description |
 | --- | --- | --- |
 | urls | <code>String</code> &#124; <code>Array</code> | A single url, or a list of urls of scripts to load. |
-| onLoaded | <code>function</code> | Callback is executed when all scripts have finished loading. |
-| onError | <code>function</code> | Callback is executed if one or more scripts fail to load, and passed 							  a single argument: the list of script urls that failed to load. |
+| onLoaded | <code>Function</code> | Callback is executed when all scripts have finished loading. |
+| onError | <code>Function</code> | Callback is executed if one or more scripts fail to load, and passed 							  a single argument: the list of script urls that failed to load. |
 | [requestTimeout] | <code>Number</code> | When supplied, this will explicitly timeout the script request 							  and report back to onError, or, if onError is not supplied, to onLoaded. 							  IMPORTANT: This does not cancel the script load, just reports that it 							  has exceeded the timeout duration. |
 
 ## measurePerformance
@@ -838,7 +838,7 @@ Ties into an existing instance of PerfMarker.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [pkgName] | <code>string</code> | The name of the instance. |
+| [pkgName] | <code>String</code> | The name of the instance. |
 
 ## reportData
     
@@ -921,7 +921,7 @@ Determines if CORS is supported.
 | Param | Type | Description |
 | --- | --- | --- |
 | options | <code>Object</code> |  |
-| callback | <code>function</code> | Executed on response with the signature (status: Number, body: String). |
+| callback | <code>Function</code> | Executed on response with the signature (status: Number, body: String). |
 
 **Example**  
 ```js
@@ -936,5 +936,6 @@ var resp = xhr({url: 'www.example.com'}).send();
 * [j-brown](https://github.com/j-brown)
 * [jeffreytgilbert](https://github.com/jeffreytgilbert)
 * [msahagu2](https://github.com/msahagu2)
+* [ggustilo](https://github.com/ggustilo)
 
 * * *
