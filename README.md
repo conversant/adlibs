@@ -1,9 +1,9 @@
-#ad-libs.js
-__________
+# ad-libs.js ![alt text](https://github.com/conversant/ad-libs.js/raw/master/doc/Ad-libs-js.png "Ad-libs.js")
 
-| ________________ | The gist of it... |
-|:---|:---|
-| ![ad-libs.js](https://github.com/conversant/ad-libs.js/raw/master/doc/Ad-libs-js.png "Ad-libs.js") | A collection of cross-browser methods for use with front-end development. Ad-Libs is a tool that supports various browser and OS combinations dating back to IE9. It uses feature detection to determine the user's environment and outputs details pertaining to that OS and browser. Ad-libs also allows developers to safely execute front end methods such as domReady and XMLHttpRequests across all browsers. |
+A collection of cross-browser methods for use with front-end development. Ad-Libs is a tool that supports various browser
+and OS combinations dating back to IE9. It uses feature detection to determine the user's environment and outputs details
+pertaining to that OS and browser. Ad-libs also allows developers to safely execute front end methods such as domReady
+and XMLHttpRequests across all browsers.
 
 ## Installation
 ```bash
@@ -42,16 +42,16 @@ console.log(browser.os.name)
 ## canHas
     
 * [canHas](#module_canHas)
-    * [.can(obj, propertyName)](#module_canHas.can) ⇒ <code>boolean</code>
+    * [.can(obj, propertyName)](#module_canHas.can) ⇒ <code>Boolean</code>
     * [.has(globalObjectName, [scope])](#module_canHas.has) ⇒ <code>\*</code>
-    * [.own(obj, propertyName)](#module_canHas.own) ⇒ <code>boolean</code>
+    * [.own(obj, propertyName)](#module_canHas.own) ⇒ <code>Boolean</code>
     * [.run(obj, [methodName])](#module_canHas.run) ⇒ <code>function</code>
     * [.forIn(obj, callback)](#module_canHas.forIn)
 
 <a name="module_canHas.can"></a>
 
-### canHas.can(obj, propertyName) ⇒ <code>boolean</code>
-Can this object use this property.
+### canHas.can(obj, propertyName) ⇒ <code>Boolean</code>
+Can this object use this property?
 
 **Kind**: static method of <code>[canHas](#module_canHas)</code>  
 
@@ -82,7 +82,7 @@ var has = require('ad-libs/lib/canHas').has;
 ```
 <a name="module_canHas.own"></a>
 
-### canHas.own(obj, propertyName) ⇒ <code>boolean</code>
+### canHas.own(obj, propertyName) ⇒ <code>Boolean</code>
 Check to see if this object owns the method as opposed to just inheriting it from another object.
 
 **Kind**: static method of <code>[canHas](#module_canHas)</code>  
@@ -101,8 +101,8 @@ Return a runnable method by default.
 
 | Param | Description |
 | --- | --- |
-| obj | Scope to use or method to run when not providing a method as the second param. |
-| [methodName] | The method to check for |
+| obj | Scope to use, or method to run when not providing a method as the second param. |
+| [methodName] | The method to check for. |
 
 <a name="module_canHas.forIn"></a>
 
@@ -123,7 +123,7 @@ For each in, shorthanded because manually writing hasOwnProperty each and every 
 | Param | Type | Description |
 | --- | --- | --- |
 | loadedModule |  |  |
-| mockType | <code>String</code> | Defaults to 'spy'. Can also be 'stub'. |
+| mockType | <code>String</code> | Defaults to 'spy'; can also be 'stub'. |
 
 **Example**  
 incrementCounter.js:
@@ -152,31 +152,35 @@ var browser = require("ad-libs.js/lib/detect/browser")
 ```
 
 * [Browser](#module_Browser)
-    * [.mathMLSupport(d)](#module_Browser.mathMLSupport) ⇒ <code>boolean</code>
-    * [.isMobile([win])](#module_Browser.isMobile) ⇒ <code>boolean</code>
-    * [.getVersion(uaVersion, minVersion, [maxVersion])](#module_Browser.getVersion) ⇒ <code>number</code>
-    * [.looksLike(regex, ua)](#module_Browser.looksLike) ⇒ <code>\*</code> &#124; <code>boolean</code>
-    * [.parseIntIfMatch(ua, regex, [radix])](#module_Browser.parseIntIfMatch) ⇒ <code>number</code>
-    * [.parseFloatIfMatch(ua, regex)](#module_Browser.parseFloatIfMatch) ⇒
-    * [.getAndroidVersion(win, uaVersion)](#module_Browser.getAndroidVersion) ⇒ <code>number</code>
-    * [.getChromiumVersion(win, uaVersion)](#module_Browser.getChromiumVersion) ⇒ <code>number</code>
-    * [.getSafariVersion(win, uaVersion)](#module_Browser.getSafariVersion) ⇒ <code>number</code>
-    * [.getKindleVersion(win, uaVersion)](#module_Browser.getKindleVersion) ⇒ <code>number</code>
-    * [.getOtherOS(win, ua)](#module_Browser.getOtherOS) ⇒ <code>Browser</code>
-    * [.getAppleOS(win, ua)](#module_Browser.getAppleOS) ⇒ <code>Browser</code>
-    * [.getMicrosoftOS(win, ua)](#module_Browser.getMicrosoftOS) ⇒ <code>Browser</code>
-    * [.getAndroidOS(win, ua)](#module_Browser.getAndroidOS) ⇒ <code>Browser</code>
-    * [.getKindleOS(win, ua)](#module_Browser.getKindleOS) ⇒ <code>Browser</code>
-    * [.getOsFromUa(win, ua)](#module_Browser.getOsFromUa) ⇒ <code>Browser</code>
-    * [.detect([win], [userAgent])](#module_Browser.detect) ⇒ <code>Browser</code>
+    * _static_
+        * [.mathMLSupport(d)](#module_Browser.mathMLSupport) ⇒ <code>Boolean</code>
+        * [.isMobile([win])](#module_Browser.isMobile) ⇒ <code>Boolean</code>
+        * [.getVersion(uaVersion, minVersion, [maxVersion])](#module_Browser.getVersion) ⇒ <code>Number</code>
+        * [.looksLike(regex, ua)](#module_Browser.looksLike) ⇒ <code>\*</code> &#124; <code>Boolean</code>
+        * [.parseIntIfMatch(ua, regex, [radix])](#module_Browser.parseIntIfMatch) ⇒ <code>Number</code>
+        * [.parseFloatIfMatch(ua, regex)](#module_Browser.parseFloatIfMatch) ⇒
+        * [.getAndroidVersion(win, uaVersion)](#module_Browser.getAndroidVersion) ⇒ <code>Number</code>
+        * [.getChromiumVersion(win, uaVersion)](#module_Browser.getChromiumVersion) ⇒ <code>Number</code>
+        * [.getSafariVersion(win, uaVersion)](#module_Browser.getSafariVersion) ⇒ <code>Number</code>
+        * [.getKindleVersion(win, uaVersion)](#module_Browser.getKindleVersion) ⇒ <code>Number</code>
+        * [.getOtherOS(win, ua)](#module_Browser.getOtherOS) ⇒ <code>Browser</code>
+        * [.getAppleOS(win, ua)](#module_Browser.getAppleOS) ⇒ <code>Browser</code>
+        * [.getMicrosoftOS(win, ua)](#module_Browser.getMicrosoftOS) ⇒ <code>Browser</code>
+        * [.getAndroidOS(win, ua)](#module_Browser.getAndroidOS) ⇒ <code>Browser</code>
+        * [.getKindleOS(win, ua)](#module_Browser.getKindleOS) ⇒ <code>Browser</code>
+        * [.getOsFromUa(win, ua)](#module_Browser.getOsFromUa) ⇒ <code>Browser</code>
+        * [.detect([win], [userAgent])](#module_Browser.detect) ⇒ <code>Browser</code>
+        * [.read(key)](#module_Browser.read) ⇒ <code>\*</code>
+    * _inner_
+        * [~save(result)](#module_Browser..save) ⇒ <code>Number</code>
 
 <a name="module_Browser.mathMLSupport"></a>
 
-### browser.mathMLSupport(d) ⇒ <code>boolean</code>
+### browser.mathMLSupport(d) ⇒ <code>Boolean</code>
 Check for MathML support in browsers to help detect certain browser version numbers where this is the only difference.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>boolean</code> - Returns true if browser has mathml support
+**Returns**: <code>Boolean</code> - returns true if browser has mathml support  
 
 | Param | Type |
 | --- | --- |
@@ -184,11 +188,11 @@ Check for MathML support in browsers to help detect certain browser version numb
 
 <a name="module_Browser.isMobile"></a>
 
-### browser.isMobile([win]) ⇒ <code>boolean</code>
+### browser.isMobile([win]) ⇒ <code>Boolean</code>
 Performs a simple test to see if we're on mobile or not.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>boolean</code> - Returns true if mobile
+**Returns**: <code>Boolean</code> - returns true if mobile  
 
 | Param | Type |
 | --- | --- |
@@ -196,45 +200,45 @@ Performs a simple test to see if we're on mobile or not.
 
 <a name="module_Browser.getVersion"></a>
 
-### browser.getVersion(uaVersion, minVersion, [maxVersion]) ⇒ <code>number</code>
+### browser.getVersion(uaVersion, minVersion, [maxVersion]) ⇒ <code>Number</code>
 Uses the min and max versions of a browser to determine its version.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>number</code> - Returns version number
+**Returns**: <code>Number</code> - returns version number  
 
 | Param | Type |
 | --- | --- |
-| uaVersion | <code>number</code> |
-| minVersion | <code>number</code> |
-| [maxVersion] | <code>number</code> |
+| uaVersion | <code>Number</code> | 
+| minVersion | <code>Number</code> | 
+| [maxVersion] | <code>Number</code> | 
 
 <a name="module_Browser.looksLike"></a>
 
-### browser.looksLike(regex, ua) ⇒ <code>\*</code> &#124; <code>boolean</code>
+### browser.looksLike(regex, ua) ⇒ <code>\*</code> &#124; <code>Boolean</code>
 Searches for a match between the regex and specified string.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>\*</code> &#124; <code>boolean</code> - Returns true if match found
+**Returns**: <code>\*</code> &#124; <code>Boolean</code> - returns true if match found  
 
 | Param | Type |
 | --- | --- |
 | regex | <code>RegExp</code> | 
-| ua | <code>string</code> |
+| ua | <code>String</code> | 
 
 <a name="module_Browser.parseIntIfMatch"></a>
 
-### browser.parseIntIfMatch(ua, regex, [radix]) ⇒ <code>number</code>
+### browser.parseIntIfMatch(ua, regex, [radix]) ⇒ <code>Number</code>
 Parses the result of the RegExp match if it exists.
 Gracefully falls back to the default version if not.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>number</code> - Returns the regex match or default version  
+**Returns**: <code>Number</code> - returns the regex match or default version  
 
 | Param | Type |
 | --- | --- |
-| ua | <code>string</code> | 
+| ua | <code>String</code> | 
 | regex | <code>RegExp</code> | 
-| [radix] | <code>number</code> | 
+| [radix] | <code>Number</code> | 
 
 <a name="module_Browser.parseFloatIfMatch"></a>
 
@@ -243,55 +247,55 @@ Parses the floating point value of the RegExp match if found.
 Gracefully falls back to the default if not.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: Returns the regex match or the default version
+**Returns**: returns the regex match or the default version  
 
 | Param | Type |
 | --- | --- |
-| ua | <code>string</code> | 
+| ua | <code>String</code> | 
 | regex | <code>RegExp</code> | 
 
 <a name="module_Browser.getAndroidVersion"></a>
 
-### browser.getAndroidVersion(win, uaVersion) ⇒ <code>number</code>
-Determines the version of Android being used
+### browser.getAndroidVersion(win, uaVersion) ⇒ <code>Number</code>
+Determines the version of Android being used.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>number</code> - Returns the Android version  
+**Returns**: <code>Number</code> - returns the Android version  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| uaVersion | <code>number</code> | 
+| uaVersion | <code>Number</code> | 
 
 <a name="module_Browser.getChromiumVersion"></a>
 
-### browser.getChromiumVersion(win, uaVersion) ⇒ <code>number</code>
+### browser.getChromiumVersion(win, uaVersion) ⇒ <code>Number</code>
 Determines the version of Chrome being used.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>number</code> - Returns the Chrome version  
+**Returns**: <code>Number</code> - returns the Chrome version  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| uaVersion | <code>number</code> | 
+| uaVersion | <code>Number</code> | 
 
 <a name="module_Browser.getSafariVersion"></a>
 
-### browser.getSafariVersion(win, uaVersion) ⇒ <code>number</code>
+### browser.getSafariVersion(win, uaVersion) ⇒ <code>Number</code>
 Returns the version of the Safari browser.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>number</code> - Returns the version of Safari  
+**Returns**: <code>Number</code> - returns the version of Safari  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| uaVersion | <code>number</code> | 
+| uaVersion | <code>Number</code> | 
 
 <a name="module_Browser.getKindleVersion"></a>
 
-### browser.getKindleVersion(win, uaVersion) ⇒ <code>number</code>
+### browser.getKindleVersion(win, uaVersion) ⇒ <code>Number</code>
 Creates a Browser instance with its attributed Kindle values.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
@@ -299,7 +303,7 @@ Creates a Browser instance with its attributed Kindle values.
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| uaVersion | <code>number</code> | 
+| uaVersion | <code>Number</code> | 
 
 <a name="module_Browser.getOtherOS"></a>
 
@@ -307,12 +311,12 @@ Creates a Browser instance with its attributed Kindle values.
 Creates a Browser instance with its attributed OS and device type values.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Browser</code> - Returns the browser instance  
+**Returns**: <code>Browser</code> - returns the browser instance  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| ua | <code>string</code> | 
+| ua | <code>String</code> | 
 
 <a name="module_Browser.getAppleOS"></a>
 
@@ -320,12 +324,12 @@ Creates a Browser instance with its attributed OS and device type values.
 Creates a Browser instance with its attributed Apple values.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Browser</code> - Returns the Browser instance  
+**Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| ua | <code>string</code> | 
+| ua | <code>String</code> | 
 
 <a name="module_Browser.getMicrosoftOS"></a>
 
@@ -333,12 +337,12 @@ Creates a Browser instance with its attributed Apple values.
 Creates a Browser instance with its attributed Windows values.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Browser</code> - Returns the Browser instance  
+**Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| ua | <code>string</code> | 
+| ua | <code>String</code> | 
 
 <a name="module_Browser.getAndroidOS"></a>
 
@@ -346,12 +350,12 @@ Creates a Browser instance with its attributed Windows values.
 Creates a Browser instance with its attributed Android values.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Browser</code> - Returns the Browser instance  
+**Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| ua | <code>string</code> | 
+| ua | <code>String</code> | 
 
 <a name="module_Browser.getKindleOS"></a>
 
@@ -359,12 +363,12 @@ Creates a Browser instance with its attributed Android values.
 Returns the Kindle's OS.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Browser</code> - Returns the Browser instance  
+**Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| ua | <code>string</code> | 
+| ua | <code>String</code> | 
 
 <a name="module_Browser.getOsFromUa"></a>
 
@@ -372,12 +376,12 @@ Returns the Kindle's OS.
 Reads the user agent string to determine OS.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Browser</code> - Returns the Browser instance  
+**Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| ua | <code>string</code> | 
+| ua | <code>String</code> | 
 
 <a name="module_Browser.detect"></a>
 
@@ -385,12 +389,12 @@ Reads the user agent string to determine OS.
 Returns an object containing browser details (e.g. name, os, version, etc.).
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Browser</code> - Returns the Browser instance  
+**Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
 | [win] | <code>Window</code> | 
-| [userAgent] | <code>string</code> | 
+| [userAgent] | <code>String</code> | 
 
 **Example**  
 ```js
@@ -398,13 +402,40 @@ var os = browser.detect().os.name;
 
 console.log(os); // outputs OS name (e.g. Windows, Mac, Android, etc.)
 ```
+<a name="module_Browser.read"></a>
+
+### browser.read(key) ⇒ <code>\*</code>
+Retrieve any results in the map by name because they're returned in an array without names.
+
+**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+
+| Param | Type |
+| --- | --- |
+| key | <code>String</code> | 
+
+<a name="module_Browser..save"></a>
+
+### browser~save(result) ⇒ <code>Number</code>
+Saves a property to the results array and returns its index.
+
+**Kind**: inner method of <code>[Browser](#module_Browser)</code>  
+
+| Param | Type |
+| --- | --- |
+| result | <code>\*</code> | 
+
 ## Capabilities
-    Determines browser's capabilities (e.g. CORS support, sandboxable, video support, etc.).
+    Determines browser's capabilities (e.g. CORS support, sandboxable, video support, etc.)
 
 **Example**  
 ```javascript
 var capabilities = require("ad-libs.js/lib/detect/capabilities");
 ```
+
+* [Capabilities](#module_Capabilities)
+    * [.detect()](#module_Capabilities.detect) ⇒ <code>Object</code>
+    * [.read(key)](#module_Capabilities.read) ⇒ <code>\*</code>
+
 <a name="module_Capabilities.detect"></a>
 
 ### capabilities.detect() ⇒ <code>Object</code>
@@ -416,6 +447,17 @@ Detects browser's capabilities and returns an object.
 // Outputs whether the browser supports h264 video ( 1 if yes, else 0)
 var h264 = capabilities.detect().h264;
 ```
+<a name="module_Capabilities.read"></a>
+
+### capabilities.read(key) ⇒ <code>\*</code>
+**Kind**: static method of <code>[Capabilities](#module_Capabilities)</code>  
+**Todo:**: indexOf is only supported in IE9+, this needs to be updated to account for IE8
+Probably wont have this here. instead, it will be methods calling to only the properties that need to be exposed and nothing else.  
+
+| Param | Type |
+| --- | --- |
+| key | <code>String</code> | 
+
 ## Environment
     Environment Detection - Gets Data Pertaining to User's Environment
 
@@ -438,7 +480,7 @@ var environment = require("ad-libs.js/lib/detect/environment");
 Detect environmental variables and return them wrapped within an object.
 
 **Kind**: static method of <code>[Environment](#module_Environment)</code>  
-**Returns**: <code>Object</code> - Returns the environment object  
+**Returns**: <code>Object</code> - returns the environment object  
 **Example**  
 ```js
 var flash = environment.detect().flash;
@@ -476,12 +518,12 @@ console.log(mraid.getVersion()) // outputs mraid version;
 ```
 
 * [Mraid](#module_Mraid)
-    * [.ready(cb, [win])](#module_Mraid.ready)
-    * [.getVersion([Win])](#module_Mraid.getVersion) ⇒ <code>String</code>
+    * [.ready(cb, [If])](#module_Mraid.ready)
+    * [.getVersion([If])](#module_Mraid.getVersion) ⇒ <code>String</code>
 
 <a name="module_Mraid.ready"></a>
 
-### mraid.ready(cb, [win])
+### mraid.ready(cb, [If])
 Executes cb when mraid is ready.
 
 **Kind**: static method of <code>[Mraid](#module_Mraid)</code>  
@@ -489,18 +531,18 @@ Executes cb when mraid is ready.
 | Param | Type | Description |
 | --- | --- | --- |
 | cb | <code>function</code> |  |
-| [win] | <code>Window</code> | Optional param. If not given, uses the current window. |
+| [If] | <code>Window</code> | not given, uses the current window. |
 
 <a name="module_Mraid.getVersion"></a>
 
-### mraid.getVersion([Win]) ⇒ <code>String</code>
+### mraid.getVersion([If]) ⇒ <code>String</code>
 Gets mraid version.
 
 **Kind**: static method of <code>[Mraid](#module_Mraid)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [Win] | <code>Window</code> | Optional param. If not given, uses the current window. |
+| [If] | <code>Window</code> | not given, uses the current window. |
 
 ## Safeframe
     Safeframe Detection
@@ -556,7 +598,7 @@ Gets info of safeframe.
 <a name="module_Safeframe.getConf"></a>
 
 ### Safeframe.getConf([win]) ⇒ <code>Array</code>
-Gets conf of safeframe host.
+Gets config of safeframe host.
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
 
@@ -567,7 +609,7 @@ Gets conf of safeframe host.
 <a name="module_Safeframe.getSupport"></a>
 
 ### Safeframe.getSupport([win]) ⇒ <code>Array</code>
-Returns array of supported fields for sf.ext
+Returns array of supported fields for sf.ext.
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
 
@@ -578,7 +620,7 @@ Returns array of supported fields for sf.ext
 <a name="module_Safeframe.getInView"></a>
 
 ### Safeframe.getInView([win]) ⇒ <code>Number</code>
-Gets inview percentage of safeframe
+Gets inview percentage of safeframe.
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
 
@@ -589,7 +631,7 @@ Gets inview percentage of safeframe
 <a name="module_Safeframe.getWinFocus"></a>
 
 ### Safeframe.getWinFocus([win]) ⇒ <code>Number</code>
-Returns if safeframe window has focus
+Returns if safeframe window has focus.
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
 
@@ -600,7 +642,7 @@ Returns if safeframe window has focus
 <a name="module_Safeframe.getMetrics"></a>
 
 ### Safeframe.getMetrics([win]) ⇒ <code>Array</code>
-Returns safeframe metrics
+Returns safeframe metrics.
 
 **Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
 
@@ -611,7 +653,7 @@ Returns safeframe metrics
 ## addEventListener
     Add an event listener to the element, which will execute the given callback.
 
-**Returns**: <code>function</code> - Returns a function, that when executed, will remove the event listener from the element.  
+**Returns**: <code>function</code> - Returns a function that, when executed, will remove the event listener from the element.  
 
 | Param | Type |
 | --- | --- |
@@ -629,12 +671,12 @@ addEventListener(el, 'onLoad', cb);
 ## appendHtml
     Appends all elements in the html string to the parent element. Correctly handles scripts with src attributes and inline javascript and ensures that the script will execute.  NOTE: Only Element nodes in the html string will be appended. All other node types will be ignored (i.e. Text, Comment).
 
-**Returns**: <code>Array</code> - a list of any exceptions that occurred.  
+**Returns**: <code>Array</code> - returns a list of any exceptions that occurred  
 
 | Param | Type |
 | --- | --- |
 | parentEl | <code>Element</code> | 
-| html | <code>string</code> | 
+| html | <code>String</code> | 
 
 **Example**  
 ```js
@@ -650,8 +692,8 @@ appendHtml(parentElement, htmlMarkup);
 | Param | Type | Description |
 | --- | --- | --- |
 | callback | <code>function</code> |  |
-| [targetWindow] | <code>window</code> | Optionally, you can provide your own window reference for cases where you'd have an iframe. |
-| [isInteractiveOk] | <code>Boolean</code> | Optionally, interactive mode can be checked for faster responses. |
+| [targetWindow] | <code>Window</code> | You can provide your own window reference for cases where you'd have an iframe. |
+| [isInteractiveOk] | <code>Boolean</code> | Interactive mode can be checked for faster responses. |
 
 **Example**  
 ```js
@@ -665,7 +707,7 @@ domReady(cb, window);
     <a name="module_dom/getExecutingScript..getExecutingScript"></a>
 
 ### dom/getExecutingScript~getExecutingScript([validatorFunc], [testScript]) ⇒ <code>HTMLScriptElement</code> &#124; <code>null</code>
-Returns the script element that loaded the currently executing Javascript code.
+Returns the script element that loaded the currently executing javascript code.
 
 The validatorFunc function takes a script Element as a single argument, and should
 return a boolean value. Allows more specific filtering in the case of multiple
@@ -691,7 +733,7 @@ key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScrip
 | eventName | <code>String</code> | 
 
 ## evaluator
-    Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly. Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won't function for this module. That's right - we have one letter vars in our source code.  Ain't eval grand? For more info on eval visit: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
+    Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly. Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won't function for this module. That's right - we have one letter vars in our source code. Ain't eval grand? For more info on eval visit: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
 
 
 | Param | Type |
@@ -699,14 +741,14 @@ key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScrip
 | v | <code>String</code> | 
 
 ## jsonp
-    Perform a cross domain request via JSONP. Provides the same interface as xhr.js.   The request is made by appending a 'callback' parameter to the request url,  and it is expected that the server will respond with the content wrapped in  a function call using the provided value of the callback parameter.   If callbackFn isn't defined, a unique name will be generated.
+    Perform a cross domain request via JSONP. Provides the same interface as xhr.js. The request is made by appending a 'callback' parameter to the request url, and it is expected that the server will respond with the content wrapped in a function call, using the provided value of the callback parameter. If callbackFn isn't defined, a unique name will be generated.
 
 **Returns**: <code>Object</code> - Returns object with send function  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | options | <code>Object</code> |  |
-| callback | <code>function</code> | executed on response with the signature (status: Number, body: String) |
+| callback | <code>function</code> | Executed on response with the signature (status: Number, body: String). |
 
 **Example**  
 ```js
@@ -721,10 +763,10 @@ CB_1433519761916('response from server');
 
 | Param | Type | Description |
 | --- | --- | --- |
-| urls | <code>String</code> &#124; <code>Array</code> | a single url, or a list of urls of scripts to load |
-| onLoaded | <code>function</code> | callback executed when all scripts have finished loading |
-| onError | <code>function</code> | callback executed if one or more scripts fail to load, passed 							  a single argument, the list of script urls that failed to load |
-| [requestTimeout] | <code>Number</code> | when supplied, this will explicitly timeout the script request 							  and report back to onError or if onError is not supplied, to onLoaded. 							  IMPORTANT: This does not cancel the script load, just reports that it 							  has exceeded the timeout duration. |
+| urls | <code>String</code> &#124; <code>Array</code> | A single url, or a list of urls of scripts to load. |
+| onLoaded | <code>function</code> | Callback is executed when all scripts have finished loading. |
+| onError | <code>function</code> | Callback is executed if one or more scripts fail to load, and passed 							  a single argument: the list of script urls that failed to load. |
+| [requestTimeout] | <code>Number</code> | When supplied, this will explicitly timeout the script request 							  and report back to onError, or, if onError is not supplied, to onLoaded. 							  IMPORTANT: This does not cancel the script load, just reports that it 							  has exceeded the timeout duration. |
 
 ## measurePerformance
     
@@ -735,7 +777,7 @@ CB_1433519761916('response from server');
 <a name="module_measurePerformance.factory"></a>
 
 ### measurePerformance.factory ⇒ <code>MeasurePerformance</code>
-Create a new instance of the performance module
+Create a new instance of the performance module.
 
 **Kind**: static property of <code>[measurePerformance](#module_measurePerformance)</code>  
 **Example**  
@@ -748,7 +790,7 @@ console.log(perf.report()); // outputs report based on performance events such a
 <a name="module_measurePerformance.provider"></a>
 
 ### measurePerformance.provider ⇒ <code>MeasurePerformance</code>
-Tie into an existing instance of the performance module
+Tie into an existing instance of the performance module.
 
 **Kind**: static property of <code>[measurePerformance](#module_measurePerformance)</code>  
 
@@ -759,11 +801,11 @@ Tie into an existing instance of the performance module
 ## parseConfig
     Parses a json config from the provided Element. The defaults is expected to be a JSON string in the attribute value.
 
-**Returns**: <code>Object</code> - the parsed json config  
+**Returns**: <code>Object</code> - returns the parsed json config  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| el | <code>Element</code> | the HTML Element that contains the config defaults |
+| el | <code>Element</code> | The HTML Element that contains the config defaults. |
 | attrName | <code>String</code> |  |
 | [defaults] | <code>Object</code> |  |
 
@@ -784,19 +826,19 @@ console.log(parseConfig(htmlElement, attributeName, defaultVals)) // outputs the
 <a name="module_perfMarker.factory"></a>
 
 ### perfMarker.factory ⇒ <code>PerfMarker</code>
-Creates a new instance of PerfMarker
+Creates a new instance of PerfMarker.
 
 **Kind**: static property of <code>[perfMarker](#module_perfMarker)</code>  
 <a name="module_perfMarker.provider"></a>
 
 ### perfMarker.provider ⇒ <code>PerfMarker</code>
-Ties into existing instance of PerfMarker
+Ties into an existing instance of PerfMarker.
 
 **Kind**: static property of <code>[perfMarker](#module_perfMarker)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [pkgName] | <code>string</code> | The name of the instance |
+| [pkgName] | <code>string</code> | The name of the instance. |
 
 ## reportData
     
@@ -807,19 +849,19 @@ Ties into existing instance of PerfMarker
 <a name="module_reportData.factory"></a>
 
 ### reportData.factory ⇒ <code>ReportData</code>
-Create a new instance of the reportData module
+Create a new instance of the reportData module.
 
 **Kind**: static property of <code>[reportData](#module_reportData)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [baseURL] | <code>string</code> | Base url for reporting pixel info |
-| [measurePerformanceInstance] | <code>MeasurePerformance</code> | performance instance to provide measurement timestamps |
+| [baseURL] | <code>String</code> | Base url for reporting pixel info. |
+| [measurePerformanceInstance] | <code>MeasurePerformance</code> | Performance instance to provide measurement timestamps. |
 
 <a name="module_reportData.provider"></a>
 
 ### reportData.provider ⇒ <code>ReportData</code>
-Tie into an existing instance of the reportData module
+Tie into an existing instance of the reportData module.
 
 **Kind**: static property of <code>[reportData](#module_reportData)</code>  
 
@@ -828,12 +870,12 @@ Tie into an existing instance of the reportData module
 | packageName | 
 
 ## format
-    Constructs a URL from its parsed components. 1) host takes precedence over hostname and port 2) query takes precedence over search
+    Constructs a URL from its parsed components. 1) Host takes precedence over hostname and port. 2) Query takes precedence over search.
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| components | <code>Object</code> | the url components, as generated by url/parse.js |
+| components | <code>Object</code> | The url components, as generated by url/parse.js. |
 
 ## parse
     Deconstructs a URL into its components. It also parses the search component (the query string) into decoded key/value pairs on a query object.
@@ -851,7 +893,7 @@ var queryObj = parseUrl('http://foo.com/query?cb=1234&userid=9999');
 
 ```
 ## xhr
-    Cross browser wrapper for XMLHttpRequest. If you need Cookies and HTTP Auth data to be included in the request you must set withCredentials to true in the options.
+    Cross browser wrapper for XMLHttpRequest. If you need Cookies and HTTP Auth data to be included in the request, you must set withCredentials to true in the options.
 
 **Example**  
 ```js
@@ -860,17 +902,17 @@ var xhr = require('ad-libs/lib/xhr');
 
 * [xhr](#module_xhr)
     * _static_
-        * [.supportsCORS()](#module_xhr.supportsCORS) ⇒ <code>boolean</code>
+        * [.supportsCORS()](#module_xhr.supportsCORS) ⇒ <code>Boolean</code>
     * _inner_
         * [~xhr(options, callback)](#module_xhr..xhr) ⇒ <code>Object</code>
 
 <a name="module_xhr.supportsCORS"></a>
 
-### xhr.supportsCORS() ⇒ <code>boolean</code>
-Determines if CORS is supported
+### xhr.supportsCORS() ⇒ <code>Boolean</code>
+Determines if CORS is supported.
 
 **Kind**: static method of <code>[xhr](#module_xhr)</code>  
-**Returns**: <code>boolean</code> - returns whether CORS is supported  
+**Returns**: <code>Boolean</code> - returns whether CORS is supported  
 <a name="module_xhr..xhr"></a>
 
 ### xhr~xhr(options, callback) ⇒ <code>Object</code>
@@ -879,7 +921,7 @@ Determines if CORS is supported
 | Param | Type | Description |
 | --- | --- | --- |
 | options | <code>Object</code> |  |
-| callback | <code>function</code> | executed on response with the signature (status: Number, body: String) |
+| callback | <code>function</code> | Executed on response with the signature (status: Number, body: String). |
 
 **Example**  
 ```js
@@ -894,6 +936,5 @@ var resp = xhr({url: 'www.example.com'}).send();
 * [j-brown](https://github.com/j-brown)
 * [jeffreytgilbert](https://github.com/jeffreytgilbert)
 * [msahagu2](https://github.com/msahagu2)
-* [ggustilo](https://github.com/ggustilo)
 
 * * *
