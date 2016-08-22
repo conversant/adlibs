@@ -930,11 +930,13 @@ var resp = xhr({url: 'www.example.com'}).send();
 ```
 
 
-# Ad-Libs Developers
+# Ad-Libs Contributors
+* [jeffreytgilbert](https://github.com/jeffreytgilbert)
+* [larrymyers](https://github.com/larrymyers)
+* [msahagu2](https://github.com/msahagu2)
 * [gblosser](https://github.com/gblosser42)
 * [j-brown](https://github.com/j-brown)
-* [jeffreytgilbert](https://github.com/jeffreytgilbert)
-* [msahagu2](https://github.com/msahagu2)
 * [ggustilo](https://github.com/ggustilo)
+* [ericperez](https://github.com/ericperez)
 
 * * *
