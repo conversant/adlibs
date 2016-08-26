@@ -38,8 +38,80 @@ console.log(browser.os.name)
 
 # API Reference
 
+## Modules
+
+<dl>
+<dt><a href="#module_canHas">canHas</a></dt>
+<dd></dd>
+<dt><a href="#module_checkFlags">checkFlags</a></dt>
+<dd><p>This is due to Javascript using double-precision floating-point format numbers. If the number of bits in the bitmask is found to exceed the max supported, this module throws an error.</p>
+</dd>
+<dt><a href="#module_createSpy">createSpy</a> ⇒ <code>sinon.spy</code></dt>
+<dd><p>Helper method to create Sinon.JS spies directly on the value of module.exports for a required module. To spy on a method you need access to the object it is attached to, which is problematic when the function is directly returned from a &quot;require&quot; call. By accessing the require.cache we can get handle to the module&#39;s exports and inject the spy.</p>
+</dd>
+<dt><a href="#module_Browser">Browser</a></dt>
+<dd><p>Browser Detection - Gets Data Pertaining to User&#39;s Browser and OS</p>
+</dd>
+<dt><a href="#module_Capabilities">Capabilities</a></dt>
+<dd><p>Determines browser&#39;s capabilities (e.g. CORS support, sandboxable, video support, etc.)</p>
+</dd>
+<dt><a href="#module_Environment">Environment</a></dt>
+<dd><p>Environment Detection - Gets Data Pertaining to User&#39;s Environment</p>
+</dd>
+<dt><a href="#module_Mraid">Mraid</a></dt>
+<dd><p>Mraid Detection</p>
+</dd>
+<dt><a href="#module_Safeframe">Safeframe</a></dt>
+<dd><p>Safeframe Detection</p>
+</dd>
+<dt><a href="#module_addEventListener">addEventListener</a> ⇒ <code>function</code></dt>
+<dd><p>Add an event listener to the element, which will execute the given callback.</p>
+</dd>
+<dt><a href="#module_appendHtml">appendHtml</a> ⇒ <code>Array</code></dt>
+<dd><p>Appends all elements in the html string to the parent element. Correctly handles scripts with src attributes and inline javascript and ensures that the script will execute.  NOTE: Only Element nodes in the html string will be appended. All other node types will be ignored (i.e. Text, Comment).</p>
+</dd>
+<dt><a href="#module_domReady">domReady</a></dt>
+<dd><p>Executes the provided callback when the DOM is ready. Allows code to act on the DOM before the window &quot;load&quot; event fires.</p>
+</dd>
+<dt><a href="#module_getExecutingScript">getExecutingScript</a></dt>
+<dd></dd>
+<dt><a href="#module_triggerEvent">triggerEvent</a></dt>
+<dd><p>Creates a new DOM Event and triggers it on the provided element.</p>
+</dd>
+<dt><a href="#module_evaluator">evaluator</a> ⇒ <code>Object</code></dt>
+<dd><p>Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly. Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won&#39;t function for this module. That&#39;s right - we have one letter vars in our source code. Ain&#39;t eval grand? For more info on eval visit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval</a></p>
+</dd>
+<dt><a href="#module_jsonp">jsonp</a> ⇒ <code>Object</code></dt>
+<dd><p>Perform a cross domain request via JSONP. Provides the same interface as xhr.js. The request is made by appending a &#39;callback&#39; parameter to the request url, and it is expected that the server will respond with the content wrapped in a function call, using the provided value of the callback parameter. If callbackFn isn&#39;t defined, a unique name will be generated.</p>
+</dd>
+<dt><a href="#module_loadScript">loadScript</a></dt>
+<dd><p>Dynamically loads scripts in parallel, and executes a single callback after all scripts have loaded.</p>
+</dd>
+<dt><a href="#module_measurePerformance">measurePerformance</a></dt>
+<dd></dd>
+<dt><a href="#module_parseConfig">parseConfig</a> ⇒ <code>Object</code></dt>
+<dd><p>Parses a json config from the provided Element. The defaults is expected to be a JSON string in the attribute value.</p>
+</dd>
+<dt><a href="#module_perfMarker">perfMarker</a></dt>
+<dd><p>A module to mark the timestamps for script performance</p>
+</dd>
+<dt><a href="#module_reportData">reportData</a></dt>
+<dd></dd>
+<dt><a href="#module_format">format</a> ⇒ <code>String</code></dt>
+<dd><p>Constructs a URL from its parsed components. 1) Host takes precedence over hostname and port. 2) Query takes precedence over search.</p>
+</dd>
+<dt><a href="#module_parse">parse</a> ⇒ <code>Object</code></dt>
+<dd><p>Deconstructs a URL into its components. It also parses the search component (the query string) into decoded key/value pairs on a query object.</p>
+</dd>
+<dt><a href="#module_xhr">xhr</a></dt>
+<dd><p>Cross browser wrapper for XMLHttpRequest. If you need Cookies and HTTP Auth data to be included in the request, you must set withCredentials to true in the options.</p>
+</dd>
+</dl>
+
+<a name="module_canHas"></a>
+
 ## canHas
-    
+
 * [canHas](#module_canHas)
     * [.can(obj, propertyName)](#module_canHas.can) ⇒ <code>Boolean</code>
     * [.has(globalObjectName, [scope])](#module_canHas.has) ⇒ <code>\*</code>
@@ -93,7 +165,7 @@ Check to see if this object owns the method as opposed to just inheriting it fro
 
 <a name="module_canHas.run"></a>
 
-### canHas.run(obj, [methodName]) ⇒ <code>Function</code>
+### canHas.run(obj, [methodName]) ⇒ <code>function</code>
 Return a runnable method by default.
 
 **Kind**: static method of <code>[canHas](#module_canHas)</code>  
@@ -115,8 +187,81 @@ For each in, shorthanded because manually writing hasOwnProperty each and every 
 | obj | 
 | callback | 
 
-## createSpy
-    Helper method to create Sinon.JS spies directly on the value of module.exports for a required module. To spy on a method you need access to the object it is attached to, which is problematic when the function is directly returned from a "require" call. By accessing the require.cache we can get handle to the module's exports and inject the spy.
+<a name="module_checkFlags"></a>
+
+## checkFlags
+This is due to Javascript using double-precision floating-point format numbers. If the number of bits in the bitmask is found to exceed the max supported, this module throws an error.
+
+
+* [checkFlags](#module_checkFlags)
+    * [.factory](#module_checkFlags.factory) ⇒ <code>ComparableBits</code>
+    * [.provider](#module_checkFlags.provider) ⇒ <code>ComparableBits</code>
+    * [.make(bit, [data])](#module_checkFlags.make) ⇒ <code>Action</code>
+    * [.compare(action, bitSig, [callback])](#module_checkFlags.compare) ⇒ <code>Boolean</code>
+
+<a name="module_checkFlags.factory"></a>
+
+### checkFlags.factory ⇒ <code>ComparableBits</code>
+Create a new instance of the ComparableBits module.
+
+**Kind**: static property of <code>[checkFlags](#module_checkFlags)</code>  
+**Example**  
+```js
+var bits = require('ad-libs.js/lib/comparableBits').factory();
+
+var someAction = bits.make(0x1 | 0x2, 'flag1,mode1or2')
+bits.compare(someAction, 0x1, callback) // -> executes callback
+```
+<a name="module_checkFlags.provider"></a>
+
+### checkFlags.provider ⇒ <code>ComparableBits</code>
+Tie into an existing instance of the ComparableBits module.
+
+**Kind**: static property of <code>[checkFlags](#module_checkFlags)</code>  
+
+| Param |
+| --- |
+| packageName | 
+
+<a name="module_checkFlags.make"></a>
+
+### checkFlags.make(bit, [data]) ⇒ <code>Action</code>
+Creates the action object with it's attributed bitmask flags
+
+**Kind**: static method of <code>[checkFlags](#module_checkFlags)</code>  
+**Returns**: <code>Action</code> - Returns the created Action object  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| bit | <code>Number</code> | The actions's unique bitmask |
+| [data] | <code>String</code> | The action's label |
+
+**Example**  
+```js
+var make = require('ad-libs/lib/checkFlags').make;
+```
+<a name="module_checkFlags.compare"></a>
+
+### checkFlags.compare(action, bitSig, [callback]) ⇒ <code>Boolean</code>
+Encapsulates a bitmask service which takes either a mode or flag bitmask and compares it to the attributed action's flags
+
+**Kind**: static method of <code>[checkFlags](#module_checkFlags)</code>  
+**Returns**: <code>Boolean</code> - Returns true if the action's flags do match either of the provided bitmasks  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| action | <code>Action</code> | The action object to compare to the provided bitmasks |
+| bitSig | <code>Number</code> | Should have a unique bit signature for bit logic |
+| [callback] | <code>\*</code> | The action's pertaining data |
+
+**Example**  
+```js
+var compareFlags = require('ad-libs/lib/checkFlags').compare;
+```
+<a name="module_createSpy"></a>
+
+## createSpy ⇒ <code>sinon.spy</code>
+Helper method to create Sinon.JS spies directly on the value of module.exports for a required module. To spy on a method you need access to the object it is attached to, which is problematic when the function is directly returned from a "require" call. By accessing the require.cache we can get handle to the module's exports and inject the spy.
 
 
 | Param | Type | Description |
@@ -142,8 +287,10 @@ assert(spy.callCount, 4);
 spy.restore();
 
 ```
+<a name="module_Browser"></a>
+
 ## Browser
-    Browser Detection - Gets Data Pertaining to User's Browser and OS
+Browser Detection - Gets Data Pertaining to User's Browser and OS
 
 **Example**  
 ```
@@ -151,27 +298,23 @@ var browser = require("ad-libs.js/lib/detect/browser")
 ```
 
 * [Browser](#module_Browser)
-    * _static_
-        * [.mathMLSupport(d)](#module_Browser.mathMLSupport) ⇒ <code>Boolean</code>
-        * [.isMobile([win])](#module_Browser.isMobile) ⇒ <code>Boolean</code>
-        * [.getVersion(uaVersion, minVersion, [maxVersion])](#module_Browser.getVersion) ⇒ <code>Number</code>
-        * [.looksLike(regex, ua)](#module_Browser.looksLike) ⇒ <code>\*</code> &#124; <code>Boolean</code>
-        * [.parseIntIfMatch(ua, regex, [radix])](#module_Browser.parseIntIfMatch) ⇒ <code>Number</code>
-        * [.parseFloatIfMatch(ua, regex)](#module_Browser.parseFloatIfMatch) ⇒
-        * [.getAndroidVersion(win, uaVersion)](#module_Browser.getAndroidVersion) ⇒ <code>Number</code>
-        * [.getChromiumVersion(win, uaVersion)](#module_Browser.getChromiumVersion) ⇒ <code>Number</code>
-        * [.getSafariVersion(win, uaVersion)](#module_Browser.getSafariVersion) ⇒ <code>Number</code>
-        * [.getKindleVersion(win, uaVersion)](#module_Browser.getKindleVersion) ⇒ <code>Number</code>
-        * [.getOtherOS(win, ua)](#module_Browser.getOtherOS) ⇒ <code>Browser</code>
-        * [.getAppleOS(win, ua)](#module_Browser.getAppleOS) ⇒ <code>Browser</code>
-        * [.getMicrosoftOS(win, ua)](#module_Browser.getMicrosoftOS) ⇒ <code>Browser</code>
-        * [.getAndroidOS(win, ua)](#module_Browser.getAndroidOS) ⇒ <code>Browser</code>
-        * [.getKindleOS(win, ua)](#module_Browser.getKindleOS) ⇒ <code>Browser</code>
-        * [.getOsFromUa(win, ua)](#module_Browser.getOsFromUa) ⇒ <code>Browser</code>
-        * [.detect([win], [userAgent])](#module_Browser.detect) ⇒ <code>Browser</code>
-        * [.read(key)](#module_Browser.read) ⇒ <code>\*</code>
-    * _inner_
-        * [~save(result)](#module_Browser..save) ⇒ <code>Number</code>
+    * [.mathMLSupport(d)](#module_Browser.mathMLSupport) ⇒ <code>Boolean</code>
+    * [.isMobile([win])](#module_Browser.isMobile) ⇒ <code>Boolean</code>
+    * [.getVersion(uaVersion, minVersion, [maxVersion])](#module_Browser.getVersion) ⇒ <code>Number</code>
+    * [.looksLike(regex, ua)](#module_Browser.looksLike) ⇒ <code>\*</code> &#124; <code>Boolean</code>
+    * [.parseIntIfMatch(ua, regex, [radix])](#module_Browser.parseIntIfMatch) ⇒ <code>Number</code>
+    * [.parseFloatIfMatch(ua, regex)](#module_Browser.parseFloatIfMatch) ⇒
+    * [.getAndroidVersion(win, uaVersion)](#module_Browser.getAndroidVersion) ⇒ <code>Number</code>
+    * [.getChromiumVersion(win, uaVersion)](#module_Browser.getChromiumVersion) ⇒ <code>Number</code>
+    * [.getSafariVersion(win, uaVersion)](#module_Browser.getSafariVersion) ⇒ <code>Number</code>
+    * [.getKindleVersion(win, uaVersion)](#module_Browser.getKindleVersion) ⇒ <code>Number</code>
+    * [.getOtherOS(win, ua)](#module_Browser.getOtherOS) ⇒ <code>Browser</code>
+    * [.getAppleOS(win, ua)](#module_Browser.getAppleOS) ⇒ <code>Browser</code>
+    * [.getMicrosoftOS(win, ua)](#module_Browser.getMicrosoftOS) ⇒ <code>Browser</code>
+    * [.getAndroidOS(win, ua)](#module_Browser.getAndroidOS) ⇒ <code>Browser</code>
+    * [.getKindleOS(win, ua)](#module_Browser.getKindleOS) ⇒ <code>Browser</code>
+    * [.getOsFromUa(win, ua)](#module_Browser.getOsFromUa) ⇒ <code>Browser</code>
+    * [.detect([win], [userAgent])](#module_Browser.detect) ⇒ <code>Browser</code>
 
 <a name="module_Browser.mathMLSupport"></a>
 
@@ -179,7 +322,7 @@ var browser = require("ad-libs.js/lib/detect/browser")
 Check for MathML support in browsers to help detect certain browser version numbers where this is the only difference.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Boolean</code> - returns true if browser has mathml support
+**Returns**: <code>Boolean</code> - returns true if browser has mathml support  
 
 | Param | Type |
 | --- | --- |
@@ -191,7 +334,7 @@ Check for MathML support in browsers to help detect certain browser version numb
 Performs a simple test to see if we're on mobile or not.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Boolean</code> - returns true if mobile
+**Returns**: <code>Boolean</code> - returns true if mobile  
 
 | Param | Type |
 | --- | --- |
@@ -203,13 +346,13 @@ Performs a simple test to see if we're on mobile or not.
 Uses the min and max versions of a browser to determine its version.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Number</code> - returns version number
+**Returns**: <code>Number</code> - returns version number  
 
 | Param | Type |
 | --- | --- |
-| uaVersion | <code>Number</code> |
-| minVersion | <code>Number</code> |
-| [maxVersion] | <code>Number</code> |
+| uaVersion | <code>Number</code> | 
+| minVersion | <code>Number</code> | 
+| [maxVersion] | <code>Number</code> | 
 
 <a name="module_Browser.looksLike"></a>
 
@@ -217,12 +360,12 @@ Uses the min and max versions of a browser to determine its version.
 Searches for a match between the regex and specified string.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>\*</code> &#124; <code>Boolean</code> - returns true if match found
+**Returns**: <code>\*</code> &#124; <code>Boolean</code> - returns true if match found  
 
 | Param | Type |
 | --- | --- |
 | regex | <code>RegExp</code> | 
-| ua | <code>String</code> |
+| ua | <code>String</code> | 
 
 <a name="module_Browser.parseIntIfMatch"></a>
 
@@ -231,13 +374,13 @@ Parses the result of the RegExp match if it exists.
 Gracefully falls back to the default version if not.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Number</code> - returns the regex match or default version
+**Returns**: <code>Number</code> - returns the regex match or default version  
 
 | Param | Type |
 | --- | --- |
-| ua | <code>String</code> |
+| ua | <code>String</code> | 
 | regex | <code>RegExp</code> | 
-| [radix] | <code>Number</code> |
+| [radix] | <code>Number</code> | 
 
 <a name="module_Browser.parseFloatIfMatch"></a>
 
@@ -246,11 +389,11 @@ Parses the floating point value of the RegExp match if found.
 Gracefully falls back to the default if not.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: returns the regex match or the default version
+**Returns**: returns the regex match or the default version  
 
 | Param | Type |
 | --- | --- |
-| ua | <code>String</code> |
+| ua | <code>String</code> | 
 | regex | <code>RegExp</code> | 
 
 <a name="module_Browser.getAndroidVersion"></a>
@@ -259,12 +402,12 @@ Gracefully falls back to the default if not.
 Determines the version of Android being used.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Number</code> - returns the Android version
+**Returns**: <code>Number</code> - returns the Android version  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| uaVersion | <code>Number</code> |
+| uaVersion | <code>Number</code> | 
 
 <a name="module_Browser.getChromiumVersion"></a>
 
@@ -272,12 +415,12 @@ Determines the version of Android being used.
 Determines the version of Chrome being used.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Number</code> - returns the Chrome version
+**Returns**: <code>Number</code> - returns the Chrome version  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| uaVersion | <code>Number</code> |
+| uaVersion | <code>Number</code> | 
 
 <a name="module_Browser.getSafariVersion"></a>
 
@@ -285,12 +428,12 @@ Determines the version of Chrome being used.
 Returns the version of the Safari browser.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Number</code> - returns the version of Safari
+**Returns**: <code>Number</code> - returns the version of Safari  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| uaVersion | <code>Number</code> |
+| uaVersion | <code>Number</code> | 
 
 <a name="module_Browser.getKindleVersion"></a>
 
@@ -302,7 +445,7 @@ Creates a Browser instance with its attributed Kindle values.
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| uaVersion | <code>Number</code> |
+| uaVersion | <code>Number</code> | 
 
 <a name="module_Browser.getOtherOS"></a>
 
@@ -310,12 +453,12 @@ Creates a Browser instance with its attributed Kindle values.
 Creates a Browser instance with its attributed OS and device type values.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Browser</code> - returns the browser instance
+**Returns**: <code>Browser</code> - returns the browser instance  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| ua | <code>String</code> |
+| ua | <code>String</code> | 
 
 <a name="module_Browser.getAppleOS"></a>
 
@@ -323,12 +466,12 @@ Creates a Browser instance with its attributed OS and device type values.
 Creates a Browser instance with its attributed Apple values.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Browser</code> - returns the Browser instance
+**Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| ua | <code>String</code> |
+| ua | <code>String</code> | 
 
 <a name="module_Browser.getMicrosoftOS"></a>
 
@@ -336,12 +479,12 @@ Creates a Browser instance with its attributed Apple values.
 Creates a Browser instance with its attributed Windows values.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Browser</code> - returns the Browser instance
+**Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| ua | <code>String</code> |
+| ua | <code>String</code> | 
 
 <a name="module_Browser.getAndroidOS"></a>
 
@@ -349,12 +492,12 @@ Creates a Browser instance with its attributed Windows values.
 Creates a Browser instance with its attributed Android values.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Browser</code> - returns the Browser instance
+**Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| ua | <code>String</code> |
+| ua | <code>String</code> | 
 
 <a name="module_Browser.getKindleOS"></a>
 
@@ -362,12 +505,12 @@ Creates a Browser instance with its attributed Android values.
 Returns the Kindle's OS.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Browser</code> - returns the Browser instance
+**Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| ua | <code>String</code> |
+| ua | <code>String</code> | 
 
 <a name="module_Browser.getOsFromUa"></a>
 
@@ -375,12 +518,12 @@ Returns the Kindle's OS.
 Reads the user agent string to determine OS.
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Browser</code> - returns the Browser instance
+**Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
 | win | <code>Window</code> | 
-| ua | <code>String</code> |
+| ua | <code>String</code> | 
 
 <a name="module_Browser.detect"></a>
 
@@ -388,12 +531,12 @@ Reads the user agent string to determine OS.
 Returns an object containing browser details (e.g. name, os, version, etc.).
 
 **Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>Browser</code> - returns the Browser instance
+**Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
 | [win] | <code>Window</code> | 
-| [userAgent] | <code>String</code> |
+| [userAgent] | <code>String</code> | 
 
 **Example**  
 ```js
@@ -401,40 +544,15 @@ var os = browser.detect().os.name;
 
 console.log(os); // outputs OS name (e.g. Windows, Mac, Android, etc.)
 ```
-<a name="module_Browser.read"></a>
-
-### browser.read(key) ⇒ <code>\*</code>
-Retrieve any results in the map by name because they're returned in an array without names
-
-**Kind**: static method of <code>[Browser](#module_Browser)</code>
-
-| Param | Type |
-| --- | --- |
-| key | <code>String</code> |
-
-<a name="module_Browser.save"></a>
-
-### browser~save(result) ⇒ <code>Number</code>
-Saves a property to the results array and returns its index
-
-**Kind**: inner method of <code>[Browser](#module_Browser)</code>
-
-| Param | Type |
-| --- | --- |
-| result | <code>\*</code> |
+<a name="module_Capabilities"></a>
 
 ## Capabilities
-    Determines browser's capabilities (e.g. CORS support, sandboxable, video support, etc.)
+Determines browser's capabilities (e.g. CORS support, sandboxable, video support, etc.)
 
 **Example**  
 ```javascript
 var capabilities = require("ad-libs.js/lib/detect/capabilities");
 ```
-
-* [Capabilities](#module_Capabilities)
-    * [.detect()](#module_Capabilities.detect) ⇒ <code>Object</code>
-    * [.read(key)](#module_Capabilities.read) ⇒ <code>\*</code>
-
 <a name="module_Capabilities.detect"></a>
 
 ### capabilities.detect() ⇒ <code>Object</code>
@@ -446,19 +564,10 @@ Detects browser's capabilities and returns an object.
 // Outputs whether the browser supports h264 video ( 1 if yes, else 0)
 var h264 = capabilities.detect().h264;
 ```
-<a name="module_Capabilities.read"></a>
-
-### capabilities.read(key) ⇒ <code>\*</code>
-**Kind**: static method of <code>[Capabilities](#module_Capabilities)</code>
-**Todo:**: indexOf is only supported in IE9+, this needs to be updated to account for IE8
-Probably won't have this here. instead, it will be methods calling to only the properties that need to be exposed and nothing else.
-
-| Param | Type |
-| --- | --- |
-| key | <code>String</code> |
+<a name="module_Environment"></a>
 
 ## Environment
-    Environment Detection - Gets Data Pertaining to User's Environment
+Environment Detection - Gets Data Pertaining to User's Environment
 
 **Example**  
 ```
@@ -479,7 +588,7 @@ var environment = require("ad-libs.js/lib/detect/environment");
 Detect environmental variables and return them wrapped within an object.
 
 **Kind**: static method of <code>[Environment](#module_Environment)</code>  
-**Returns**: <code>Object</code> - returns the environment object
+**Returns**: <code>Object</code> - returns the environment object  
 **Example**  
 ```js
 var flash = environment.detect().flash;
@@ -506,8 +615,10 @@ console.log(flash) // outputs the version of Flash
 
 ### environment.getAdDocSize() ⇒ <code>Object</code>
 **Kind**: static method of <code>[Environment](#module_Environment)</code>  
+<a name="module_Mraid"></a>
+
 ## Mraid
-    Mraid Detection
+Mraid Detection
 
 **Example**  
 ```js
@@ -517,34 +628,36 @@ console.log(mraid.getVersion()) // outputs mraid version;
 ```
 
 * [Mraid](#module_Mraid)
-    * [.ready(cb, [win])](#module_Mraid.ready)
-    * [.getVersion([win])](#module_Mraid.getVersion) ⇒ <code>String</code>
+    * [.ready(cb, [If])](#module_Mraid.ready)
+    * [.getVersion([If])](#module_Mraid.getVersion) ⇒ <code>String</code>
 
 <a name="module_Mraid.ready"></a>
 
-### mraid.ready(cb, [win])
+### mraid.ready(cb, [If])
 Executes cb when mraid is ready.
 
 **Kind**: static method of <code>[Mraid](#module_Mraid)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| cb | <code>Function</code> |  |
-| [win] | <code>Window</code> | If not given, uses the current window. |
+| cb | <code>function</code> |  |
+| [If] | <code>Window</code> | not given, uses the current window. |
 
 <a name="module_Mraid.getVersion"></a>
 
-### mraid.getVersion([win]) ⇒ <code>String</code>
+### mraid.getVersion([If]) ⇒ <code>String</code>
 Gets mraid version.
 
 **Kind**: static method of <code>[Mraid](#module_Mraid)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [win] | <code>Window</code> | If not given, uses the current window. |
+| [If] | <code>Window</code> | not given, uses the current window. |
+
+<a name="module_Safeframe"></a>
 
 ## Safeframe
-    Safeframe Detection
+Safeframe Detection
 
 **Example**  
 ```js
@@ -649,16 +762,18 @@ Returns safeframe metrics.
 | --- | --- |
 | [win] | <code>Window</code> | 
 
-## addEventListener
-    Add an event listener to the element, which will execute the given callback.
+<a name="module_addEventListener"></a>
 
-**Returns**: <code>Function</code> - returns a function that, when executed, will remove the event listener from the element
+## addEventListener ⇒ <code>function</code>
+Add an event listener to the element, which will execute the given callback.
+
+**Returns**: <code>function</code> - returns a function that, when executed, will remove the event listener from the element  
 
 | Param | Type |
 | --- | --- |
 | element | <code>Element</code> | 
 | eventName | <code>String</code> | 
-| callback | <code>Function</code> |
+| callback | <code>function</code> | 
 
 **Example**  
 ```js
@@ -667,15 +782,17 @@ var addEventListener = require('ad-libs.js/lib/dom/addEventListener');
 addEventListener(el, 'onLoad', cb);
 
 ```
-## appendHtml
-    Appends all elements in the html string to the parent element. Correctly handles scripts with src attributes and inline javascript and ensures that the script will execute.  NOTE: Only Element nodes in the html string will be appended. All other node types will be ignored (i.e. Text, Comment).
+<a name="module_appendHtml"></a>
 
-**Returns**: <code>Array</code> - returns a list of any exceptions that occurred
+## appendHtml ⇒ <code>Array</code>
+Appends all elements in the html string to the parent element. Correctly handles scripts with src attributes and inline javascript and ensures that the script will execute.  NOTE: Only Element nodes in the html string will be appended. All other node types will be ignored (i.e. Text, Comment).
+
+**Returns**: <code>Array</code> - returns a list of any exceptions that occurred  
 
 | Param | Type |
 | --- | --- |
 | parentEl | <code>Element</code> | 
-| html | <code>String</code> |
+| html | <code>String</code> | 
 
 **Example**  
 ```js
@@ -684,13 +801,15 @@ var appendHtml = require('ad-libs.js/lib/dom/appendHtml');
 appendHtml(parentElement, htmlMarkup);
 
 ```
+<a name="module_domReady"></a>
+
 ## domReady
-    Executes the provided callback when the DOM is ready. Allows code to act on the DOM before the window "load" event fires.
+Executes the provided callback when the DOM is ready. Allows code to act on the DOM before the window "load" event fires.
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| callback | <code>Function</code> |  |
+| callback | <code>function</code> |  |
 | [targetWindow] | <code>Window</code> | You can provide your own window reference for cases where you'd have an iframe. |
 | [isInteractiveOk] | <code>Boolean</code> | Interactive mode can be checked for faster responses. |
 
@@ -702,10 +821,12 @@ var domReady = require('ad-libs.js/lib/dom/domReady');
 domReady(cb, window);
 
 ```
-## dom/getExecutingScript
-    <a name="module_dom/getExecutingScript..getExecutingScript"></a>
+<a name="module_getExecutingScript"></a>
 
-### dom/getExecutingScript~getExecutingScript([validatorFunc], [testScript]) ⇒ <code>HTMLScriptElement</code> &#124; <code>null</code>
+## getExecutingScript
+<a name="module_getExecutingScript..getExecutingScript"></a>
+
+### getExecutingScript~getExecutingScript([validatorFunc], [testScript]) ⇒ <code>HTMLScriptElement</code> &#124; <code>null</code>
 Returns the script element that loaded the currently executing javascript code.
 
 The validatorFunc function takes a script Element as a single argument, and should
@@ -715,15 +836,17 @@ scripts on the page where document.currentScript is not supported.
 When the executing script has been located, it will be marked with an attribute
 key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScript.LOAD_STARTED.
 
-**Kind**: inner method of <code>[dom/getExecutingScript](#module_dom/getExecutingScript)</code>  
+**Kind**: inner method of <code>[getExecutingScript](#module_getExecutingScript)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [validatorFunc] | <code>Function</code> |  |
+| [validatorFunc] | <code>function</code> |  |
 | [testScript] | <code>HTMLScriptElement</code> | Used for IoC/testing. |
 
+<a name="module_triggerEvent"></a>
+
 ## triggerEvent
-    Creates a new DOM Event and triggers it on the provided element.
+Creates a new DOM Event and triggers it on the provided element.
 
 
 | Param | Type |
@@ -731,23 +854,27 @@ key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScrip
 | element | <code>Element</code> | 
 | eventName | <code>String</code> | 
 
-## evaluator
-    Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly. Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won't function for this module. That's right - we have one letter vars in our source code. Ain't eval grand? For more info on eval visit: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
+<a name="module_evaluator"></a>
+
+## evaluator ⇒ <code>Object</code>
+Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly. Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won't function for this module. That's right - we have one letter vars in our source code. Ain't eval grand? For more info on eval visit: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
 
 
 | Param | Type |
 | --- | --- |
 | v | <code>String</code> | 
 
-## jsonp
-    Perform a cross domain request via JSONP. Provides the same interface as xhr.js. The request is made by appending a 'callback' parameter to the request url, and it is expected that the server will respond with the content wrapped in a function call, using the provided value of the callback parameter. If callbackFn isn't defined, a unique name will be generated.
+<a name="module_jsonp"></a>
 
-**Returns**: <code>Object</code> - returns object with send function
+## jsonp ⇒ <code>Object</code>
+Perform a cross domain request via JSONP. Provides the same interface as xhr.js. The request is made by appending a 'callback' parameter to the request url, and it is expected that the server will respond with the content wrapped in a function call, using the provided value of the callback parameter. If callbackFn isn't defined, a unique name will be generated.
+
+**Returns**: <code>Object</code> - returns object with send function  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | options | <code>Object</code> |  |
-| callback | <code>Function</code> | Executed on response with the signature (status: Number, body: String). |
+| callback | <code>function</code> | Executed on response with the signature (status: Number, body: String). |
 
 **Example**  
 ```js
@@ -756,19 +883,23 @@ key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScrip
 CB_1433519761916('response from server');
 
 ```
+<a name="module_loadScript"></a>
+
 ## loadScript
-    Dynamically loads scripts in parallel, and executes a single callback after all scripts have loaded.
+Dynamically loads scripts in parallel, and executes a single callback after all scripts have loaded.
 
 
 | Param | Type | Description |
 | --- | --- | --- |
 | urls | <code>String</code> &#124; <code>Array</code> | A single url, or a list of urls of scripts to load. |
-| onLoaded | <code>Function</code> | Callback is executed when all scripts have finished loading. |
-| onError | <code>Function</code> | Callback is executed if one or more scripts fail to load, and passed 							  a single argument: the list of script urls that failed to load. |
+| onLoaded | <code>function</code> | Callback is executed when all scripts have finished loading. |
+| onError | <code>function</code> | Callback is executed if one or more scripts fail to load, and passed 							  a single argument: the list of script urls that failed to load. |
 | [requestTimeout] | <code>Number</code> | When supplied, this will explicitly timeout the script request 							  and report back to onError, or, if onError is not supplied, to onLoaded. 							  IMPORTANT: This does not cancel the script load, just reports that it 							  has exceeded the timeout duration. |
 
+<a name="module_measurePerformance"></a>
+
 ## measurePerformance
-    
+
 * [measurePerformance](#module_measurePerformance)
     * [.factory](#module_measurePerformance.factory) ⇒ <code>MeasurePerformance</code>
     * [.provider](#module_measurePerformance.provider) ⇒ <code>MeasurePerformance</code>
@@ -797,10 +928,12 @@ Tie into an existing instance of the performance module.
 | --- |
 | packageName | 
 
-## parseConfig
-    Parses a json config from the provided Element. The defaults is expected to be a JSON string in the attribute value.
+<a name="module_parseConfig"></a>
 
-**Returns**: <code>Object</code> - returns the parsed json config
+## parseConfig ⇒ <code>Object</code>
+Parses a json config from the provided Element. The defaults is expected to be a JSON string in the attribute value.
+
+**Returns**: <code>Object</code> - returns the parsed json config  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -814,8 +947,10 @@ var parseConfig = require('ad-libs/lib/parseConfig');
 
 console.log(parseConfig(htmlElement, attributeName, defaultVals)) // outputs the parsed object from the element
 ```
+<a name="module_perfMarker"></a>
+
 ## perfMarker
-    A module to mark the timestamps for script performance
+A module to mark the timestamps for script performance
 
 
 * [perfMarker](#module_perfMarker)
@@ -839,8 +974,10 @@ Ties into an existing instance of PerfMarker.
 | --- | --- | --- |
 | [pkgName] | <code>String</code> | The name of the instance. |
 
+<a name="module_reportData"></a>
+
 ## reportData
-    
+
 * [reportData](#module_reportData)
     * [.factory](#module_reportData.factory) ⇒ <code>ReportData</code>
     * [.provider](#module_reportData.provider) ⇒ <code>ReportData</code>
@@ -868,16 +1005,20 @@ Tie into an existing instance of the reportData module.
 | --- |
 | packageName | 
 
-## format
-    Constructs a URL from its parsed components. 1) Host takes precedence over hostname and port. 2) Query takes precedence over search.
+<a name="module_format"></a>
+
+## format ⇒ <code>String</code>
+Constructs a URL from its parsed components. 1) Host takes precedence over hostname and port. 2) Query takes precedence over search.
 
 
 | Param | Type | Description |
 | --- | --- | --- |
 | components | <code>Object</code> | The url components, as generated by url/parse.js. |
 
-## parse
-    Deconstructs a URL into its components. It also parses the search component (the query string) into decoded key/value pairs on a query object.
+<a name="module_parse"></a>
+
+## parse ⇒ <code>Object</code>
+Deconstructs a URL into its components. It also parses the search component (the query string) into decoded key/value pairs on a query object.
 
 
 | Param | Type |
@@ -891,8 +1032,10 @@ var parseUrl = require('ad-libs.js/lib/url/parse');
 var queryObj = parseUrl('http://foo.com/query?cb=1234&userid=9999');
 
 ```
+<a name="module_xhr"></a>
+
 ## xhr
-    Cross browser wrapper for XMLHttpRequest. If you need Cookies and HTTP Auth data to be included in the request, you must set withCredentials to true in the options.
+Cross browser wrapper for XMLHttpRequest. If you need Cookies and HTTP Auth data to be included in the request, you must set withCredentials to true in the options.
 
 **Example**  
 ```js
@@ -911,7 +1054,7 @@ var xhr = require('ad-libs/lib/xhr');
 Determines if CORS is supported.
 
 **Kind**: static method of <code>[xhr](#module_xhr)</code>  
-**Returns**: <code>Boolean</code> - returns whether CORS is supported
+**Returns**: <code>Boolean</code> - returns whether CORS is supported  
 <a name="module_xhr..xhr"></a>
 
 ### xhr~xhr(options, callback) ⇒ <code>Object</code>
@@ -920,7 +1063,7 @@ Determines if CORS is supported.
 | Param | Type | Description |
 | --- | --- | --- |
 | options | <code>Object</code> |  |
-| callback | <code>Function</code> | Executed on response with the signature (status: Number, body: String). |
+| callback | <code>function</code> | Executed on response with the signature (status: Number, body: String). |
 
 **Example**  
 ```js
@@ -929,14 +1072,12 @@ var resp = xhr({url: 'www.example.com'}).send();
 
 ```
 
-
-# Ad-Libs Contributors
-* [jeffreytgilbert](https://github.com/jeffreytgilbert)
-* [larrymyers](https://github.com/larrymyers)
-* [msahagu2](https://github.com/msahagu2)
+# Ad-Libs Developers
 * [gblosser](https://github.com/gblosser42)
 * [j-brown](https://github.com/j-brown)
+* [jeffreytgilbert](https://github.com/jeffreytgilbert)
+* [msahagu2](https://github.com/msahagu2)
 * [ggustilo](https://github.com/ggustilo)
-* [ericperez](https://github.com/ericperez)
+
 
 * * *

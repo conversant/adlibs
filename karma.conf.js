@@ -30,7 +30,7 @@ module.exports = function(config) {
 
         frameworks: ['mocha'],
 
-        browsers: ['Chrome', 'Firefox', 'Safari']
+        browsers: ['Firefox']
 
     });
 
