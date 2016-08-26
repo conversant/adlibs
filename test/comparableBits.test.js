@@ -77,7 +77,6 @@ describe('checkFlags', function () {
         }).to.throwError('Exceeded maximum number of bits allowed by browser: ' + 0x3FFFFFFFFFFFFF);
 
         compare(action32, 0x7FFFFFFFFFFFFF, function (ex) {
-            console.log(typeof ex, 'error is ' + JSON.stringify(ex), ex.message);
             expect(ex.message).to.equal('Exceeded maximum number of bits allowed by browser: ' + 0x7FFFFFFFFFFFFF);
         });
     });
