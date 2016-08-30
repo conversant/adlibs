@@ -1,8 +1,10 @@
 # AdLibs
 
+[![Build Status](https://travis-ci.org/conversant/ad-libs.js.svg?branch=master)](https://travis-ci.org/conversant/ad-libs.js)
+
 | ________________ | The gist of it... |
 |:---|:---|
-| ![ad-libs.js](https://github.com/conversant/ad-libs.js/raw/master/doc/Ad-libs-js.png "Ad-libs.js") | A collection of cross-browser methods for use with front-end development. Ad-Libs is a tool that supports various browser and OS combinations dating back to IE9. It uses feature detection to determine the user's environment and outputs details pertaining to that OS and browser. Ad-libs also allows developers to safely execute front end methods such as domReady and XMLHttpRequests across all browsers. |
+| ![adlibs](https://github.com/conversant/ad-libs.js/raw/master/doc/Ad-libs-js.png "Adlibs") | A collection of cross-browser methods for use with front-end development. adlibs is a tool that supports various browser and OS combinations dating back to IE9. It uses feature detection to determine the user's environment and outputs details pertaining to that OS and browser. adlibs also allows developers to safely execute front end methods such as domReady and XMLHttpRequests across all browsers. |
 
 ## Installation
 ```bash
@@ -15,12 +17,12 @@ bundled into a project to keep minified bundles as small as possible.
 
 In Node.js:
 ```js
-// Load the full ad-libs.js build.
-var ad-libs = require('ad-libs.js');
+// Load the full adlibs build.
+var adlibs = require('adlibs');
 
 // Load a single module for smaller builds with webpack.
-var domReady = require('ad-libs.js/lib/dom/domReady');
-var browser = require('ad-libs.js/lib/detect/browser');
+var domReady = require('adlibs/lib/dom/domReady');
+var browser = require('adlibs/lib/detect/browser');
 ```
 
 ## Detection Modules
@@ -30,7 +32,7 @@ objects, the detect function must be executed.
 
 For example, in order to populate the browser object:
 ```js
-var browser = require('ad-libs.js/lib/detect/browser').detect();
+var browser = require('adlibs/lib/detect/browser').detect();
 
 // outputs the name of the os
 console.log(browser.os.name)
@@ -41,12 +43,13 @@ console.log(browser.os.name)
 {{optionSet "example-lang" "js" ~}}
 {{>main}}
 
-# Ad-Libs Developers
+# adlibs Developers
 * [gblosser](https://github.com/gblosser42)
 * [j-brown](https://github.com/j-brown)
 * [jeffreytgilbert](https://github.com/jeffreytgilbert)
 * [msahagu2](https://github.com/msahagu2)
 * [ggustilo](https://github.com/ggustilo)
+* [larrymyers](https://github.com/larrymyers)
 
 
 * * *

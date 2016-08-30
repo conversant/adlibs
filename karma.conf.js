@@ -1,5 +1,6 @@
 'use strict';
 
+
 module.exports = function(config) {
     config.set({
 
@@ -30,7 +31,14 @@ module.exports = function(config) {
 
         frameworks: ['mocha'],
 
-        browsers: ['Firefox']
+		customLaunchers: {
+			Chrome_travis_ci: {
+				base: 'Chrome',
+				flags: ['--no-sandbox']
+			}
+		},
+
+        browsers: ['Firefox', 'Chrome', 'Safari']
 
     });
 
@@ -48,5 +56,10 @@ module.exports = function(config) {
 			type: 'lcov'
 		};
 	}
+
+	if (process.env.TRAVIS) {
+		config.browsers = ['Firefox', 'Chrome_travis_ci'];
+	}
+
 
 };

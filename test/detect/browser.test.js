@@ -22,14 +22,14 @@ var chrome12 = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.3
 var browser = require('../../lib/detect/browser'),
 	defaults = require('../../lib/defaults'),
 	expect = require('expect.js'),
-	canHas = require('../../lib/canHas');
+	keys = require('../../lib/canHas').keys;
 
 describe('detect/browser', function() {
 	// Generic tests that will use given window object and user agent string
 	var details = browser.detect();
 	it('Each result should be present', function() {
 		// The count from trustworthy to console is expected to be 11 items
-		expect(Object.keys(details).length).to.eql(17);
+		expect(keys(details).length).to.eql(17);
 	});
 
 	it('Each result should be non-empty', function() {
@@ -165,8 +165,8 @@ function ensureHonestResults (honestUA, dishonestUA) {
 	// we should expect the script to get the same browser name
 	expect(honestUA.name).to.equal(dishonestUA.name);
 	// we should expect it to set something for the engine...even unknown
-	expect(Object.keys(honestUA.engine.name).length).to.not.equal(0);
-	expect(Object.keys(dishonestUA.engine.name).length).to.not.equal(0);
+	expect(keys(honestUA.engine.name).length).to.not.equal(0);
+	expect(keys(dishonestUA.engine.name).length).to.not.equal(0);
 	// the final 4 parts, defining the environment, should be the same
 	expect(honestUA.desktop).to.equal(dishonestUA.desktop);
 	expect(honestUA.mobile).to.equal(dishonestUA.mobile);
