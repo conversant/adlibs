@@ -38,7 +38,7 @@ module.exports = function(config) {
 			}
 		},
 
-        browsers: ['Firefox']
+        browsers: ['Firefox', 'Chrome', 'Safari']
 
     });
 
@@ -58,7 +58,7 @@ module.exports = function(config) {
 	}
 
 	if (process.env.TRAVIS) {
-		config = ['Chrome_travis_ci'];
+		config.browsers = ['Firefox', 'Chrome_travis_ci'];
 	}
 
 

@@ -2,7 +2,7 @@
 
 | ________________ | The gist of it... |
 |:---|:---|
-| ![ad-libs.js](https://github.com/conversant/ad-libs.js/raw/master/doc/Ad-libs-js.png "Ad-libs.js") | A collection of cross-browser methods for use with front-end development. Ad-Libs is a tool that supports various browser and OS combinations dating back to IE9. It uses feature detection to determine the user's environment and outputs details pertaining to that OS and browser. Ad-libs also allows developers to safely execute front end methods such as domReady and XMLHttpRequests across all browsers. |
+| ![adlibs](https://github.com/conversant/ad-libs.js/raw/master/doc/Ad-libs-js.png "Adlibs") | A collection of cross-browser methods for use with front-end development. adlibs is a tool that supports various browser and OS combinations dating back to IE9. It uses feature detection to determine the user's environment and outputs details pertaining to that OS and browser. adlibs also allows developers to safely execute front end methods such as domReady and XMLHttpRequests across all browsers. |
 
 ## Installation
 ```bash
@@ -15,12 +15,12 @@ bundled into a project to keep minified bundles as small as possible.
 
 In Node.js:
 ```js
-// Load the full ad-libs.js build.
-var ad-libs = require('ad-libs.js');
+// Load the full adlibs build.
+var adlibs = require('adlibs');
 
 // Load a single module for smaller builds with webpack.
-var domReady = require('ad-libs.js/lib/dom/domReady');
-var browser = require('ad-libs.js/lib/detect/browser');
+var domReady = require('adlibs/lib/dom/domReady');
+var browser = require('adlibs/lib/detect/browser');
 ```
 
 ## Detection Modules
@@ -30,7 +30,7 @@ objects, the detect function must be executed.
 
 For example, in order to populate the browser object:
 ```js
-var browser = require('ad-libs.js/lib/detect/browser').detect();
+var browser = require('adlibs/lib/detect/browser').detect();
 
 // outputs the name of the os
 console.log(browser.os.name)
@@ -43,7 +43,7 @@ console.log(browser.os.name)
 <dl>
 <dt><a href="#module_canHas">canHas</a></dt>
 <dd></dd>
-<dt><a href="#module_checkFlags">checkFlags</a></dt>
+<dt><a href="#module_comparableBits">comparableBits</a></dt>
 <dd><p>This is due to Javascript using double-precision floating-point format numbers. If the number of bits in the bitmask is found to exceed the max supported, this module throws an error.</p>
 </dd>
 <dt><a href="#module_createSpy">createSpy</a> ⇒ <code>sinon.spy</code></dt>
@@ -118,6 +118,7 @@ console.log(browser.os.name)
     * [.own(obj, propertyName)](#module_canHas.own) ⇒ <code>Boolean</code>
     * [.run(obj, [methodName])](#module_canHas.run) ⇒ <code>function</code>
     * [.forIn(obj, callback)](#module_canHas.forIn)
+    * [.keys(obj)](#module_canHas.keys) ⇒ <code>\*</code>
 
 <a name="module_canHas.can"></a>
 
@@ -133,7 +134,7 @@ Can this object use this property?
 
 **Example**  
 ```js
-var can = require('ad-libs/lib/canHas').can;
+var can = require('adlibs/lib/canHas').can;
 ```
 <a name="module_canHas.has"></a>
 
@@ -149,7 +150,7 @@ Does this window have this object in it?
 
 **Example**  
 ```js
-var has = require('ad-libs/lib/canHas').has;
+var has = require('adlibs/lib/canHas').has;
 ```
 <a name="module_canHas.own"></a>
 
@@ -187,48 +188,59 @@ For each in, shorthanded because manually writing hasOwnProperty each and every 
 | obj | 
 | callback | 
 
-<a name="module_checkFlags"></a>
+<a name="module_canHas.keys"></a>
 
-## checkFlags
+### canHas.keys(obj) ⇒ <code>\*</code>
+A substitute for Object.keys for when browsers don't attempt to convert non-objects to arrays
+
+**Kind**: static method of <code>[canHas](#module_canHas)</code>  
+
+| Param |
+| --- |
+| obj | 
+
+<a name="module_comparableBits"></a>
+
+## comparableBits
 This is due to Javascript using double-precision floating-point format numbers. If the number of bits in the bitmask is found to exceed the max supported, this module throws an error.
 
 
-* [checkFlags](#module_checkFlags)
-    * [.factory](#module_checkFlags.factory) ⇒ <code>ComparableBits</code>
-    * [.provider](#module_checkFlags.provider) ⇒ <code>ComparableBits</code>
-    * [.make(bit, [data])](#module_checkFlags.make) ⇒ <code>Action</code>
-    * [.compare(action, bitSig, [callback])](#module_checkFlags.compare) ⇒ <code>Boolean</code>
+* [comparableBits](#module_comparableBits)
+    * [.factory](#module_comparableBits.factory) ⇒ <code>ComparableBits</code>
+    * [.provider](#module_comparableBits.provider) ⇒ <code>ComparableBits</code>
+    * [.make(bit, [data])](#module_comparableBits.make) ⇒ <code>Action</code>
+    * [.compare(action, bitSig, [callback])](#module_comparableBits.compare) ⇒ <code>Boolean</code>
 
-<a name="module_checkFlags.factory"></a>
+<a name="module_comparableBits.factory"></a>
 
-### checkFlags.factory ⇒ <code>ComparableBits</code>
+### comparableBits.factory ⇒ <code>ComparableBits</code>
 Create a new instance of the ComparableBits module.
 
-**Kind**: static property of <code>[checkFlags](#module_checkFlags)</code>  
+**Kind**: static property of <code>[comparableBits](#module_comparableBits)</code>  
 **Example**  
 ```js
-var bits = require('ad-libs.js/lib/comparableBits').factory();
+var bits = require('adlibs/lib/comparableBits').factory();
 
 var someAction = bits.make(0x1 | 0x2, 'flag1,mode1or2')
 bits.compare(someAction, 0x1, callback) // -> executes callback
 ```
-<a name="module_checkFlags.provider"></a>
+<a name="module_comparableBits.provider"></a>
 
-### checkFlags.provider ⇒ <code>ComparableBits</code>
+### comparableBits.provider ⇒ <code>ComparableBits</code>
 Tie into an existing instance of the ComparableBits module.
 
-**Kind**: static property of <code>[checkFlags](#module_checkFlags)</code>  
+**Kind**: static property of <code>[comparableBits](#module_comparableBits)</code>  
 
 | Param |
 | --- |
 | packageName | 
 
-<a name="module_checkFlags.make"></a>
+<a name="module_comparableBits.make"></a>
 
-### checkFlags.make(bit, [data]) ⇒ <code>Action</code>
+### comparableBits.make(bit, [data]) ⇒ <code>Action</code>
 Creates the action object with it's attributed bitmask flags
 
-**Kind**: static method of <code>[checkFlags](#module_checkFlags)</code>  
+**Kind**: static method of <code>[comparableBits](#module_comparableBits)</code>  
 **Returns**: <code>Action</code> - Returns the created Action object  
 
 | Param | Type | Description |
@@ -238,14 +250,14 @@ Creates the action object with it's attributed bitmask flags
 
 **Example**  
 ```js
-var make = require('ad-libs/lib/checkFlags').make;
+var make = require('adlibs/lib/comparableBits').make;
 ```
-<a name="module_checkFlags.compare"></a>
+<a name="module_comparableBits.compare"></a>
 
-### checkFlags.compare(action, bitSig, [callback]) ⇒ <code>Boolean</code>
+### comparableBits.compare(action, bitSig, [callback]) ⇒ <code>Boolean</code>
 Encapsulates a bitmask service which takes either a mode or flag bitmask and compares it to the attributed action's flags
 
-**Kind**: static method of <code>[checkFlags](#module_checkFlags)</code>  
+**Kind**: static method of <code>[comparableBits](#module_comparableBits)</code>  
 **Returns**: <code>Boolean</code> - Returns true if the action's flags do match either of the provided bitmasks  
 
 | Param | Type | Description |
@@ -256,7 +268,7 @@ Encapsulates a bitmask service which takes either a mode or flag bitmask and com
 
 **Example**  
 ```js
-var compareFlags = require('ad-libs/lib/checkFlags').compare;
+var compare = require('adlibs/lib/comparableBits').compare;
 ```
 <a name="module_createSpy"></a>
 
@@ -294,27 +306,31 @@ Browser Detection - Gets Data Pertaining to User's Browser and OS
 
 **Example**  
 ```
-var browser = require("ad-libs.js/lib/detect/browser")
+var browser = require("adlibs/lib/detect/browser")
 ```
 
 * [Browser](#module_Browser)
-    * [.mathMLSupport(d)](#module_Browser.mathMLSupport) ⇒ <code>Boolean</code>
-    * [.isMobile([win])](#module_Browser.isMobile) ⇒ <code>Boolean</code>
-    * [.getVersion(uaVersion, minVersion, [maxVersion])](#module_Browser.getVersion) ⇒ <code>Number</code>
-    * [.looksLike(regex, ua)](#module_Browser.looksLike) ⇒ <code>\*</code> &#124; <code>Boolean</code>
-    * [.parseIntIfMatch(ua, regex, [radix])](#module_Browser.parseIntIfMatch) ⇒ <code>Number</code>
-    * [.parseFloatIfMatch(ua, regex)](#module_Browser.parseFloatIfMatch) ⇒
-    * [.getAndroidVersion(win, uaVersion)](#module_Browser.getAndroidVersion) ⇒ <code>Number</code>
-    * [.getChromiumVersion(win, uaVersion)](#module_Browser.getChromiumVersion) ⇒ <code>Number</code>
-    * [.getSafariVersion(win, uaVersion)](#module_Browser.getSafariVersion) ⇒ <code>Number</code>
-    * [.getKindleVersion(win, uaVersion)](#module_Browser.getKindleVersion) ⇒ <code>Number</code>
-    * [.getOtherOS(win, ua)](#module_Browser.getOtherOS) ⇒ <code>Browser</code>
-    * [.getAppleOS(win, ua)](#module_Browser.getAppleOS) ⇒ <code>Browser</code>
-    * [.getMicrosoftOS(win, ua)](#module_Browser.getMicrosoftOS) ⇒ <code>Browser</code>
-    * [.getAndroidOS(win, ua)](#module_Browser.getAndroidOS) ⇒ <code>Browser</code>
-    * [.getKindleOS(win, ua)](#module_Browser.getKindleOS) ⇒ <code>Browser</code>
-    * [.getOsFromUa(win, ua)](#module_Browser.getOsFromUa) ⇒ <code>Browser</code>
-    * [.detect([win], [userAgent])](#module_Browser.detect) ⇒ <code>Browser</code>
+    * _static_
+        * [.mathMLSupport(d)](#module_Browser.mathMLSupport) ⇒ <code>Boolean</code>
+        * [.isMobile([win])](#module_Browser.isMobile) ⇒ <code>Boolean</code>
+        * [.getVersion(uaVersion, minVersion, [maxVersion])](#module_Browser.getVersion) ⇒ <code>Number</code>
+        * [.looksLike(regex, ua)](#module_Browser.looksLike) ⇒ <code>\*</code> &#124; <code>Boolean</code>
+        * [.parseIntIfMatch(ua, regex, [radix])](#module_Browser.parseIntIfMatch) ⇒ <code>Number</code>
+        * [.parseFloatIfMatch(ua, regex)](#module_Browser.parseFloatIfMatch) ⇒
+        * [.getAndroidVersion(win, uaVersion)](#module_Browser.getAndroidVersion) ⇒ <code>Number</code>
+        * [.getChromiumVersion(win, uaVersion)](#module_Browser.getChromiumVersion) ⇒ <code>Number</code>
+        * [.getSafariVersion(win, uaVersion)](#module_Browser.getSafariVersion) ⇒ <code>Number</code>
+        * [.getKindleVersion(win, uaVersion)](#module_Browser.getKindleVersion) ⇒ <code>Number</code>
+        * [.getOtherOS(win, ua)](#module_Browser.getOtherOS) ⇒ <code>Browser</code>
+        * [.getAppleOS(win, ua)](#module_Browser.getAppleOS) ⇒ <code>Browser</code>
+        * [.getMicrosoftOS(win, ua)](#module_Browser.getMicrosoftOS) ⇒ <code>Browser</code>
+        * [.getAndroidOS(win, ua)](#module_Browser.getAndroidOS) ⇒ <code>Browser</code>
+        * [.getKindleOS(win, ua)](#module_Browser.getKindleOS) ⇒ <code>Browser</code>
+        * [.getOsFromUa(win, ua)](#module_Browser.getOsFromUa) ⇒ <code>Browser</code>
+        * [.detect([win], [userAgent])](#module_Browser.detect) ⇒ <code>Browser</code>
+        * [.read(key)](#module_Browser.read) ⇒ <code>\*</code>
+    * _inner_
+        * [~save(result)](#module_Browser..save) ⇒ <code>Number</code>
 
 <a name="module_Browser.mathMLSupport"></a>
 
@@ -544,6 +560,28 @@ var os = browser.detect().os.name;
 
 console.log(os); // outputs OS name (e.g. Windows, Mac, Android, etc.)
 ```
+<a name="module_Browser.read"></a>
+
+### browser.read(key) ⇒ <code>\*</code>
+Retrieve any results in the map by name because they're returned in an array without names.
+
+**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+
+| Param | Type |
+| --- | --- |
+| key | <code>String</code> | 
+
+<a name="module_Browser..save"></a>
+
+### browser~save(result) ⇒ <code>Number</code>
+Saves a property to the results array and returns its index.
+
+**Kind**: inner method of <code>[Browser](#module_Browser)</code>  
+
+| Param | Type |
+| --- | --- |
+| result | <code>\*</code> | 
+
 <a name="module_Capabilities"></a>
 
 ## Capabilities
@@ -551,7 +589,7 @@ Determines browser's capabilities (e.g. CORS support, sandboxable, video support
 
 **Example**  
 ```javascript
-var capabilities = require("ad-libs.js/lib/detect/capabilities");
+var capabilities = require("adlibs/lib/detect/capabilities");
 ```
 <a name="module_Capabilities.detect"></a>
 
@@ -571,7 +609,7 @@ Environment Detection - Gets Data Pertaining to User's Environment
 
 **Example**  
 ```
-var environment = require("ad-libs.js/lib/detect/environment");
+var environment = require("adlibs/lib/detect/environment");
 ```
 
 * [Environment](#module_Environment)
@@ -622,7 +660,7 @@ Mraid Detection
 
 **Example**  
 ```js
-var mraid = require("ad-libs.js/lib/detect/mraid");
+var mraid = require("adlibs/lib/detect/mraid");
 
 console.log(mraid.getVersion()) // outputs mraid version;
 ```
@@ -661,7 +699,7 @@ Safeframe Detection
 
 **Example**  
 ```js
-var safeframe = require("ad-libs.js/lib/detect/safeframe");
+var safeframe = require("adlibs/lib/detect/safeframe");
 ```
 
 * [Safeframe](#module_Safeframe)
@@ -777,7 +815,7 @@ Add an event listener to the element, which will execute the given callback.
 
 **Example**  
 ```js
-var addEventListener = require('ad-libs.js/lib/dom/addEventListener');
+var addEventListener = require('adlibs/lib/dom/addEventListener');
 
 addEventListener(el, 'onLoad', cb);
 
@@ -796,7 +834,7 @@ Appends all elements in the html string to the parent element. Correctly handles
 
 **Example**  
 ```js
-var appendHtml = require('ad-libs.js/lib/dom/appendHtml');
+var appendHtml = require('adlibs/lib/dom/appendHtml');
 
 appendHtml(parentElement, htmlMarkup);
 
@@ -815,7 +853,7 @@ Executes the provided callback when the DOM is ready. Allows code to act on the 
 
 **Example**  
 ```js
-var domReady = require('ad-libs.js/lib/dom/domReady');
+var domReady = require('adlibs/lib/dom/domReady');
 
 // executes the cb on dom ready
 domReady(cb, window);
@@ -912,7 +950,7 @@ Create a new instance of the performance module.
 **Kind**: static property of <code>[measurePerformance](#module_measurePerformance)</code>  
 **Example**  
 ```js
-var perf = require('ad-libs.js/lib/measurePerformance').factory();
+var perf = require('adlibs/lib/measurePerformance').factory();
 
 console.log(perf.now() - perf.startTime); // outputs duration since script start
 console.log(perf.report()); // outputs report based on performance events such as domLoading, navigationStart, etc.
@@ -943,7 +981,7 @@ Parses a json config from the provided Element. The defaults is expected to be a
 
 **Example**  
 ```js
-var parseConfig = require('ad-libs/lib/parseConfig');
+var parseConfig = require('adlibs/lib/parseConfig');
 
 console.log(parseConfig(htmlElement, attributeName, defaultVals)) // outputs the parsed object from the element
 ```
@@ -1027,7 +1065,7 @@ Deconstructs a URL into its components. It also parses the search component (the
 
 **Example**  
 ```js
-var parseUrl = require('ad-libs.js/lib/url/parse');
+var parseUrl = require('adlibs/lib/url/parse');
 
 var queryObj = parseUrl('http://foo.com/query?cb=1234&userid=9999');
 
@@ -1039,7 +1077,7 @@ Cross browser wrapper for XMLHttpRequest. If you need Cookies and HTTP Auth data
 
 **Example**  
 ```js
-var xhr = require('ad-libs/lib/xhr');
+var xhr = require('adlibs/lib/xhr');
 ```
 
 * [xhr](#module_xhr)
@@ -1072,12 +1110,13 @@ var resp = xhr({url: 'www.example.com'}).send();
 
 ```
 
-# Ad-Libs Developers
+# adlibs Developers
 * [gblosser](https://github.com/gblosser42)
 * [j-brown](https://github.com/j-brown)
 * [jeffreytgilbert](https://github.com/jeffreytgilbert)
 * [msahagu2](https://github.com/msahagu2)
 * [ggustilo](https://github.com/ggustilo)
+* [larrymyers](https://github.com/larrymyers)
 
 
 * * *
