@@ -1,0 +1,23 @@
+---
+engines:
+  eslint:
+    enabled: true
+    checks:
+      max-statements:
+        enabled: false
+      complexity:
+        enabled: false
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+  fixme:
+    enabled: true
+ratings:
+  paths:
+  - "**.js"
+exclude_paths:
+- node_modules/**/*
+- test/**/*
+- public/**/*
