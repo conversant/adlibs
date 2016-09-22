@@ -1,6 +1,6 @@
 # AdLibs
 
-[![Build Status](https://travis-ci.org/conversant/ad-libs.js.svg?branch=master)](https://travis-ci.org/conversant/ad-libs.js)
+[![Build Status](https://travis-ci.org/conversant/ad-libs.js.svg?branch=master)](https://travis-ci.org/conversant/ad-libs.js) [![Coverage Status](https://coveralls.io/repos/github/conversant/ad-libs.js/badge.svg)](https://coveralls.io/github/conversant/ad-libs.js) [![Code Climate](https://codeclimate.com/github/conversant/ad-libs.js/badges/gpa.svg)](https://codeclimate.com/github/conversant/ad-libs.js) [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/conversant/ad-libs.js.svg)](http://isitmaintained.com/project/conversant/ad-libs.js "Average time to resolve an issue") [![Percentage of issues still open](http://isitmaintained.com/badge/open/conversant/ad-libs.js.svg)](http://isitmaintained.com/project/conversant/ad-libs.js "Percentage of issues still open") [![Dependency Status](https://david-dm.org/conversant/ad-libs.js.svg?style=flat-square)](https://david-dm.org/conversant/ad-libs.js)
 
 | ________________ | The gist of it... |
 |:---|:---|
@@ -240,7 +240,7 @@ Tie into an existing instance of the ComparableBits module.
 <a name="module_comparableBits.make"></a>
 
 ### comparableBits.make(bit, [data]) ⇒ <code>Action</code>
-Creates the action object with it's attributed bitmask flags
+Creates the action object with it's attributed bitmask flag
 
 **Kind**: static method of <code>[comparableBits](#module_comparableBits)</code>  
 **Returns**: <code>Action</code> - Returns the created Action object  
@@ -257,7 +257,7 @@ var make = require('adlibs/lib/comparableBits').make;
 <a name="module_comparableBits.compare"></a>
 
 ### comparableBits.compare(action, bitSig, [callback]) ⇒ <code>Boolean</code>
-Encapsulates a bitmask service which takes either a mode or flag bitmask and compares it to the attributed action's flags
+Encapsulates a bitmask service which takes a bitmask and compares it to the attributed action's flag
 
 **Kind**: static method of <code>[comparableBits](#module_comparableBits)</code>  
 **Returns**: <code>Boolean</code> - Returns true if the action's flags do match either of the provided bitmasks  

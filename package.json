@@ -4,7 +4,6 @@
   "description": "A collection of common client side commonjs modules",
   "scripts": {
     "test": "karma start --single-run",
-    "test-cov": "karma start --single-run --with-coverage",
     "test-coverall": "karma start --single-run --with-coverage && cat ./coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "doc": "jsdoc2md -t doc/README.hbs 'lib/**/*.js' > README.md; echo"
   },
@@ -32,7 +31,7 @@
     "karma-bamboo-reporter": "^0.1.0",
     "karma-chrome-launcher": "^0.2.0",
     "karma-cli": "0.1.0",
-    "karma-coverage": "^0.5.0",
+    "karma-coverage": "^1.1.1",
     "karma-firefox-launcher": "^0.1.6",
     "karma-mocha": "^0.2.0",
     "karma-safari-launcher": "^0.1.1",

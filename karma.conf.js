@@ -45,7 +45,7 @@ module.exports = function(config) {
 	if (process.argv.indexOf('--with-coverage') > -1) {
 		config.webpack.module.postLoaders.push({
 			test: /\.js$/,
-			exclude: /(test|node_modules)\//,
+			exclude: /((test|node_modules)\/)|(lib\/detect\/(browser.js|environment.js))/,
 			loader: 'istanbul-instrumenter'
 		});
 
