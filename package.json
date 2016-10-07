@@ -1,6 +1,6 @@
 {
   "name": "adlibs",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A collection of common client side commonjs modules",
   "scripts": {
     "test": "karma start --single-run",
@@ -18,8 +18,7 @@
   ],
   "author": "Conversant Media",
   "license": "Apache-2.0",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "coveralls": "^2.11.9",
     "expect.js": "^0.3.1",
