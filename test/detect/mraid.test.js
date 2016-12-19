@@ -86,7 +86,7 @@ describe('Mraid test', function () {
         expect(diagnostic.issues.length).to.equal(0);
     });
 
-	it('Should issues for an implementation that states its 2.0, but only has 1.0 methods', function () {
+	it('Should report issues for an implementation that states its 2.0, but only has 1.0 methods', function () {
 
         mockWindow.mraid = {
             addEventListener: function () {},
@@ -108,4 +108,37 @@ describe('Mraid test', function () {
         expect(diagnostic.version).to.equal('2.0');
         expect(diagnostic.issues.length).to.equal(10);
     });
+
+	it('Should report an empty report for a proper MRAID 2.0 implementation', function () {
+
+        mockWindow.mraid = {
+            addEventListener: function () {},
+            close: function () {},
+            expand: function () {},
+            getExpandProperties: function () {},
+            getPlacementType: function () {},
+            getState: function () {},
+            getVersion: function () { return '2.0'; },
+            isViewable: function () {},
+            open: function () {},
+            removeEventListener: function () {},
+            setExpandProperties: function () {},
+            useCustomClose: function () {},
+            createCalendarEvent: function () {},
+            getCurrentPosition: function () {},
+            getDefaultPosition: function () {},
+            getMaxSize: function () {},
+            getResizeProperties: function () {},
+            getScreenSize: function () {},
+            playVideo: function () {},
+            setResizeProperties: function () {},
+            storePicture: function () {},
+            supports: function () {}
+        };
+
+        var diagnostic = detectMraid.diagnostic(mockWindow);
+
+        expect(diagnostic.version).to.equal('2.0');
+        expect(diagnostic.issues.length).to.equal(0);
+	});
 });
