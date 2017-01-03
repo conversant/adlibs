@@ -54,7 +54,7 @@ describe('Mraid test', function () {
 	});
 
 	it('Should return a single value telling us mraid is not present', function () {
-		var diagnosticResult = 'Missing MRAID';
+		var diagnosticResult = 'MRAID is type: boolean';
 
 		var diagnostic = detectMraid.diagnostic(mockWindow);
 
@@ -141,4 +141,38 @@ describe('Mraid test', function () {
         expect(diagnostic.version).to.equal('2.0');
         expect(diagnostic.issues.length).to.equal(0);
 	});
+
+	it('Should report mraid missing because mraid is not an object as defined by the spec', function () {
+        var diagnosticResult = 'MRAID is type: function';
+
+	    mockWindow.mraid = function () {};
+
+	    var diagnostic = detectMraid.diagnostic(mockWindow);
+
+	    expect(diagnostic.version).to.equal(null);
+        expect(diagnostic.issues.length).to.equal(1);
+        expect(diagnostic.issues[0]).to.equal(diagnosticResult);
+    });
+
+	it('Should report a bad implementation where MRAID is a number', function () {
+        var diagnosticResult = 'MRAID is type: number';
+
+        mockWindow.mraid = 32;
+
+        var diagnostic = detectMraid.diagnostic(mockWindow);
+
+        expect(diagnostic.version).to.equal(null);
+        expect(diagnostic.issues.length).to.equal(1);
+        expect(diagnostic.issues[0]).to.equal(diagnosticResult);
+    });
+
+	it('Should report a bad implementation where MRAID is a blank object', function () {
+
+	    mockWindow.mraid = {};
+
+	    var diagnostic = detectMraid.diagnostic(mockWindow);
+
+	    expect(diagnostic.version).to.equal('-1');
+	    expect(diagnostic.issues.length).to.equal(12);
+    });
 });
