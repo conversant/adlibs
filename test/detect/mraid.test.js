@@ -52,4 +52,127 @@ describe('Mraid test', function () {
 
 		expect(readyResult).to.equal('waiting');
 	});
+
+	it('Should return a single value telling us mraid is not present', function () {
+		var diagnosticResult = 'MRAID is type: boolean';
+
+		var diagnostic = detectMraid.diagnostic(mockWindow);
+
+		expect(diagnostic.version).to.equal(null);
+		expect(diagnostic.issues.length).to.equal(1);
+		expect(diagnostic.issues[0]).to.equal(diagnosticResult);
+	});
+
+	it('Should return an empty report for a proper MRAID 1.0 implementation', function () {
+        
+	    mockWindow.mraid = {
+            addEventListener: function () {},
+            close: function () {},
+            expand: function () {},
+            getExpandProperties: function () {},
+            getPlacementType: function () {},
+            getState: function () {},
+            getVersion: function () { return '1.0'; },
+            isViewable: function () {},
+            open: function () {},
+            removeEventListener: function () {},
+            setExpandProperties: function () {},
+            useCustomClose: function () {}
+        };
+
+	    var diagnostic = detectMraid.diagnostic(mockWindow);
+
+	    expect(diagnostic.version).to.equal('1.0');
+        expect(diagnostic.issues.length).to.equal(0);
+    });
+
+	it('Should report issues for an implementation that states its 2.0, but only has 1.0 methods', function () {
+
+        mockWindow.mraid = {
+            addEventListener: function () {},
+            close: function () {},
+            expand: function () {},
+            getExpandProperties: function () {},
+            getPlacementType: function () {},
+            getState: function () {},
+            getVersion: function () { return '2.0'; },
+            isViewable: function () {},
+            open: function () {},
+            removeEventListener: function () {},
+            setExpandProperties: function () {},
+            useCustomClose: function () {}
+        };
+
+        var diagnostic = detectMraid.diagnostic(mockWindow);
+
+        expect(diagnostic.version).to.equal('2.0');
+        expect(diagnostic.issues.length).to.equal(10);
+    });
+
+	it('Should report an empty report for a proper MRAID 2.0 implementation', function () {
+
+        mockWindow.mraid = {
+            addEventListener: function () {},
+            close: function () {},
+            expand: function () {},
+            getExpandProperties: function () {},
+            getPlacementType: function () {},
+            getState: function () {},
+            getVersion: function () { return '2.0'; },
+            isViewable: function () {},
+            open: function () {},
+            removeEventListener: function () {},
+            setExpandProperties: function () {},
+            useCustomClose: function () {},
+            createCalendarEvent: function () {},
+            getCurrentPosition: function () {},
+            getDefaultPosition: function () {},
+            getMaxSize: function () {},
+            getResizeProperties: function () {},
+            getScreenSize: function () {},
+            playVideo: function () {},
+            setResizeProperties: function () {},
+            storePicture: function () {},
+            supports: function () {}
+        };
+
+        var diagnostic = detectMraid.diagnostic(mockWindow);
+
+        expect(diagnostic.version).to.equal('2.0');
+        expect(diagnostic.issues.length).to.equal(0);
+	});
+
+	it('Should report mraid missing because mraid is not an object as defined by the spec', function () {
+        var diagnosticResult = 'MRAID is type: function';
+
+	    mockWindow.mraid = function () {};
+
+	    var diagnostic = detectMraid.diagnostic(mockWindow);
+
+	    expect(diagnostic.version).to.equal(null);
+        expect(diagnostic.issues.length).to.equal(1);
+        expect(diagnostic.issues[0]).to.equal(diagnosticResult);
+    });
+
+	it('Should report a bad implementation where MRAID is a number', function () {
+        var diagnosticResult = 'MRAID is type: number';
+
+        mockWindow.mraid = 32;
+
+        var diagnostic = detectMraid.diagnostic(mockWindow);
+
+        expect(diagnostic.version).to.equal(null);
+        expect(diagnostic.issues.length).to.equal(1);
+        expect(diagnostic.issues[0]).to.equal(diagnosticResult);
+    });
+
+	it('Should report a bad implementation where MRAID is a blank object', function () {
+
+	    mockWindow.mraid = {};
+
+	    var diagnostic = detectMraid.diagnostic(mockWindow);
+
+	    expect(diagnostic.version).to.equal('-1');
+	    expect(diagnostic.issues.length).to.equal(12);
+    });
 });
