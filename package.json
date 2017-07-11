@@ -1,6 +1,6 @@
 {
   "name": "adlibs",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "A collection of common client side commonjs modules",
   "scripts": {
     "test": "karma start --single-run",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/conversant/ad-libs.js.git"
+    "url": "git+https://github.com/conversant/adlibs.git"
   },
   "keywords": [
     "util",
@@ -44,9 +44,9 @@
     "yargs": "^4.3.2"
   },
   "bugs": {
-    "url": "https://github.com/conversant/ad-libs.js/issues"
+    "url": "https://github.com/conversant/adlibs/issues"
   },
-  "homepage": "https://github.com/conversant/ad-libs.js",
+  "homepage": "https://github.com/conversant/adlibs",
   "directories": {
     "doc": "doc",
     "test": "test"
