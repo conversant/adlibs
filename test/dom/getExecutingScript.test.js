@@ -5,15 +5,17 @@
 var getExecutingScript = require('../../lib/dom/getExecutingScript'),
 	expect             = require('expect.js');
 
+var LOAD_ATTR = 'data-cnvr-script-loaded';
+
 describe('dom/getExecutingScript', function () {
 	it('should be able to handle an invalid currentScript', function() {
-		expect(getExecutingScript(null, 'invalidness')).not.to.be(null);
-		expect(getExecutingScript(null, undefined)).not.to.be(null);
-		expect(getExecutingScript(null, null)).not.to.be(null);
+		expect(getExecutingScript(LOAD_ATTR, null, 'invalidness')).not.to.be(null);
+		expect(getExecutingScript(LOAD_ATTR, null, undefined)).not.to.be(null);
+		expect(getExecutingScript(LOAD_ATTR, null, null)).not.to.be(null);
 	});
 
 	it('should return null if detectScript argument function returns false for all scripts', function() {
-		expect(getExecutingScript(function(){return false;})).to.be(null);
+		expect(getExecutingScript(LOAD_ATTR, function(){return false;})).to.be(null);
 	});
 
 	it('should get the script element that loaded the calling javascript.', function (done) {
@@ -28,8 +30,8 @@ describe('dom/getExecutingScript', function () {
 		el.src = '/base/public/dom-test-verify.js';
 
 		window.getExecutingScriptVerify = function () {
-			expect(el).to.equal(getExecutingScript());
-			expect(el.getAttribute(getExecutingScript.LOAD_ATTR)).to.equal(getExecutingScript.LOAD_STARTED);
+			expect(el).to.equal(getExecutingScript(LOAD_ATTR));
+			expect(el.getAttribute(LOAD_ATTR)).to.equal(getExecutingScript.LOAD_STARTED);
 			expect(el.src).to.be.a('string');
 
 			el.parentElement.removeChild(el);
@@ -51,7 +53,7 @@ describe('dom/getExecutingScript', function () {
 		};
 
 		window.getExecutingScriptVerify = function () {
-			expect(el).to.equal(getExecutingScript(detectScriptByAttribute));
+			expect(el).to.equal(getExecutingScript(LOAD_ATTR, detectScriptByAttribute));
 			el.parentElement.removeChild(el);
 			window.getExecutingScriptVerify = null;
 
