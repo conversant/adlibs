@@ -11,44 +11,60 @@ describe('sendBeacon', function() {
 
 });
 
-describe('sendBeacon data types using native function', function() {
-    if ('sendBeacon' in window.navigator === true) {
-        it('Try sendBeacon with a string.', function () {
-            expect(sendBeacon('/fake/url', "test string")).to.equal(true);
-        });
+describe('sendBeacon data types ', function () {
+    if ('navigator' in window && 'sendBeacon' in window.navigator === true) {
+        describe('using native function', function () {
+            it('Try sendBeacon with a string.', function () {
+                expect(sendBeacon('/fake/url', "test string")).to.equal(true);
+            });
 
-        it('Try sendBeacon with a blob.', function () {
-            expect(sendBeacon('/fake/url', new Blob(['abc123'], {type: 'text/plain'}))).to.equal(true);
-        });
+            it('Try sendBeacon with a blob.', function () {
+                expect(sendBeacon('/fake/url', new Blob(['abc123'], {type: 'text/plain'}))).to.equal(true);
+            });
 
-        it('Try sendBeacon with an object.', function() {
-            expect(sendBeacon('/fake/url', {fake: 'data'})).to.equal(true);
+            it('Try sendBeacon with an object.', function () {
+                expect(sendBeacon('/fake/url', {fake: 'data'})).to.equal(true);
+            });
         });
     }
-});
 
-describe('sendBeacon data types using created function', function() {
-    if ('sendBeacon' in window.navigator === false) {
-        it('Try sendBeacon with a string.', function () {
-            expect(sendBeacon('/fake/url', "test string")).to.equal(true);
-        });
+    else {
+        describe('sendBeacon data types using created function', function () {
+            if ('navigator' in window && 'sendBeacon' in window.navigator === false) {
+                it('Try sendBeacon with a string.', function () {
+                    expect(sendBeacon('/fake/url', "test string")).to.equal(true);
+                });
 
-        it('Try sendBeacon with a blob.', function () {
-            expect(sendBeacon('/fake/url', new Blob(['abc123'], {type: 'text/plain'}))).to.equal(true);
-        });
+                it('Try sendBeacon with a blob.', function () {
+                    expect(sendBeacon('/fake/url', new Blob(['abc123'], {type: 'text/plain'}))).to.equal(true);
+                });
 
-        it('Try sendBeacon with an object.', function() {
-            expect(sendBeacon('/fake/url', {fake: 'data'})).to.equal(true);
+                it('Try sendBeacon with an object.', function () {
+                    expect(sendBeacon('/fake/url', {fake: 'data'})).to.equal(true);
+                });
+            }
         });
     }
 });
 
 describe('sendBeacon with a settings object', function() {
     it('Try sendBeacon with a settings object.', function() {
-        if ('sendBeacon' in window.navigator === true) {
+        if ('navigator' in window && 'sendBeacon' in window.navigator === true) {
             expect(sendBeacon('/fake/url', "test string", {timeout: 10})).to.equal(true);
         } else {
             expect(sendBeacon('/fake/url', "test string", {timeout: 10})).to.equal(true);
+        }
+    });
+});
+
+describe('sendBeacon with a settings object', function() {
+    it('Try sendBeacon with a settings object.', function() {
+        if ('navigator' in window && 'sendBeacon' in window.navigator !== true) {
+            if ('XMLHttpRequest' in window === true) {
+                expect(sendBeacon('/fake/url', "test string", {timeout: 10})).to.equal(true);
+            } else {
+                expect(sendBeacon('/fake/url', "test string", {timeout: 10})).to.equal(true);
+            }
         }
     });
 });
