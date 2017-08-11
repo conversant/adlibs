@@ -77,4 +77,27 @@ describe('reportData', function() {
 		imageStub.restore();
 	});
 
+    it('If navigator.sendBeacon is not available.', function() {
+        // Safari won't let window.Image be mocked by sinon, but since this is browser agnostic
+        // logic it will validated by Chrome and Firefox.
+        if (isSafari) {
+			console.log(typeof navigator.sendBeacon === 'function');
+            //var imageStub = sinon.stub(navigator, 'sendBeacon', function (url, data) {
+            //});
+
+            var reportData = rdFactory();
+
+            reportData.log({trid: 1});
+            reportData.log({trid: 2});
+            reportData.log({trid: 3});
+
+            //expect(imageStub.callCount).to.equal(0);
+
+            reportData._setBaseUrl('http://foo.com');
+
+            //expect(imageStub.callCount).to.equal(0);
+
+        }
+    });
+
 });
