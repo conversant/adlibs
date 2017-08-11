@@ -60,11 +60,7 @@ describe('reportData', function() {
 			return;
 		}
 
-		var imageStub = sinon.stub(window, 'Image', function(x, y) {
-			this.x = 0;
-			this.y = 0;
-			this.src = '';
-		});
+		var imageStub = sinon.stub(navigator, 'sendBeacon', function(url, data) {});
 
 		var reportData = rdFactory();
 
@@ -76,7 +72,7 @@ describe('reportData', function() {
 
 		reportData._setBaseUrl('http://foo.com');
 
-		expect(imageStub.callCount).to.equal(3);
+		expect(imageStub.callCount).to.equal(1);
 
 		imageStub.restore();
 	});
