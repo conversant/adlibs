@@ -56,7 +56,7 @@ describe('reportData', function() {
 	it('Should queue log messages until a baseUrl exists for the ReportData instance.', function() {
 		// Safari won't let window.Image be mocked by sinon, but since this is browser agnostic
 		// logic it will validated by Chrome and Firefox.
-		if (typeof navigator.sendBeacon !== 'function') {
+		if (!(typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function'))) {
 			return;
 		}
 
@@ -84,7 +84,7 @@ describe('reportData', function() {
             			this.src = '';
         });
 
-        if (typeof navigator.sendBeacon == 'function') {
+        if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
 			return true;
         }
             var reportData = rdFactory();
