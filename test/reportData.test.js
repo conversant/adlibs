@@ -2,8 +2,10 @@
 
 'use strict';
 
+var browser = require('../lib/detect/browser');
+
 var expect = require('expect.js'),
-	isSafari = window.navigator.userAgent.toLowerCase().indexOf('safari') > -1;
+	isSafari = browser.detect().name === 'Safari';
 
 /** @type {ReportData} */
 var rdSingleton = require('../lib/reportData').provider('test.reportData');
@@ -53,32 +55,177 @@ describe('reportData', function() {
 		this.server.restore();
 	});
 
-	it('Should queue log messages until a baseUrl exists for the ReportData instance.', function() {
-		// Safari won't let window.Image be mocked by sinon, but since this is browser agnostic
-		// logic it will validated by Chrome and Firefox.
-		if (isSafari) {
-			return;
-		}
 
-		var imageStub = sinon.stub(window, 'Image', function(x, y) {
-			this.x = 0;
-			this.y = 0;
-			this.src = '';
-		});
+    describe('Use setBaseUrl to send report ', function () {
+        it('when sendBeacon is avaiable.', function() {
+            if (!(typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function'))) {
+                return;
+            }
 
-		var reportData = rdFactory();
+            var beacon = sinon.stub(window.navigator, 'sendBeacon', function(url, data) {});
+            var imageStub = sinon.stub(window, 'Image', function(x, y) {
+                this.x = 0;
+                this.y = 0;
+                this.src = '';
+            });
 
-		reportData.log({ trid: 1 });
-		reportData.log({ trid: 2 });
-		reportData.log({ trid: 3 });
+            var reportData = rdFactory();
 
-		expect(imageStub.callCount).to.equal(0);
+            reportData.log({ trid: 1 });
+            reportData.log({ trid: 2 });
+            reportData.log({ trid: 3 });
 
-		reportData._setBaseUrl('http://foo.com');
+            expect(beacon.callCount).to.equal(0);
+            expect(imageStub.callCount).to.equal(0);
 
-		expect(imageStub.callCount).to.equal(3);
+            reportData._setBaseUrl('http://fooNoSendBeconTest.com', true);
 
-		imageStub.restore();
-	});
+            expect(beacon.callCount).to.equal(1);
+            expect(imageStub.callCount).to.equal(0);
 
+            beacon.reset();
+            imageStub.reset();
+            imageStub.restore();
+            beacon.restore();
+        });
+
+        it('when sendBeacon is NOT avaiable', function() {
+            if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                return true;
+            }
+
+            var imageStub = sinon.stub(window, 'Image', function(x, y) {
+                this.x = 0;
+                this.y = 0;
+                this.src = '';
+            });
+
+            var reportData = rdFactory();
+
+            reportData.log({trid: 1});
+            reportData.log({trid: 2});
+            reportData.log({trid: 3});
+
+            expect(imageStub.callCount).to.equal(0);
+
+            reportData._setBaseUrl('http://foo.com');
+
+            expect(imageStub.callCount).to.equal(3);
+            imageStub.reset();
+            imageStub.restore();
+        });
+    });
+
+    describe('Use runQueue to send report ', function () {
+        it('when sendBeacon is avaiable.', function() {
+            if (!(typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function'))) {
+                return;
+            }
+
+            var beacon = sinon.stub(window.navigator, 'sendBeacon', function(url, data) {});
+            var imageStub = sinon.stub(window, 'Image', function(x, y) {
+                this.x = 0;
+                this.y = 0;
+                this.src = '';
+            });
+
+            var reportData = rdFactory();
+
+            reportData.log({ trid: 1 });
+            reportData.log({ trid: 2 });
+            reportData.log({ trid: 3 });
+
+            expect(beacon.callCount).to.equal(0);
+            expect(imageStub.callCount).to.equal(0);
+
+            reportData.runQueue('http://fooNoSendBeconTest.com', true);
+
+            expect(beacon.callCount).to.equal(1);
+            expect(imageStub.callCount).to.equal(0);
+
+            beacon.reset();
+            imageStub.reset();
+            imageStub.restore();
+            beacon.restore();
+        });
+
+        it('when sendBeacon is NOT used', function() {
+            if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                return true;
+            }
+
+            var imageStub = sinon.stub(window, 'Image', function(x, y) {
+                this.x = 0;
+                this.y = 0;
+                this.src = '';
+            });
+
+            var reportData = rdFactory();
+
+            reportData.log({trid: 1});
+            reportData.log({trid: 2});
+            reportData.log({trid: 3});
+
+            expect(imageStub.callCount).to.equal(0);
+
+            reportData.runQueue('http://foo.com');
+
+            expect(imageStub.callCount).to.equal(3);
+            imageStub.reset();
+            imageStub.restore();
+        });
+    });
+
+    describe('A url is passed ', function () {
+        it('When sendBeacon is avaiable', function() {
+            if (!(typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function'))) {
+                return;
+            }
+
+            var beacon = sinon.stub(navigator, 'sendBeacon', function(url, data) {});
+            var imageStub = sinon.stub(window, 'Image', function(x, y) {
+                this.x = 0;
+                this.y = 0;
+                this.src = '';
+            });
+
+            var reportData = rdFactory();
+            expect(beacon.callCount).to.equal(0);
+            expect(imageStub.callCount).to.equal(0);
+
+            reportData.log({ trid: 1 }, null, 'http://foo.com', true);
+            reportData.log({ trid: 2 }, null, 'http://foo.com', true);
+
+            expect(beacon.callCount).to.equal(2);
+            expect(imageStub.callCount).to.equal(0);
+
+            beacon.reset();
+            imageStub.reset();
+            imageStub.restore();
+            beacon.restore();
+        });
+
+        it('When sendBeacon is NOT avaiable', function() {
+            if ((typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function'))) {
+                return;
+            }
+
+            var imageStub = sinon.stub(window, 'Image', function(x, y) {
+                this.x = 0;
+                this.y = 0;
+                this.src = '';
+            });
+
+            var reportData = rdFactory();
+            expect(imageStub.callCount).to.equal(0);
+
+            reportData.log({ trid: 1 }, null, 'http://foo.com', true);
+            reportData.log({ trid: 2 }, null, 'http://foo.com', true);
+
+            expect(imageStub.callCount).to.equal(2);
+
+            imageStub.reset();
+            imageStub.restore();
+        });
+    });
 });
