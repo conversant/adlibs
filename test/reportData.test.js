@@ -52,33 +52,122 @@ describe('reportData', function() {
 
 		this.server.restore();
 	});
+});
 
-	it('Should queue log messages until a baseUrl exists for the ReportData instance.', function() {
-		// Safari won't let window.Image be mocked by sinon, but since this is browser agnostic
-		// logic it will validated by Chrome and Firefox.
-		if (isSafari) {
-			return;
-		}
+describe('Send report with no sendBeacon', function () {
+    it('Should queue log messages until a baseUrl exists for the ReportData instance.', function() {
+        // Safari won't let window.Image be mocked by sinon, but since this is browser agnostic
+        // logic it will validated by Chrome and Firefox.
+        if (!(typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function'))) {
+            return;
+        }
 
-		var imageStub = sinon.stub(window, 'Image', function(x, y) {
-			this.x = 0;
-			this.y = 0;
-			this.src = '';
-		});
+        var beacon = sinon.stub(navigator, 'sendBeacon', function(url, data) {});
+        var imageStub = sinon.stub(window, 'Image', function(x, y) {
+            this.x = 0;
+            this.y = 0;
+            this.src = '';
+        });
 
-		var reportData = rdFactory();
+        var reportData = rdFactory();
 
-		reportData.log({ trid: 1 });
-		reportData.log({ trid: 2 });
-		reportData.log({ trid: 3 });
+        reportData.log({ trid: 1 });
+        reportData.log({ trid: 2 });
+        reportData.log({ trid: 3 });
 
-		expect(imageStub.callCount).to.equal(0);
+        expect(beacon.callCount).to.equal(0);
+        expect(imageStub.callCount).to.equal(0);
 
-		reportData._setBaseUrl('http://foo.com');
+        reportData._setBaseUrl('http://foo.com');
 
-		expect(imageStub.callCount).to.equal(3);
+        expect(beacon.callCount).to.equal(0);
+        expect(imageStub.callCount).to.equal(3);
 
-		imageStub.restore();
-	});
+        beacon.restore();
+        imageStub.restore();
+    });
 
+    it('If navigator.sendBeacon is not available.', function() {
+        if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+            return true;
+        }
+
+        var imageStub = sinon.stub(window, 'Image', function(x, y) {
+            this.x = 0;
+            this.y = 0;
+            this.src = '';
+        });
+
+        var reportData = rdFactory();
+
+        reportData.log({trid: 1});
+        reportData.log({trid: 2});
+        reportData.log({trid: 3});
+
+        expect(imageStub.callCount).to.equal(0);
+
+        reportData._setBaseUrl('http://foo.com');
+
+        expect(imageStub.callCount).to.equal(3);
+        imageStub.restore();
+    });
+});
+
+
+describe('Send report trying to use sendBeacon', function () {
+    it('Should queue log messages until a baseUrl exists for the ReportData instance.', function() {
+        // Safari won't let window.Image be mocked by sinon, but since this is browser agnostic
+        // logic it will validated by Chrome and Firefox.
+        if (!(typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function'))) {
+            return;
+        }
+
+        var beacon = sinon.stub(navigator, 'sendBeacon', function(url, data) {});
+        var imageStub = sinon.stub(window, 'Image', function(x, y) {
+            this.x = 0;
+            this.y = 0;
+            this.src = '';
+        });
+
+        var reportData = rdFactory();
+
+        reportData.log({ trid: 1 }, null, null, true);
+        reportData.log({ trid: 2 }, null, null, true);
+        reportData.log({ trid: 3 }, null, null, true);
+
+        expect(beacon.callCount).to.equal(0);
+        expect(imageStub.callCount).to.equal(0);
+
+        reportData._setBaseUrl('http://foo.com', true);
+
+        expect(beacon.callCount).to.equal(1);
+        expect(imageStub.callCount).to.equal(0);
+
+        beacon.restore();
+        imageStub.restore();
+    });
+
+    it('If navigator.sendBeacon is not available.', function() {
+        if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+            return true;
+        }
+
+        var imageStub = sinon.stub(window, 'Image', function(x, y) {
+            this.x = 0;
+            this.y = 0;
+            this.src = '';
+        });
+        var reportData = rdFactory();
+
+        reportData.log({trid: 1}, null, null, true);
+        reportData.log({trid: 2}, null, null, true);
+        reportData.log({trid: 3}, null, null, true);
+
+        expect(imageStub.callCount).to.equal(0);
+
+        reportData._setBaseUrl('http://foo.com', true);
+
+        expect(imageStub.callCount).to.equal(3);
+        imageStub.restore();
+    });
 });

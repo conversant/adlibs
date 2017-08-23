@@ -39,7 +39,6 @@ module.exports = function(config) {
 		},
 
         browsers: ['Firefox', 'Chrome', 'Safari']
-
     });
 
 	if (process.argv.indexOf('--with-coverage') > -1) {
