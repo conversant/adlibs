@@ -12,6 +12,27 @@ var rdSingleton = require('../lib/reportData').provider('test.reportData');
 
 var rdFactory = require('../lib/reportData').factory;
 
+var data = {
+    eventData: [
+        {trid:1},
+        {trid:2},
+        {trid:3}
+    ]
+};
+data = JSON.stringify(data);
+
+
+var singleData = {
+    eventData: [
+        {trid:3}
+    ]
+};
+singleData = JSON.stringify(data);
+
+var baseUrl ='http://foo.com';
+var singleParamUrl = baseUrl + '?aid=1';
+var twoParamUrl = singleParamUrl + '&bid=2';
+
 describe('reportData', function() {
 
 	it('Should create a new Image with the src url as the logging url.', function() {
@@ -55,286 +76,893 @@ describe('reportData', function() {
 		this.server.restore();
 	});
 
+	// sendBeacon
+    describe('sendBeacon:enabled ', function () {
+        if (!(typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function'))) {
+            return;
+        }
 
-    describe('Use setBaseUrl to send report ', function () {
-        it('when sendBeacon is avaiable.', function() {
-            if (!(typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function'))) {
-                return;
-            }
+        describe('reportFunction:set_baseUrl ', function (){
+            describe('set_baseUrl.sendBeaconParm = true ', function () {
+            it('url:baseUrl', function () {
+                var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                });
+                var imageStub = sinon.stub(window, 'Image', function () {
+                    this.src = '';
+                });
 
-            var beacon = sinon.stub(window.navigator, 'sendBeacon', function(url, data) {});
-            var imageStub = sinon.stub(window, 'Image', function(x, y) {
-                this.x = 0;
-                this.y = 0;
-                this.src = '';
+                var reportData = rdFactory();
+
+                reportData.log({trid: 1});
+                reportData.log({trid: 2});
+                reportData.log({trid: 3});
+
+                expect(beacon.callCount).to.equal(0);
+                expect(imageStub.callCount).to.equal(0);
+
+                reportData._setBaseUrl(baseUrl, true);
+
+                expect(beacon.callCount).to.equal(1);
+                expect(imageStub.callCount).to.equal(0);
+                expect(beacon.calledWith(baseUrl, data));
+
+                beacon.reset();
+                imageStub.reset();
+                imageStub.restore();
+                beacon.restore();
             });
 
-            var reportData = rdFactory();
+            it('url:singleParamUrl', function () {
+                var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                });
+                var imageStub = sinon.stub(window, 'Image', function () {
+                    this.src = '';
+                });
 
-            reportData.log({ trid: 1 });
-            reportData.log({ trid: 2 });
-            reportData.log({ trid: 3 });
+                var reportData = rdFactory();
 
-            expect(beacon.callCount).to.equal(0);
-            expect(imageStub.callCount).to.equal(0);
+                reportData.log({trid: 1});
+                reportData.log({trid: 2});
+                reportData.log({trid: 3});
 
-            reportData._setBaseUrl('http://fooNoSendBeconTest.com', true);
+                expect(beacon.callCount).to.equal(0);
+                expect(imageStub.callCount).to.equal(0);
 
-            expect(beacon.callCount).to.equal(1);
-            expect(imageStub.callCount).to.equal(0);
+                reportData._setBaseUrl(singleParamUrl, true);
 
-            beacon.reset();
-            imageStub.reset();
-            imageStub.restore();
-            beacon.restore();
+                expect(beacon.callCount).to.equal(1);
+                expect(imageStub.callCount).to.equal(0);
+                expect(beacon.calledWith(singleParamUrl, data));
+
+                beacon.reset();
+                imageStub.reset();
+                imageStub.restore();
+                beacon.restore();
+            });
+
+            it('url:twoParamUrl', function () {
+                if (!(typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function'))) {
+                    return;
+                }
+
+                var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                });
+                var imageStub = sinon.stub(window, 'Image', function () {
+                    this.src = '';
+                });
+
+                var reportData = rdFactory();
+
+                reportData.log({trid: 1});
+                reportData.log({trid: 2});
+                reportData.log({trid: 3});
+
+                expect(beacon.callCount).to.equal(0);
+                expect(imageStub.callCount).to.equal(0);
+
+                reportData._setBaseUrl(twoParamUrl, true);
+
+                expect(beacon.callCount).to.equal(1);
+                expect(imageStub.callCount).to.equal(0);
+                expect(beacon.calledWith(twoParamUrl, data));
+
+                beacon.reset();
+                imageStub.reset();
+                imageStub.restore();
+                beacon.restore();
+            });
+        });
+            describe('set_baseUrl.sendBeaconParm = false ', function () {
+                it('url:baseUrl', function () {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    });
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1});
+                    reportData.log({trid: 2});
+                    reportData.log({trid: 3});
+
+                    expect(beacon.callCount).to.equal(0);
+                    expect(imageStub.callCount).to.equal(0);
+
+                    reportData._setBaseUrl(baseUrl, false);
+
+                    expect(beacon.callCount).to.equal(0);
+                    expect(imageStub.callCount).to.equal(3);
+                    expect(imageStub.calledWith(baseUrl + '?' + 'trid=3'));
+
+                    beacon.reset();
+                    imageStub.reset();
+                    imageStub.restore();
+                    beacon.restore();
+                });
+
+                it('url:singleParamUrl', function () {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    });
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1});
+                    reportData.log({trid: 2});
+                    reportData.log({trid: 3});
+
+                    expect(beacon.callCount).to.equal(0);
+                    expect(imageStub.callCount).to.equal(0);
+
+                    reportData._setBaseUrl(singleParamUrl, false);
+
+                    expect(beacon.callCount).to.equal(0);
+                    expect(imageStub.callCount).to.equal(3);
+                    expect(imageStub.calledWith(singleParamUrl + '&' + 'trid=3'));
+
+                    beacon.reset();
+                    imageStub.reset();
+                    imageStub.restore();
+                    beacon.restore();
+                });
+
+                it('url:twoParamUrl', function () {
+                    if (!(typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function'))) {
+                        return;
+                    }
+
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    });
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1}, twoParamUrl);
+                    reportData.log({trid: 2}, twoParamUrl);
+                    reportData.log({trid: 3}, twoParamUrl);
+
+                    expect(beacon.callCount).to.equal(0);
+                    expect(imageStub.callCount).to.equal(0);
+
+                    reportData._setBaseUrl(twoParamUrl, false);
+
+                    expect(beacon.callCount).to.equal(0);
+                    expect(imageStub.callCount).to.equal(3);
+                    expect(imageStub.calledWith(twoParamUrl + '&' + 'trid=3'));
+
+                    beacon.reset();
+                    imageStub.reset();
+                    imageStub.restore();
+                    beacon.restore();
+                });
+            });
         });
 
-        it('when sendBeacon is NOT avaiable', function() {
-            if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
-                return true;
-            }
+        describe('reportFunction:log(with url) ', function () {
+            it('url:baseUrl', function () {
+                var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                });
+                var imageStub = sinon.stub(window, 'Image', function () {
+                    this.src = '';
+                });
 
-            var imageStub = sinon.stub(window, 'Image', function(x, y) {
-                this.x = 0;
-                this.y = 0;
-                this.src = '';
+                var reportData = rdFactory();
+
+                reportData.log({trid: 1}, false, baseUrl, true);
+                reportData.log({trid: 2}, false, baseUrl, true);
+                reportData.log({trid: 3}, false, baseUrl, true);
+
+                expect(beacon.calledWith(baseUrl, singleData));
+                expect(beacon.callCount).to.equal(3);
+                expect(imageStub.callCount).to.equal(0);
+                expect(beacon.calledWith(baseUrl, singleData));
+
+                beacon.reset();
+                imageStub.reset();
+                imageStub.restore();
+                beacon.restore();
             });
 
-            var reportData = rdFactory();
+            it('url:singleParamUrl', function () {
+                var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                });
+                var imageStub = sinon.stub(window, 'Image', function () {
+                    this.src = '';
+                });
 
-            reportData.log({trid: 1});
-            reportData.log({trid: 2});
-            reportData.log({trid: 3});
+                var reportData = rdFactory();
 
-            expect(imageStub.callCount).to.equal(0);
+                reportData.log({trid: 1}, false, singleParamUrl, true);
+                reportData.log({trid: 2}, false, singleParamUrl, true);
+                reportData.log({trid: 3}, false, singleParamUrl, true);
 
-            reportData._setBaseUrl('http://foo.com');
+                expect(beacon.callCount).to.equal(3);
+                expect(imageStub.callCount).to.equal(0);
+                expect(beacon.calledWith(singleParamUrl, singleData));
 
-            expect(imageStub.callCount).to.equal(3);
-            imageStub.reset();
-            imageStub.restore();
+                beacon.reset();
+                imageStub.reset();
+                imageStub.restore();
+                beacon.restore();
+            });
+
+            it('url:twoParamUrl', function () {
+                var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                });
+                var imageStub = sinon.stub(window, 'Image', function () {
+                    this.src = '';
+                });
+
+                var reportData = rdFactory();
+
+                reportData.log({trid: 1}, false, twoParamUrl, true);
+                reportData.log({trid: 2}, false, twoParamUrl, true);
+                reportData.log({trid: 3}, false, twoParamUrl, true);
+
+                expect(beacon.callCount).to.equal(3);
+                expect(imageStub.callCount).to.equal(0);
+                expect(beacon.calledWith(twoParamUrl, singleData));
+
+                beacon.reset();
+                imageStub.reset();
+                imageStub.restore();
+                beacon.restore();
+            });
+        });
+
+        describe('reportFunction:runQueue ', function () {
+            describe('runQueue.sendBeaconParm = true ', function () {
+                it('url:baseUrl', function () {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    });
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1});
+                    reportData.log({trid: 2});
+                    reportData.log({trid: 3});
+
+                    expect(beacon.callCount).to.equal(0);
+                    expect(imageStub.callCount).to.equal(0);
+
+                    reportData.runQueue(baseUrl, true);
+
+                    expect(beacon.callCount).to.equal(1);
+                    expect(imageStub.callCount).to.equal(0);
+                    expect(beacon.calledWith(baseUrl, data));
+
+                    beacon.reset();
+                    imageStub.reset();
+                    imageStub.restore();
+                    beacon.restore();
+                });
+
+                it('url:singleParamUrl', function () {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    });
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1});
+                    reportData.log({trid: 2});
+                    reportData.log({trid: 3});
+
+                    expect(beacon.callCount).to.equal(0);
+                    expect(imageStub.callCount).to.equal(0);
+
+                    reportData.runQueue(singleParamUrl, true);
+
+                    expect(beacon.callCount).to.equal(1);
+                    expect(imageStub.callCount).to.equal(0);
+                    expect(beacon.calledWith(singleParamUrl, data));
+
+                    beacon.reset();
+                    imageStub.reset();
+                    imageStub.restore();
+                    beacon.restore();
+                });
+
+                it('url:twoParamUrl', function () {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    });
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1});
+                    reportData.log({trid: 2});
+                    reportData.log({trid: 3});
+
+                    expect(beacon.callCount).to.equal(0);
+                    expect(imageStub.callCount).to.equal(0);
+
+                    reportData.runQueue(twoParamUrl, true);
+
+                    expect(beacon.callCount).to.equal(1);
+                    expect(imageStub.callCount).to.equal(0);
+                    expect(beacon.calledWith(twoParamUrl, data));
+
+                    beacon.reset();
+                    imageStub.reset();
+                    imageStub.restore();
+                    beacon.restore();
+                });
+            });
+
+            describe('runQueue.sendBeaconParm = false ', function () {
+                it('url:baseUrl', function () {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    });
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1});
+                    reportData.log({trid: 2});
+                    reportData.log({trid: 3});
+
+                    expect(beacon.callCount).to.equal(0);
+                    expect(imageStub.callCount).to.equal(0);
+
+                    reportData.runQueue(baseUrl, false);
+
+                    expect(beacon.callCount).to.equal(0);
+                    expect(imageStub.callCount).to.equal(3);
+                    expect(imageStub.calledWith(baseUrl + '?' + 'trid=3'));
+
+                    beacon.reset();
+                    imageStub.reset();
+                    imageStub.restore();
+                    beacon.restore();
+                });
+
+                it('url:singleParamUrl', function () {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    });
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1});
+                    reportData.log({trid: 2});
+                    reportData.log({trid: 3});
+
+                    expect(beacon.callCount).to.equal(0);
+                    expect(imageStub.callCount).to.equal(0);
+
+                    reportData.runQueue(singleParamUrl, false);
+
+                    expect(beacon.callCount).to.equal(0);
+                    expect(imageStub.callCount).to.equal(3);
+                    expect(imageStub.calledWith(singleParamUrl + '&' + 'trid=3'));
+
+                    beacon.reset();
+                    imageStub.reset();
+                    imageStub.restore();
+                    beacon.restore();
+                });
+
+                it('url:twoParamUrl', function () {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    });
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1});
+                    reportData.log({trid: 2});
+                    reportData.log({trid: 3});
+
+                    expect(beacon.callCount).to.equal(0);
+                    expect(imageStub.callCount).to.equal(0);
+
+                    reportData.runQueue(twoParamUrl, false);
+
+                    expect(beacon.callCount).to.equal(0);
+                    expect(imageStub.callCount).to.equal(3);
+                    expect(imageStub.calledWith(twoParamUrl + '&' + 'trid=3'));
+
+                    beacon.reset();
+                    imageStub.reset();
+                    imageStub.restore();
+                    beacon.restore();
+                });
+            });
         });
     });
 
-    describe('Use runQueue to send report ', function () {
-        it('when sendBeacon is avaiable.', function() {
-            if (!(typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function'))) {
-                return;
-            }
+    // sendBeacon
+    describe('sendBeacon:disabled ', function () {
+        describe('reportFunction:set_baseUrl ', function () {
+            it('url:baseUrl', function () {
+                var sendBeaconAllias;
+                if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                    sendBeaconAllias = window.navigator.sendBeacon;
+                    window.navigator.sendBeacon = undefined;
+                }
 
-            var beacon = sinon.stub(window.navigator, 'sendBeacon', function(url, data) {});
-            var imageStub = sinon.stub(window, 'Image', function(x, y) {
-                this.x = 0;
-                this.y = 0;
-                this.src = '';
+                var imageStub = sinon.stub(window, 'Image', function () {
+                    this.src = '';
+                });
+
+                var reportData = rdFactory();
+
+                reportData.log({trid: 1});
+                reportData.log({trid: 2});
+                reportData.log({trid: 3});
+
+                expect(imageStub.callCount).to.equal(0);
+
+                reportData._setBaseUrl(baseUrl, true);
+
+                expect(imageStub.callCount).to.equal(3);
+                expect(imageStub.calledWith(baseUrl + '?' + 'trid=3'));
+
+                imageStub.reset();
+                imageStub.restore();
+                window.navigator.sendBeacon = sendBeaconAllias;
             });
 
-            var reportData = rdFactory();
+            it('url:singleParamUrl', function () {
+                var sendBeaconAllias;
+                if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                    sendBeaconAllias = window.navigator.sendBeacon;
+                    window.navigator.sendBeacon = undefined;
+                }
 
-            reportData.log({ trid: 1 });
-            reportData.log({ trid: 2 });
-            reportData.log({ trid: 3 });
+                var imageStub = sinon.stub(window, 'Image', function () {
+                    this.src = '';
+                });
 
-            expect(beacon.callCount).to.equal(0);
-            expect(imageStub.callCount).to.equal(0);
+                var reportData = rdFactory();
 
-            reportData.runQueue('http://fooNoSendBeconTest.com', true);
+                reportData.log({trid: 1});
+                reportData.log({trid: 2});
+                reportData.log({trid: 3});
 
-            expect(beacon.callCount).to.equal(1);
-            expect(imageStub.callCount).to.equal(0);
+                expect(imageStub.callCount).to.equal(0);
 
-            beacon.reset();
-            imageStub.reset();
-            imageStub.restore();
-            beacon.restore();
+                reportData._setBaseUrl(singleParamUrl, true);
+
+                expect(imageStub.callCount).to.equal(3);
+                expect(imageStub.calledWith(singleParamUrl + '&' + 'trid=3'));
+
+                imageStub.reset();
+                imageStub.restore();
+                window.navigator.sendBeacon = sendBeaconAllias;
+            });
+
+            it('url:twoParamUrl', function () {
+                var sendBeaconAllias;
+                if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                    sendBeaconAllias = window.navigator.sendBeacon;
+                    window.navigator.sendBeacon = undefined;
+                }
+
+                var imageStub = sinon.stub(window, 'Image', function () {
+                    this.src = '';
+                });
+
+                var reportData = rdFactory();
+
+                reportData.log({trid: 1}, twoParamUrl);
+                reportData.log({trid: 2}, twoParamUrl);
+                reportData.log({trid: 3}, twoParamUrl);
+
+                expect(imageStub.callCount).to.equal(0);
+
+                reportData._setBaseUrl(twoParamUrl, true);
+
+                expect(imageStub.callCount).to.equal(3);
+                expect(imageStub.calledWith(twoParamUrl + '&' + 'trid=3'));
+
+                imageStub.reset();
+                imageStub.restore();
+                window.navigator.sendBeacon = sendBeaconAllias;
+            });
         });
 
-        it('when sendBeacon is NOT used', function() {
-            if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
-                return true;
-            }
+        describe('reportFunction:log(with url) ', function () {
+            describe('isUnloadEvent:true ', function () {
+                it('url:baseUrl', function () {
+                    var sendBeaconAllias;
+                    if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                        sendBeaconAllias = window.navigator.sendBeacon;
+                        window.navigator.sendBeacon = undefined;
+                    }
 
-            var imageStub = sinon.stub(window, 'Image', function(x, y) {
-                this.x = 0;
-                this.y = 0;
-                this.src = '';
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+                    this.server = sinon.fakeServer.create();
+                    this.server.respondImmediately = true;
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1}, true, baseUrl);
+                    reportData.log({trid: 2}, true, baseUrl);
+                    reportData.log({trid: 3}, true, baseUrl);
+
+
+                    if(isSafari){
+                        expect(imageStub.callCount).to.equal(0);
+                        expect(this.server.requests.length).to.equal(3);
+                        expect(this.server.requests[0].url).to.equal(baseUrl + '?' + 'trid=1');
+                    } else {
+                        expect(imageStub.callCount).to.equal(3);
+                        expect(imageStub.calledWith(baseUrl + '?' + 'trid=3'));
+                    }
+
+                    imageStub.reset();
+                    imageStub.restore();
+                    window.navigator.sendBeacon = sendBeaconAllias;
+                    this.server.restore();
+                });
+
+                it('url:singleParamUrl', function () {
+                    var sendBeaconAllias;
+                    if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                        sendBeaconAllias = window.navigator.sendBeacon;
+                        window.navigator.sendBeacon = undefined;
+                    }
+
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+                    this.server = sinon.fakeServer.create();
+                    this.server.respondImmediately = true;
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1}, true, singleParamUrl);
+                    reportData.log({trid: 2}, true, singleParamUrl);
+                    reportData.log({trid: 3}, true, singleParamUrl);
+
+                    if (isSafari) {
+                        expect(imageStub.callCount).to.equal(0);
+                        expect(this.server.requests.length).to.equal(3);
+                        expect(this.server.requests[0].url).to.equal(singleParamUrl + '&' + 'trid=1');
+                    } else {
+                        expect(imageStub.callCount).to.equal(3);
+                        expect(imageStub.calledWith(singleParamUrl + '?' + 'trid=3'));
+                    }
+
+                    imageStub.reset();
+                    imageStub.restore();
+                    window.navigator.sendBeacon = sendBeaconAllias;
+                    this.server.restore();
+                });
+
+                it('url: twoParamUrl', function () {
+                    var sendBeaconAllias;
+                    if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                        sendBeaconAllias = window.navigator.sendBeacon;
+                        window.navigator.sendBeacon = undefined;
+                    }
+
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+                    this.server = sinon.fakeServer.create();
+                    this.server.respondImmediately = true;
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1}, true, twoParamUrl);
+                    reportData.log({trid: 2}, true, twoParamUrl);
+                    reportData.log({trid: 3}, true, twoParamUrl);
+
+                    if (isSafari) {
+                        expect(imageStub.callCount).to.equal(0);
+                        expect(this.server.requests.length).to.equal(3);
+                        expect(this.server.requests[0].url).to.equal(twoParamUrl + '&' + 'trid=1');
+                    } else {
+                        expect(imageStub.callCount).to.equal(3);
+                        expect(imageStub.calledWith(twoParamUrl + '?' + 'trid=3'));
+                    }
+
+                    imageStub.reset();
+                    imageStub.restore();
+                    window.navigator.sendBeacon = sendBeaconAllias;
+                    this.server.restore();
+                });
             });
+            describe('isUnloadEvent:false ', function () {
+                it('url:baseUrl', function () {
+                    var sendBeaconAllias;
+                    if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                        sendBeaconAllias = window.navigator.sendBeacon;
+                        window.navigator.sendBeacon = undefined;
+                    }
 
-            var reportData = rdFactory();
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
 
-            reportData.log({trid: 1});
-            reportData.log({trid: 2});
-            reportData.log({trid: 3});
+                    var reportData = rdFactory();
 
-            expect(imageStub.callCount).to.equal(0);
+                    reportData.log({trid: 1}, false, baseUrl);
+                    reportData.log({trid: 2}, false, baseUrl);
+                    reportData.log({trid: 3}, false, baseUrl);
 
-            reportData.runQueue('http://foo.com');
+                    expect(imageStub.callCount).to.equal(3);
+                    expect(imageStub.calledWith(baseUrl + '?' + 'trid=3'));
 
-            expect(imageStub.callCount).to.equal(3);
-            imageStub.reset();
-            imageStub.restore();
+                    imageStub.reset();
+                    imageStub.restore();
+                    window.navigator.sendBeacon = sendBeaconAllias;
+                });
+
+                it('url:singleParamUrl', function () {
+                    var sendBeaconAllias;
+                    if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                        sendBeaconAllias = window.navigator.sendBeacon;
+                        window.navigator.sendBeacon = undefined;
+                    }
+
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1}, false, singleParamUrl);
+                    reportData.log({trid: 2}, false, singleParamUrl);
+                    reportData.log({trid: 3}, false, singleParamUrl);
+
+                    expect(imageStub.callCount).to.equal(3);
+                    expect(imageStub.calledWith(singleParamUrl + '&' + 'trid=3'));
+
+                    imageStub.reset();
+                    imageStub.restore();
+                    window.navigator.sendBeacon = sendBeaconAllias;
+                });
+
+                it('url: twoParamUrl', function () {
+                    var sendBeaconAllias;
+                    if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                        sendBeaconAllias = window.navigator.sendBeacon;
+                        window.navigator.sendBeacon = undefined;
+                    }
+
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1}, false, twoParamUrl);
+                    reportData.log({trid: 2}, false, twoParamUrl);
+                    reportData.log({trid: 3}, false, twoParamUrl);
+
+                    expect(imageStub.callCount).to.equal(3);
+                    expect(imageStub.calledWith(twoParamUrl+ '&' + 'trid=3'));
+
+                    imageStub.reset();
+                    imageStub.restore();
+                    window.navigator.sendBeacon = sendBeaconAllias;
+                });
+            });
         });
 
-        it('when sendBeacon is explicitly NOT used', function() {
-            if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
-                return true;
-            }
+        describe('reportFunction:runQueue ', function () {
+            describe('runQueue.sendBeaconParm = true ', function () {
+                it('url:baseUrl', function () {
+                    var sendBeaconAllias;
+                    if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                        sendBeaconAllias = window.navigator.sendBeacon;
+                        window.navigator.sendBeacon = undefined;
+                    }
 
-            var imageStub = sinon.stub(window, 'Image', function(x, y) {
-                this.x = 0;
-                this.y = 0;
-                this.src = '';
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1});
+                    reportData.log({trid: 2});
+                    reportData.log({trid: 3});
+
+                    expect(imageStub.callCount).to.equal(0);
+
+                    reportData.runQueue(baseUrl, true);
+
+                    expect(imageStub.callCount).to.equal(3);
+                    expect(imageStub.calledWith(baseUrl + '?' + 'trid=3'));
+
+                    imageStub.reset();
+                    imageStub.restore();
+                    window.navigator.sendBeacon = sendBeaconAllias;
+                });
+
+                it('url:singleParamUrl', function () {
+                    var sendBeaconAllias;
+                    if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                        sendBeaconAllias = window.navigator.sendBeacon;
+                        window.navigator.sendBeacon = undefined;
+                    }
+
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1});
+                    reportData.log({trid: 2});
+                    reportData.log({trid: 3});
+
+                    expect(imageStub.callCount).to.equal(0);
+
+                    reportData.runQueue(singleParamUrl, true);
+
+                    expect(imageStub.callCount).to.equal(3);
+                    expect(imageStub.calledWith(singleParamUrl + '&' + 'trid=3'));
+
+                    imageStub.reset();
+                    imageStub.restore();
+                    window.navigator.sendBeacon = sendBeaconAllias;
+                });
+
+                it('url:twoParamUrl', function () {
+                    var sendBeaconAllias;
+                    if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                        sendBeaconAllias = window.navigator.sendBeacon;
+                        window.navigator.sendBeacon = undefined;
+                    }
+
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1});
+                    reportData.log({trid: 2});
+                    reportData.log({trid: 3});
+
+                    expect(imageStub.callCount).to.equal(0);
+
+                    reportData.runQueue(twoParamUrl, true);
+
+                    expect(imageStub.callCount).to.equal(3);
+                    expect(imageStub.calledWith(twoParamUrl + '&' + 'trid=3'));
+
+                    imageStub.reset();
+                    imageStub.restore();
+                    window.navigator.sendBeacon = sendBeaconAllias;
+                });
             });
 
-            var reportData = rdFactory();
+            describe('runQueue.sendBeaconParm = false ', function () {
+                it('url:baseUrl', function () {
+                    var sendBeaconAllias;
+                    if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                        sendBeaconAllias = window.navigator.sendBeacon;
+                        window.navigator.sendBeacon = undefined;
+                    }
 
-            reportData.log({trid: 1});
-            reportData.log({trid: 2});
-            reportData.log({trid: 3});
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
 
-            expect(imageStub.callCount).to.equal(0);
+                    var reportData = rdFactory();
 
-            reportData.runQueue('http://foo.com', false);
+                    reportData.log({trid: 1});
+                    reportData.log({trid: 2});
+                    reportData.log({trid: 3});
 
-            expect(imageStub.callCount).to.equal(3);
-            imageStub.reset();
-            imageStub.restore();
-        });
+                    expect(imageStub.callCount).to.equal(0);
 
-        it('when sendBeacon is NOT used, a url with query string params is used', function() {
-            if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
-                return true;
-            }
+                    reportData.runQueue(baseUrl, false);
 
-            var imageStub = sinon.stub(window, 'Image', function(x, y) {
-                this.x = 0;
-                this.y = 0;
-                this.src = '';
+                    expect(imageStub.callCount).to.equal(3);
+                    expect(imageStub.calledWith(singleParamUrl + '?' + 'trid=3'));
+
+                    imageStub.reset();
+                    imageStub.restore();
+                    window.navigator.sendBeacon = sendBeaconAllias;
+                });
+
+                it('url:singleParamUrl', function () {
+                    var sendBeaconAllias;
+                    if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                        sendBeaconAllias = window.navigator.sendBeacon;
+                        window.navigator.sendBeacon = undefined;
+                    }
+
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1});
+                    reportData.log({trid: 2});
+                    reportData.log({trid: 3});
+
+                    expect(imageStub.callCount).to.equal(0);
+
+                    reportData.runQueue(singleParamUrl, true);
+
+                    expect(imageStub.callCount).to.equal(3);
+                    expect(imageStub.calledWith(singleParamUrl + '&' + 'trid=3'));
+
+                    imageStub.reset();
+                    imageStub.restore();
+                    window.navigator.sendBeacon = sendBeaconAllias;
+                });
+
+                it('url:twoParamUrl', function () {
+                    var sendBeaconAllias;
+                    if (typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function')) {
+                        sendBeaconAllias = window.navigator.sendBeacon;
+                        window.navigator.sendBeacon = undefined;
+                    }
+
+                    var imageStub = sinon.stub(window, 'Image', function () {
+                        this.src = '';
+                    });
+
+                    var reportData = rdFactory();
+
+                    reportData.log({trid: 1});
+                    reportData.log({trid: 2});
+                    reportData.log({trid: 3});
+
+                    expect(imageStub.callCount).to.equal(0);
+
+                    reportData.runQueue(twoParamUrl, true);
+
+                    expect(imageStub.callCount).to.equal(3);
+                    expect(imageStub.calledWith(twoParamUrl + '&' + 'trid=3'));
+
+                    imageStub.reset();
+                    imageStub.restore();
+
+                    window.navigator.sendBeacon = sendBeaconAllias;
+                });
             });
-
-            var reportData = rdFactory();
-
-            var url = reportData.log({trid: 1, comId: 123}, null, 'http://foo.com');
-
-            expect(url).to.equal('http://foo.com?trid=1&comId=123');
-            expect(imageStub.callCount).to.equal(1);
-            imageStub.reset();
-            imageStub.restore();
-        });
-    });
-
-    describe('A url is passed ', function () {
-        it('When sendBeacon is avaiable', function() {
-            if (!(typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function'))) {
-                return;
-            }
-
-            var beacon = sinon.stub(navigator, 'sendBeacon', function(url, data) {});
-            var imageStub = sinon.stub(window, 'Image', function(x, y) {
-                this.x = 0;
-                this.y = 0;
-                this.src = '';
-            });
-
-            var reportData = rdFactory();
-            expect(beacon.callCount).to.equal(0);
-            expect(imageStub.callCount).to.equal(0);
-
-            reportData.log({ trid: 1 }, null, 'http://foo.com', true);
-            reportData.log({ trid: 2 }, null, 'http://foo.com', true);
-
-            expect(beacon.callCount).to.equal(2);
-            expect(imageStub.callCount).to.equal(0);
-
-            beacon.reset();
-            imageStub.reset();
-            imageStub.restore();
-            beacon.restore();
-        });
-
-        it('When sendBeacon is NOT avaiable', function() {
-            if ((typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function'))) {
-                return;
-            }
-
-            var imageStub = sinon.stub(window, 'Image', function(x, y) {
-                this.x = 0;
-                this.y = 0;
-                this.src = '';
-            });
-
-            var reportData = rdFactory();
-            expect(imageStub.callCount).to.equal(0);
-
-            reportData.log({ trid: 1 }, null, 'http://foo.com', true);
-            reportData.log({ trid: 2 }, null, 'http://foo.com', true);
-
-            expect(imageStub.callCount).to.equal(2);
-
-            imageStub.reset();
-            imageStub.restore();
-        });
-    });
-
-    describe('Safari tests ', function () {
-        it('Use xmlhtprequest instead of image.src', function() {
-            if (!isSafari) {
-                return;
-            }
-
-            var imageStub = sinon.stub(window, 'Image', function(x, y) {
-                this.x = 0;
-                this.y = 0;
-                this.src = '';
-            });
-            this.server = sinon.fakeServer.create();
-            this.server.respondImmediately = true;
-
-
-            var reportData = rdFactory();
-            expect(imageStub.callCount).to.equal(0);
-            expect(this.server.requests.length).to.equal(0);
-            
-            reportData.log({ trid: 1 }, true, 'http://foo.com', true);
-            reportData.log({ trid: 2 }, true, 'http://foo.com', true);
-
-            expect(this.server.requests.length).to.equal(2);
-            expect(this.server.requests[0].url).to.equal('http://foo.com?trid=1');
-            expect(this.server.requests[1].url).to.equal('http://foo.com?trid=2');
-            expect(imageStub.callCount).to.equal(0);
-
-            this.server.restore();
-            imageStub.reset();
-            imageStub.restore();
-        });
-
-        it('Use xmlhtprequest instead of image.src', function() {
-            if (!isSafari) {
-                return;
-            }
-
-            var imageStub = sinon.stub(window, 'Image', function(x, y) {
-                this.x = 0;
-                this.y = 0;
-                this.src = '';
-            });
-            this.server = sinon.fakeServer.create();
-            this.server.respondImmediately = true;
-
-
-            var reportData = rdFactory();
-            expect(imageStub.callCount).to.equal(0);
-            expect(this.server.requests.length).to.equal(0);
-
-            reportData.log({ trid: 1 }, false, 'http://foo.com', true);
-            reportData.log({ trid: 2 }, false, 'http://foo.com', true);
-
-            expect(this.server.requests.length).to.equal(0);
-            expect(imageStub.callCount).to.equal(2);
-
-            this.server.restore();
-            imageStub.reset();
-            imageStub.restore();
         });
     });
 });
