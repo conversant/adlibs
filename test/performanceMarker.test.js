@@ -49,6 +49,7 @@ describe('performanceMarker', function () {
 	});
 
 	it('Run should execute multiple times', function () {
+		this.timeout(5000);
 		var newPerfFactory = require('../lib/performanceMarker').factory();
 		newPerfFactory.start('runTestMultiple')
 			.run(function () {
