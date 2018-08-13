@@ -37,7 +37,10 @@ module.exports = function(config) {
 				flags: ['--no-sandbox']
 			}
 		},
-
+	
+		// Number of browsers to run in parallel [set to 1 to avoid timing-based tests from failing]
+		concurrency: 1,
+		
         browsers: ['Firefox', 'Chrome', 'Safari']
 
     });
