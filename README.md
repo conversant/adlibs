@@ -641,12 +641,12 @@ If the doc readyState is complete or interactive, use custom methods to safely w
 **Example**  
 ```js
 var embedHtml = require('adlibs/lib/dom/embedHtml'),
-  htmlMarkup = '<span>Hello World</span>',
-  callbackFunc = function(htmlString) {
-    console.log(htmlString);
-  }
+  htmlString = '<span>Hello World</span>',
+  callbackFunc = function(container) {
+    console.log(container.innerHTML);
+  };
 
-embedHtml(htmlMarkup, callbackFunc);
+embedHtml(htmlString, callbackFunc);
 ```
 
 
