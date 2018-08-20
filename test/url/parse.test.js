@@ -6,13 +6,13 @@ var parseUrl = require('../../lib/url/parse'),
 describe('url/parse', function() {
 
 	it('Should parse a url into its components.', function() {
-		var parsed = parseUrl('http://user:pw@www.foo.com:4000/something?foo=1&bar=2#baz');
+		var parsed = parseUrl('http://user:pw@www.example.com:4000/something?foo=1&bar=2#baz');
 
 		expect(parsed.protocol).to.equal('http:');
 		expect(parsed.username).to.equal('user');
 		expect(parsed.password).to.equal('pw');
-		expect(parsed.host).to.equal('www.foo.com:4000');
-		expect(parsed.hostname).to.equal('www.foo.com');
+		expect(parsed.host).to.equal('www.example.com:4000');
+		expect(parsed.hostname).to.equal('www.example.com');
 		expect(parsed.port).to.equal(4000);
 		expect(parsed.pathname).to.equal('/something');
 		expect(parsed.search).to.equal('?foo=1&bar=2');
@@ -21,11 +21,11 @@ describe('url/parse', function() {
 	});
 
 	it('Should not include a port in the hostname if one does not exist.', function() {
-		expect(parseUrl('http://www.foo.com/').hostname).to.equal('www.foo.com');
+		expect(parseUrl('http://www.example.com/').hostname).to.equal('www.example.com');
 	});
 
 	it('Should normalize the hostname to lowercase.', function() {
-		expect(parseUrl('http://www.FoO.com/').hostname).to.equal('www.foo.com');
+		expect(parseUrl('http://www.example.com/').hostname).to.equal('www.example.com');
 	});
 
 	it('Should parse relative urls.', function() {
@@ -40,19 +40,19 @@ describe('url/parse', function() {
 	});
 
 	it('Should decode url encoded values.', function() {
-		var parsed = parseUrl('http://www.foo.com:4000/something?foo=hello%20world');
+		var parsed = parseUrl('http://www.example.com:4000/something?foo=hello%20world');
 
 		expect(parsed.query.foo).to.equal('hello world');
 	});
 
 	it('Should set the parsed query to an empty object if search does not exist.', function() {
-		var parsed = parseUrl('http://foo.com');
+		var parsed = parseUrl('http://example.com');
 
 		expect(parsed.query).to.eql({});
 	});
 
 	it('Should catch an empty/undefined query string value', function () {
-		var parsedWithEqlSign = parseUrl('http://foo.com?alpha=1&beta=3&gamma=3&delta=').query;
+		var parsedWithEqlSign = parseUrl('http://example.com?alpha=1&beta=3&gamma=3&delta=').query;
 		var parsedNoEqlSign = parseUrl('http://bar.com?alpha=1&beta=2&gamma=3&delta').query;
 
 		expect(parsedWithEqlSign.delta).to.eql('');
@@ -60,7 +60,7 @@ describe('url/parse', function() {
 	});
 
 	it('Should gracefully parse a terrible pain-inducing query string', function () {
-		var parsed = parseUrl('http://foo.com?alpha=1&beta=2&gamma=3&delta&foo&bar&&&&&&&&someothervalue=true&strangevalue&=').query;
+		var parsed = parseUrl('http://example.com?alpha=1&beta=2&gamma=3&delta&foo&bar&&&&&&&&someothervalue=true&strangevalue&=').query;
 		console.log(parsed);
 		expect(parsed.alpha).to.eql('1');
 		expect(parsed.beta).to.eql('2');

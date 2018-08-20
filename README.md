@@ -135,8 +135,8 @@ Can this object use this property?
 
 | Param |
 | --- |
-| obj | 
-| propertyName | 
+| obj |
+| propertyName |
 
 **Example**  
 ```js
@@ -167,8 +167,8 @@ Check to see if this object owns the method as opposed to just inheriting it fro
 
 | Param |
 | --- |
-| obj | 
-| propertyName | 
+| obj |
+| propertyName |
 
 <a name="module_canHas.run"></a>
 
@@ -191,8 +191,8 @@ For each in, shorthanded because manually writing hasOwnProperty each and every 
 
 | Param |
 | --- |
-| obj | 
-| callback | 
+| obj |
+| callback |
 
 <a name="module_canHas.keys"></a>
 
@@ -203,7 +203,7 @@ A substitute for Object.keys for when browsers don't attempt to convert non-obje
 
 | Param |
 | --- |
-| obj | 
+| obj |
 
 <a name="module_comparableBits"></a>
 
@@ -239,7 +239,7 @@ Tie into an existing instance of the ComparableBits module.
 
 | Param |
 | --- |
-| packageName | 
+| packageName |
 
 <a name="module_comparableBits.make"></a>
 
@@ -348,7 +348,7 @@ Check for MathML support in browsers to help detect certain browser version numb
 
 | Param | Type |
 | --- | --- |
-| d | <code>Document</code> | 
+| d | <code>Document</code> |
 
 <a name="module_Browser.isMobile"></a>
 
@@ -360,7 +360,7 @@ Performs a simple test to see if we're on mobile or not.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_Browser.getVersion"></a>
 
@@ -372,9 +372,9 @@ Uses the min and max versions of a browser to determine its version.
 
 | Param | Type |
 | --- | --- |
-| uaVersion | <code>Number</code> | 
-| minVersion | <code>Number</code> | 
-| [maxVersion] | <code>Number</code> | 
+| uaVersion | <code>Number</code> |
+| minVersion | <code>Number</code> |
+| [maxVersion] | <code>Number</code> |
 
 <a name="module_Browser.looksLike"></a>
 
@@ -386,8 +386,8 @@ Searches for a match between the regex and specified string.
 
 | Param | Type |
 | --- | --- |
-| regex | <code>RegExp</code> | 
-| ua | <code>String</code> | 
+| regex | <code>RegExp</code> |
+| ua | <code>String</code> |
 
 <a name="module_Browser.parseIntIfMatch"></a>
 
@@ -400,9 +400,9 @@ Gracefully falls back to the default version if not.
 
 | Param | Type |
 | --- | --- |
-| ua | <code>String</code> | 
-| regex | <code>RegExp</code> | 
-| [radix] | <code>Number</code> | 
+| ua | <code>String</code> |
+| regex | <code>RegExp</code> |
+| [radix] | <code>Number</code> |
 
 <a name="module_Browser.parseFloatIfMatch"></a>
 
@@ -415,8 +415,8 @@ Gracefully falls back to the default if not.
 
 | Param | Type |
 | --- | --- |
-| ua | <code>String</code> | 
-| regex | <code>RegExp</code> | 
+| ua | <code>String</code> |
+| regex | <code>RegExp</code> |
 
 <a name="module_Browser.getAndroidVersion"></a>
 
@@ -428,8 +428,8 @@ Determines the version of Android being used.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| uaVersion | <code>Number</code> | 
+| win | <code>Window</code> |
+| uaVersion | <code>Number</code> |
 
 <a name="module_Browser.getChromiumVersion"></a>
 
@@ -441,8 +441,8 @@ Determines the version of Chrome being used.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| uaVersion | <code>Number</code> | 
+| win | <code>Window</code> |
+| uaVersion | <code>Number</code> |
 
 <a name="module_Browser.getSafariVersion"></a>
 
@@ -454,8 +454,8 @@ Returns the version of the Safari browser.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| uaVersion | <code>Number</code> | 
+| win | <code>Window</code> |
+| uaVersion | <code>Number</code> |
 
 <a name="module_Browser.getKindleVersion"></a>
 
@@ -466,8 +466,8 @@ Creates a Browser instance with its attributed Kindle values.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| uaVersion | <code>Number</code> | 
+| win | <code>Window</code> |
+| uaVersion | <code>Number</code> |
 
 <a name="module_Browser.getOtherOS"></a>
 
@@ -479,8 +479,8 @@ Creates a Browser instance with its attributed OS and device type values.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| ua | <code>String</code> | 
+| win | <code>Window</code> |
+| ua | <code>String</code> |
 
 <a name="module_Browser.getAppleOS"></a>
 
@@ -492,8 +492,8 @@ Creates a Browser instance with its attributed Apple values.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| ua | <code>String</code> | 
+| win | <code>Window</code> |
+| ua | <code>String</code> |
 
 <a name="module_Browser.getMicrosoftOS"></a>
 
@@ -505,8 +505,8 @@ Creates a Browser instance with its attributed Windows values.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| ua | <code>String</code> | 
+| win | <code>Window</code> |
+| ua | <code>String</code> |
 
 <a name="module_Browser.getAndroidOS"></a>
 
@@ -518,8 +518,8 @@ Creates a Browser instance with its attributed Android values.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| ua | <code>String</code> | 
+| win | <code>Window</code> |
+| ua | <code>String</code> |
 
 <a name="module_Browser.getKindleOS"></a>
 
@@ -531,8 +531,8 @@ Returns the Kindle's OS.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| ua | <code>String</code> | 
+| win | <code>Window</code> |
+| ua | <code>String</code> |
 
 <a name="module_Browser.getOsFromUa"></a>
 
@@ -544,8 +544,8 @@ Reads the user agent string to determine OS.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| ua | <code>String</code> | 
+| win | <code>Window</code> |
+| ua | <code>String</code> |
 
 <a name="module_Browser.detect"></a>
 
@@ -557,8 +557,8 @@ Returns an object containing browser details (e.g. name, os, version, etc.).
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
-| [userAgent] | <code>String</code> | 
+| [win] | <code>Window</code> |
+| [userAgent] | <code>String</code> |
 
 **Example**  
 ```js
@@ -575,7 +575,7 @@ Retrieve any results in the map by name because they're returned in an array wit
 
 | Param | Type |
 | --- | --- |
-| key | <code>String</code> | 
+| key | <code>String</code> |
 
 <a name="module_Browser..save"></a>
 
@@ -586,7 +586,7 @@ Saves a property to the results array and returns its index.
 
 | Param | Type |
 | --- | --- |
-| result | <code>\*</code> | 
+| result | <code>\*</code> |
 
 <a name="module_Capabilities"></a>
 
@@ -751,7 +751,7 @@ Get version of safeframe.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_Safeframe.getSpecVersion"></a>
 
@@ -762,7 +762,7 @@ Gets specVersion of safeframe.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_Safeframe.getInfo"></a>
 
@@ -773,7 +773,7 @@ Gets info of safeframe.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_Safeframe.getConf"></a>
 
@@ -784,7 +784,7 @@ Gets config of safeframe host.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_Safeframe.getSupport"></a>
 
@@ -795,7 +795,7 @@ Returns array of supported fields for sf.ext.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_Safeframe.getInView"></a>
 
@@ -806,7 +806,7 @@ Gets inview percentage of safeframe.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_Safeframe.getWinFocus"></a>
 
@@ -817,7 +817,7 @@ Returns if safeframe window has focus.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_Safeframe.getMetrics"></a>
 
@@ -828,7 +828,7 @@ Returns safeframe metrics.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_addEventListener"></a>
 
@@ -839,9 +839,9 @@ Add an event listener to the element, which will execute the given callback.
 
 | Param | Type |
 | --- | --- |
-| element | <code>Element</code> | 
-| eventName | <code>String</code> | 
-| callback | <code>function</code> | 
+| element | <code>Element</code> |
+| eventName | <code>String</code> |
+| callback | <code>function</code> |
 
 **Example**  
 ```js
@@ -859,8 +859,8 @@ Appends all elements in the html string to the parent element. Correctly handles
 
 | Param | Type |
 | --- | --- |
-| parentEl | <code>Element</code> | 
-| html | <code>String</code> | 
+| parentEl | <code>Element</code> |
+| html | <code>String</code> |
 
 **Example**  
 ```js
@@ -919,8 +919,8 @@ Creates a new DOM Event and triggers it on the provided element.
 
 | Param | Type |
 | --- | --- |
-| element | <code>Element</code> | 
-| eventName | <code>String</code> | 
+| element | <code>Element</code> |
+| eventName | <code>String</code> |
 
 <a name="module_evaluator"></a>
 
@@ -930,7 +930,7 @@ Runs eval against the value passed to it. This function exists because eval prev
 
 | Param | Type |
 | --- | --- |
-| v | <code>String</code> | 
+| v | <code>String</code> |
 
 <a name="module_jsonp"></a>
 
@@ -946,7 +946,7 @@ Perform a cross domain request via JSONP. Provides the same interface as xhr.js.
 
 **Example**  
 ```js
-// for call -> http://foo.com/?callback=CB_1433519761916
+// for call -> http://example.com/?callback=CB_1433519761916
 // the following gets executed
 CB_1433519761916('response from server');
 
@@ -994,7 +994,7 @@ Tie into an existing instance of the performance module.
 
 | Param |
 | --- |
-| packageName | 
+| packageName |
 
 <a name="module_parseConfig"></a>
 
@@ -1071,7 +1071,7 @@ Tie into an existing instance of the reportData module.
 
 | Param |
 | --- |
-| packageName | 
+| packageName |
 
 <a name="module_format"></a>
 
@@ -1091,13 +1091,13 @@ Deconstructs a URL into its components. It also parses the search component (the
 
 | Param | Type |
 | --- | --- |
-| url | <code>String</code> | 
+| url | <code>String</code> |
 
 **Example**  
 ```js
 var parseUrl = require('adlibs/lib/url/parse');
 
-var queryObj = parseUrl('http://foo.com/query?cb=1234&userid=9999');
+var queryObj = parseUrl('http://example.com/query?cb=1234&userid=9999');
 
 ```
 <a name="module_xhr"></a>

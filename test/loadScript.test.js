@@ -33,25 +33,27 @@ describe('loadScript', function() {
 	});
 
 	it('Should load all scripts and execute the success callback after all scripts load.', function(done) {
+		var successCallback = function() {
+			var loadedCount = 0,
+				i = 0;
+			
+			for (; i < document.scripts.length; i++) {
+				if (/loader-test.js\?cachebust/.test(document.scripts[i].src)) {
+					loadedCount++;
+				}
+			}
+			
+			expect(loadedCount).to.equal(3);
+			done();
+		};
+		
 		loadScript(
 			[
 				'/base/public/loader-test.js?' + cacheBust(),
 				'/base/public/loader-test.js?' + cacheBust(),
 				'/base/public/loader-test.js?' + cacheBust()
 			],
-			function() {
-				var loadedCount = 0,
-					i;
-
-				for (i = 0; i < document.scripts.length; i++) {
-					if (/loader-test.js\?cachebust/.test(document.scripts[i].src)) {
-						loadedCount++;
-					}
-				}
-
-				expect(loadedCount).to.equal(3);
-				done();
-			}
+			successCallback
 		);
 	});
 
