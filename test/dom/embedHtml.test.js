@@ -99,7 +99,6 @@ describe('embedHtml', function () {
 			done();
 		}
 		
-		
 		// set up mock mraid
 		window.mraid = document.createElement('div');
 		window.mraid.getState = function () {
@@ -167,7 +166,7 @@ describe('embedHtml', function () {
 		
 		setTimeout(function () {
 			expect(window.embedHtml).to.be(true);
-			delete window.embedHtml;
+			delete window.embedHtml; //jshint ignore: line
 			done();
 		}, 300);
 	});
@@ -178,11 +177,10 @@ describe('embedHtml', function () {
 		
 		setTimeout(function () {
 			expect(window.embedHtml).to.be(true);
-			delete window.embedHtml;
+			delete window.embedHtml; //jshint ignore: line
 			done();
 		}, 300);
 	});
-	
 	
 	it('should be able to handle a deeply-nested script that document.writes another external script after the page has loaded', function (done) {
 		var writeScript,
@@ -193,8 +191,27 @@ describe('embedHtml', function () {
 			writeScript = document.querySelector('#write-script');
 			expect(writeScript).to.not.be(undefined);
 			expect(window.embedHtml).to.be(true);
-			delete window.embedHtml;
+			delete window.embedHtml; //jshint ignore: line
 			done();
 		}, 300);
 	});
+	
+	it('Should append an HTML string to the default parent element', function() {
+		embedHtml('<div class="foo">bar</div><span class="baz">something</span>');
+		expect(document.querySelectorAll('.foo').length).to.equal(1);
+		expect(document.querySelectorAll('.baz').length).to.equal(1);
+	});
+	
+	it('Should append scripts in an HTML string so that they still load remote JavaScript', function(done) {
+		embedHtml('<script id="test-script" src="/base/public/append-html-verify.js" data-foo="bar"></script>');
+		
+		// Verify both the loaded JavaScript, and the existence of the attribute, since we want to make sure the script tag was properly cloned.
+		setTimeout(function() {
+			var script = document.querySelector('#test-script');
+			expect(script.getAttribute('data-foo')).to.be('bar');
+			expect(window.APPEND_HTML_TEST).to.equal(true);
+			done();
+		}, 300);
+	});
+	
 });
