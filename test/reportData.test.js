@@ -2,10 +2,13 @@
 
 'use strict';
 
-var browser = require('../lib/detect/browser');
+var isSafariBrowser = function () {
+    var uaString = navigator.userAgent.toLowerCase();
+	return uaString.indexOf('safari') > -1 && uaString.indexOf('chrom') === -1;
+};
 
 var expect = require('expect.js'),
-	isSafari = browser.detect().name === 'Safari';
+	isSafari = isSafariBrowser();
 
 /** @type {ReportData} */
 var rdSingleton = require('../lib/reportData').provider('test.reportData');
