@@ -61,6 +61,9 @@ console.log(browser.os.name)
 <dt><a href="#module_Environment">Environment</a></dt>
 <dd><p>Environment Detection - Gets Data Pertaining to User&#39;s Environment</p>
 </dd>
+<dt><a href="#module_embedHtml">embedHtml</a></dt>
+<dd><p>Safely handles embedding of arbitrary HTML strings into the DOM (including embedding scripts that call document.write when the document has already been closed.)</p>
+</dd>
 <dt><a href="#module_Mraid">Mraid</a></dt>
 <dd><p>Mraid Detection</p>
 </dd>
@@ -70,7 +73,7 @@ console.log(browser.os.name)
 <dt><a href="#module_addEventListener">addEventListener</a> ⇒ <code>function</code></dt>
 <dd><p>Add an event listener to the element, which will execute the given callback.</p>
 </dd>
-<dt><a href="#module_appendHtml">appendHtml</a> ⇒ <code>Array</code></dt>
+<dt><a href="#module_appendHtml">appendHtml [deprecated]</a> ⇒ <code>Array</code></dt>
 <dd><p>Appends all elements in the html string to the parent element. Correctly handles scripts with src attributes and inline javascript and ensures that the script will execute.  NOTE: Only Element nodes in the html string will be appended. All other node types will be ignored (i.e. Text, Comment).</p>
 </dd>
 <dt><a href="#module_domReady">domReady</a></dt>
@@ -82,7 +85,7 @@ console.log(browser.os.name)
 <dd><p>Creates a new DOM Event and triggers it on the provided element.</p>
 </dd>
 <dt><a href="#module_evaluator">evaluator</a> ⇒ <code>Object</code></dt>
-<dd><p>Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly. Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won&#39;t function for this module. That&#39;s right - we have one letter vars in our source code. Ain&#39;t eval grand? For more info on eval visit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval</a></p>
+<dd><p>Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly. Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won&#39;t function for this module. For more info on eval visit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval</a></p>
 </dd>
 <dt><a href="#module_jsonp">jsonp</a> ⇒ <code>Object</code></dt>
 <dd><p>Perform a cross domain request via JSONP. Provides the same interface as xhr.js. The request is made by appending a &#39;callback&#39; parameter to the request url, and it is expected that the server will respond with the content wrapped in a function call, using the provided value of the callback parameter. If callbackFn isn&#39;t defined, a unique name will be generated.</p>
@@ -623,6 +626,30 @@ var environment = require("adlibs/lib/detect/environment");
     * [.getScreenSize()](#module_Environment.getScreenSize) ⇒ <code>Object</code>
     * [.getAdDocSize()](#module_Environment.getAdDocSize) ⇒ <code>Object</code>
 
+
+<a name="module_embedHtml"></a>
+
+## embedHtml
+If the doc readyState is complete or interactive, use custom methods to safely write 'htmlString' to the page; otherwise, use native document.write
+
+| Param | Type |
+| --- | --- |
+| htmlString | <code>String</code> |
+| [callback] | function |
+
+
+**Example**  
+```js
+var embedHtml = require('adlibs/lib/dom/embedHtml'),
+  htmlString = '<span>Hello World</span>',
+  callbackFunc = function(container) {
+    console.log(container.innerHTML);
+  };
+
+embedHtml(htmlString, callbackFunc);
+```
+
+
 <a name="module_Environment.detect"></a>
 
 ### environment.detect() ⇒ <code>Object</code>
@@ -1118,8 +1145,6 @@ var resp = xhr({url: 'www.example.com'}).send();
 * [j-brown](https://github.com/j-brown)
 * [jeffreytgilbert](https://github.com/jeffreytgilbert)
 * [msahagu2](https://github.com/msahagu2)
-* [ggustilo](https://github.com/ggustilo)
-* [larrymyers](https://github.com/larrymyers)
-
+* [ericperez](https://github.com/ericperez)
 
 * * *
