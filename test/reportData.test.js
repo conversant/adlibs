@@ -2,10 +2,13 @@
 
 'use strict';
 
-var browser = require('../lib/detect/browser');
+var isSafariBrowser = function () {
+    var uaString = navigator.userAgent.toLowerCase();
+	return uaString.indexOf('safari') > -1 && uaString.indexOf('chrom') === -1;
+};
 
 var expect = require('expect.js'),
-	isSafari = browser.detect().name === 'Safari';
+	isSafari = isSafariBrowser();
 
 /** @type {ReportData} */
 var rdSingleton = require('../lib/reportData').provider('test.reportData');
@@ -29,34 +32,34 @@ var singleData = {
 };
 singleData = JSON.stringify(data);
 
-var baseUrl ='http://foo.com';
+var baseUrl ='http://example.com';
 var singleParamUrl = baseUrl + '?aid=1';
 var twoParamUrl = singleParamUrl + '&bid=2';
 
 describe('reportData', function() {
 
 	it('Should create a new Image with the src url as the logging url.', function() {
-		var singletonUrl = rdSingleton.log({ trid: 1, etype: 'bar', vtime: 25, edtl: 'bar' }, false, 'http://foo.com/');
-		var factoryUrl = rdFactory().log({ trid: 1, etype: 'bar', vtime: 25, edtl: 'bar' }, false, 'http://foo.com/');
+		var singletonUrl = rdSingleton.log({ trid: 1, etype: 'bar', vtime: 25, edtl: 'bar' }, false, 'http://example.com/');
+		var factoryUrl = rdFactory().log({ trid: 1, etype: 'bar', vtime: 25, edtl: 'bar' }, false, 'http://example.com/');
 
-		expect(singletonUrl).to.equal('http://foo.com/?trid=1&etype=bar&vtime=25&edtl=bar');
-		expect(factoryUrl).to.equal('http://foo.com/?trid=1&etype=bar&vtime=25&edtl=bar');
+		expect(singletonUrl).to.equal('http://example.com/?trid=1&etype=bar&vtime=25&edtl=bar');
+		expect(factoryUrl).to.equal('http://example.com/?trid=1&etype=bar&vtime=25&edtl=bar');
 	});
 
 	it('Should append new query parameters to the query string of the url.', function() {
-		var singletonUrl = rdSingleton.log({foo: 'bar' }, false, 'http://foo.com/?feeling=awesome');
-		var factoryUrl = rdFactory().log({ foo: 'bar' }, false, 'http://foo.com/?feeling=awesome');
+		var singletonUrl = rdSingleton.log({foo: 'bar' }, false, 'http://example.com/?feeling=awesome');
+		var factoryUrl = rdFactory().log({ foo: 'bar' }, false, 'http://example.com/?feeling=awesome');
 
-		expect(singletonUrl).to.equal('http://foo.com/?feeling=awesome&foo=bar');
-		expect(factoryUrl).to.equal('http://foo.com/?feeling=awesome&foo=bar');
+		expect(singletonUrl).to.equal('http://example.com/?feeling=awesome&foo=bar');
+		expect(factoryUrl).to.equal('http://example.com/?feeling=awesome&foo=bar');
 	});
 
 	it('Should automatically add the vtime parameter with the delta since page load.', function() {
 		var mockPerformance = { now: function() { return 10; }, startTime: 1 };
 
-		var url = rdFactory('http://foo.com', mockPerformance).logWithElapsedTime({ foo: 'bar' });
+		var url = rdFactory('http://example.com', mockPerformance).logWithElapsedTime({ foo: 'bar' });
 
-		expect(url).to.equal('http://foo.com?foo=bar&vtime=9');
+		expect(url).to.equal('http://example.com?foo=bar&vtime=9');
 	});
 
 	it('Should use a synchronous XHR call when sending a report during the unload event in Safari.', function() {
@@ -68,7 +71,7 @@ describe('reportData', function() {
 		this.server = sinon.fakeServer.create();
 		this.server.respondImmediately = true;
 
-		var url = rdFactory('http://foo.com').log({ trid: 1 }, true);
+		var url = rdFactory('http://example.com').log({ trid: 1 }, true);
 
 		expect(this.server.requests.length).to.equal(1);
 		expect(this.server.requests[0].url).to.equal(url);

@@ -6,7 +6,7 @@ var parseConfig = require('../lib/parseConfig'),
     forIn = require('../lib/canHas').forIn,
     expect = require('expect.js');
 
-var CONFIG_ATTR = 'data-cnvr-foo';
+var CONFIG_ATTR = 'data-foo';
 
 function createElement(data) {
     var el = document.createElement('script');

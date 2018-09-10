@@ -3,7 +3,6 @@
 'use strict';
 
 var domReady = require('../../lib/dom/domReady'),
-	browser = require('../../lib/detect/browser.js'),
 	expect = require('expect.js');
 
 describe('dom/domReady', function() {
@@ -16,7 +15,7 @@ describe('dom/domReady', function() {
 		setTimeout(function () {
 			expect(spy.calledOnce).to.equal(true);
 			done();
-		}, 800);
+		}, 500);
 	});
 
 });
@@ -34,7 +33,7 @@ describe('dom/domReady/isInteractiveOk=true/new window', function () {
 		setTimeout(function () {
 			expect(spy.calledOnce).to.equal(true);
 			done();
-		}, 800);
+		}, 500);
 	});
 });
 
@@ -51,6 +50,6 @@ describe('dom/domReady/isInteractiveOk=false/new window', function () {
 		setTimeout(function () {
 			expect(spy.calledOnce).to.equal(true);
 			done();
-		}, 800);
+		}, 500);
 	});
 });

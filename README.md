@@ -61,6 +61,9 @@ console.log(browser.os.name)
 <dt><a href="#module_Environment">Environment</a></dt>
 <dd><p>Environment Detection - Gets Data Pertaining to User&#39;s Environment</p>
 </dd>
+<dt><a href="#module_embedHtml">embedHtml</a></dt>
+<dd><p>Safely handles embedding of arbitrary HTML strings into the DOM (including embedding scripts that call document.write when the document has already been closed.)</p>
+</dd>
 <dt><a href="#module_Mraid">Mraid</a></dt>
 <dd><p>Mraid Detection</p>
 </dd>
@@ -70,7 +73,7 @@ console.log(browser.os.name)
 <dt><a href="#module_addEventListener">addEventListener</a> ⇒ <code>function</code></dt>
 <dd><p>Add an event listener to the element, which will execute the given callback.</p>
 </dd>
-<dt><a href="#module_appendHtml">appendHtml</a> ⇒ <code>Array</code></dt>
+<dt><a href="#module_appendHtml">appendHtml [deprecated]</a> ⇒ <code>Array</code></dt>
 <dd><p>Appends all elements in the html string to the parent element. Correctly handles scripts with src attributes and inline javascript and ensures that the script will execute.  NOTE: Only Element nodes in the html string will be appended. All other node types will be ignored (i.e. Text, Comment).</p>
 </dd>
 <dt><a href="#module_domReady">domReady</a></dt>
@@ -82,7 +85,7 @@ console.log(browser.os.name)
 <dd><p>Creates a new DOM Event and triggers it on the provided element.</p>
 </dd>
 <dt><a href="#module_evaluator">evaluator</a> ⇒ <code>Object</code></dt>
-<dd><p>Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly. Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won&#39;t function for this module. That&#39;s right - we have one letter vars in our source code. Ain&#39;t eval grand? For more info on eval visit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval</a></p>
+<dd><p>Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly. Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won&#39;t function for this module. For more info on eval visit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval</a></p>
 </dd>
 <dt><a href="#module_jsonp">jsonp</a> ⇒ <code>Object</code></dt>
 <dd><p>Perform a cross domain request via JSONP. Provides the same interface as xhr.js. The request is made by appending a &#39;callback&#39; parameter to the request url, and it is expected that the server will respond with the content wrapped in a function call, using the provided value of the callback parameter. If callbackFn isn&#39;t defined, a unique name will be generated.</p>
@@ -132,8 +135,8 @@ Can this object use this property?
 
 | Param |
 | --- |
-| obj | 
-| propertyName | 
+| obj |
+| propertyName |
 
 **Example**  
 ```js
@@ -164,8 +167,8 @@ Check to see if this object owns the method as opposed to just inheriting it fro
 
 | Param |
 | --- |
-| obj | 
-| propertyName | 
+| obj |
+| propertyName |
 
 <a name="module_canHas.run"></a>
 
@@ -188,8 +191,8 @@ For each in, shorthanded because manually writing hasOwnProperty each and every 
 
 | Param |
 | --- |
-| obj | 
-| callback | 
+| obj |
+| callback |
 
 <a name="module_canHas.keys"></a>
 
@@ -200,7 +203,7 @@ A substitute for Object.keys for when browsers don't attempt to convert non-obje
 
 | Param |
 | --- |
-| obj | 
+| obj |
 
 <a name="module_comparableBits"></a>
 
@@ -236,7 +239,7 @@ Tie into an existing instance of the ComparableBits module.
 
 | Param |
 | --- |
-| packageName | 
+| packageName |
 
 <a name="module_comparableBits.make"></a>
 
@@ -345,7 +348,7 @@ Check for MathML support in browsers to help detect certain browser version numb
 
 | Param | Type |
 | --- | --- |
-| d | <code>Document</code> | 
+| d | <code>Document</code> |
 
 <a name="module_Browser.isMobile"></a>
 
@@ -357,7 +360,7 @@ Performs a simple test to see if we're on mobile or not.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_Browser.getVersion"></a>
 
@@ -369,9 +372,9 @@ Uses the min and max versions of a browser to determine its version.
 
 | Param | Type |
 | --- | --- |
-| uaVersion | <code>Number</code> | 
-| minVersion | <code>Number</code> | 
-| [maxVersion] | <code>Number</code> | 
+| uaVersion | <code>Number</code> |
+| minVersion | <code>Number</code> |
+| [maxVersion] | <code>Number</code> |
 
 <a name="module_Browser.looksLike"></a>
 
@@ -383,8 +386,8 @@ Searches for a match between the regex and specified string.
 
 | Param | Type |
 | --- | --- |
-| regex | <code>RegExp</code> | 
-| ua | <code>String</code> | 
+| regex | <code>RegExp</code> |
+| ua | <code>String</code> |
 
 <a name="module_Browser.parseIntIfMatch"></a>
 
@@ -397,9 +400,9 @@ Gracefully falls back to the default version if not.
 
 | Param | Type |
 | --- | --- |
-| ua | <code>String</code> | 
-| regex | <code>RegExp</code> | 
-| [radix] | <code>Number</code> | 
+| ua | <code>String</code> |
+| regex | <code>RegExp</code> |
+| [radix] | <code>Number</code> |
 
 <a name="module_Browser.parseFloatIfMatch"></a>
 
@@ -412,8 +415,8 @@ Gracefully falls back to the default if not.
 
 | Param | Type |
 | --- | --- |
-| ua | <code>String</code> | 
-| regex | <code>RegExp</code> | 
+| ua | <code>String</code> |
+| regex | <code>RegExp</code> |
 
 <a name="module_Browser.getAndroidVersion"></a>
 
@@ -425,8 +428,8 @@ Determines the version of Android being used.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| uaVersion | <code>Number</code> | 
+| win | <code>Window</code> |
+| uaVersion | <code>Number</code> |
 
 <a name="module_Browser.getChromiumVersion"></a>
 
@@ -438,8 +441,8 @@ Determines the version of Chrome being used.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| uaVersion | <code>Number</code> | 
+| win | <code>Window</code> |
+| uaVersion | <code>Number</code> |
 
 <a name="module_Browser.getSafariVersion"></a>
 
@@ -451,8 +454,8 @@ Returns the version of the Safari browser.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| uaVersion | <code>Number</code> | 
+| win | <code>Window</code> |
+| uaVersion | <code>Number</code> |
 
 <a name="module_Browser.getKindleVersion"></a>
 
@@ -463,8 +466,8 @@ Creates a Browser instance with its attributed Kindle values.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| uaVersion | <code>Number</code> | 
+| win | <code>Window</code> |
+| uaVersion | <code>Number</code> |
 
 <a name="module_Browser.getOtherOS"></a>
 
@@ -476,8 +479,8 @@ Creates a Browser instance with its attributed OS and device type values.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| ua | <code>String</code> | 
+| win | <code>Window</code> |
+| ua | <code>String</code> |
 
 <a name="module_Browser.getAppleOS"></a>
 
@@ -489,8 +492,8 @@ Creates a Browser instance with its attributed Apple values.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| ua | <code>String</code> | 
+| win | <code>Window</code> |
+| ua | <code>String</code> |
 
 <a name="module_Browser.getMicrosoftOS"></a>
 
@@ -502,8 +505,8 @@ Creates a Browser instance with its attributed Windows values.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| ua | <code>String</code> | 
+| win | <code>Window</code> |
+| ua | <code>String</code> |
 
 <a name="module_Browser.getAndroidOS"></a>
 
@@ -515,8 +518,8 @@ Creates a Browser instance with its attributed Android values.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| ua | <code>String</code> | 
+| win | <code>Window</code> |
+| ua | <code>String</code> |
 
 <a name="module_Browser.getKindleOS"></a>
 
@@ -528,8 +531,8 @@ Returns the Kindle's OS.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| ua | <code>String</code> | 
+| win | <code>Window</code> |
+| ua | <code>String</code> |
 
 <a name="module_Browser.getOsFromUa"></a>
 
@@ -541,8 +544,8 @@ Reads the user agent string to determine OS.
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> | 
-| ua | <code>String</code> | 
+| win | <code>Window</code> |
+| ua | <code>String</code> |
 
 <a name="module_Browser.detect"></a>
 
@@ -554,8 +557,8 @@ Returns an object containing browser details (e.g. name, os, version, etc.).
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
-| [userAgent] | <code>String</code> | 
+| [win] | <code>Window</code> |
+| [userAgent] | <code>String</code> |
 
 **Example**  
 ```js
@@ -572,7 +575,7 @@ Retrieve any results in the map by name because they're returned in an array wit
 
 | Param | Type |
 | --- | --- |
-| key | <code>String</code> | 
+| key | <code>String</code> |
 
 <a name="module_Browser..save"></a>
 
@@ -583,7 +586,7 @@ Saves a property to the results array and returns its index.
 
 | Param | Type |
 | --- | --- |
-| result | <code>\*</code> | 
+| result | <code>\*</code> |
 
 <a name="module_Capabilities"></a>
 
@@ -622,6 +625,30 @@ var environment = require("adlibs/lib/detect/environment");
     * [.getAvailableScreenSize()](#module_Environment.getAvailableScreenSize) ⇒ <code>Object</code>
     * [.getScreenSize()](#module_Environment.getScreenSize) ⇒ <code>Object</code>
     * [.getAdDocSize()](#module_Environment.getAdDocSize) ⇒ <code>Object</code>
+
+
+<a name="module_embedHtml"></a>
+
+## embedHtml
+If the doc readyState is complete or interactive, use custom methods to safely write 'htmlString' to the page; otherwise, use native document.write
+
+| Param | Type |
+| --- | --- |
+| htmlString | <code>String</code> |
+| [callback] | function |
+
+
+**Example**  
+```js
+var embedHtml = require('adlibs/lib/dom/embedHtml'),
+  htmlString = '<span>Hello World</span>',
+  callbackFunc = function(container) {
+    console.log(container.innerHTML);
+  };
+
+embedHtml(htmlString, callbackFunc);
+```
+
 
 <a name="module_Environment.detect"></a>
 
@@ -724,7 +751,7 @@ Get version of safeframe.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_Safeframe.getSpecVersion"></a>
 
@@ -735,7 +762,7 @@ Gets specVersion of safeframe.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_Safeframe.getInfo"></a>
 
@@ -746,7 +773,7 @@ Gets info of safeframe.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_Safeframe.getConf"></a>
 
@@ -757,7 +784,7 @@ Gets config of safeframe host.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_Safeframe.getSupport"></a>
 
@@ -768,7 +795,7 @@ Returns array of supported fields for sf.ext.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_Safeframe.getInView"></a>
 
@@ -779,7 +806,7 @@ Gets inview percentage of safeframe.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_Safeframe.getWinFocus"></a>
 
@@ -790,7 +817,7 @@ Returns if safeframe window has focus.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_Safeframe.getMetrics"></a>
 
@@ -801,7 +828,7 @@ Returns safeframe metrics.
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> | 
+| [win] | <code>Window</code> |
 
 <a name="module_addEventListener"></a>
 
@@ -812,9 +839,9 @@ Add an event listener to the element, which will execute the given callback.
 
 | Param | Type |
 | --- | --- |
-| element | <code>Element</code> | 
-| eventName | <code>String</code> | 
-| callback | <code>function</code> | 
+| element | <code>Element</code> |
+| eventName | <code>String</code> |
+| callback | <code>function</code> |
 
 **Example**  
 ```js
@@ -832,8 +859,8 @@ Appends all elements in the html string to the parent element. Correctly handles
 
 | Param | Type |
 | --- | --- |
-| parentEl | <code>Element</code> | 
-| html | <code>String</code> | 
+| parentEl | <code>Element</code> |
+| html | <code>String</code> |
 
 **Example**  
 ```js
@@ -892,8 +919,8 @@ Creates a new DOM Event and triggers it on the provided element.
 
 | Param | Type |
 | --- | --- |
-| element | <code>Element</code> | 
-| eventName | <code>String</code> | 
+| element | <code>Element</code> |
+| eventName | <code>String</code> |
 
 <a name="module_evaluator"></a>
 
@@ -903,7 +930,7 @@ Runs eval against the value passed to it. This function exists because eval prev
 
 | Param | Type |
 | --- | --- |
-| v | <code>String</code> | 
+| v | <code>String</code> |
 
 <a name="module_jsonp"></a>
 
@@ -919,7 +946,7 @@ Perform a cross domain request via JSONP. Provides the same interface as xhr.js.
 
 **Example**  
 ```js
-// for call -> http://foo.com/?callback=CB_1433519761916
+// for call -> http://example.com/?callback=CB_1433519761916
 // the following gets executed
 CB_1433519761916('response from server');
 
@@ -967,7 +994,7 @@ Tie into an existing instance of the performance module.
 
 | Param |
 | --- |
-| packageName | 
+| packageName |
 
 <a name="module_parseConfig"></a>
 
@@ -1044,7 +1071,7 @@ Tie into an existing instance of the reportData module.
 
 | Param |
 | --- |
-| packageName | 
+| packageName |
 
 <a name="module_format"></a>
 
@@ -1064,13 +1091,13 @@ Deconstructs a URL into its components. It also parses the search component (the
 
 | Param | Type |
 | --- | --- |
-| url | <code>String</code> | 
+| url | <code>String</code> |
 
 **Example**  
 ```js
 var parseUrl = require('adlibs/lib/url/parse');
 
-var queryObj = parseUrl('http://foo.com/query?cb=1234&userid=9999');
+var queryObj = parseUrl('http://example.com/query?cb=1234&userid=9999');
 
 ```
 <a name="module_xhr"></a>
@@ -1118,8 +1145,6 @@ var resp = xhr({url: 'www.example.com'}).send();
 * [j-brown](https://github.com/j-brown)
 * [jeffreytgilbert](https://github.com/jeffreytgilbert)
 * [msahagu2](https://github.com/msahagu2)
-* [ggustilo](https://github.com/ggustilo)
-* [larrymyers](https://github.com/larrymyers)
-
+* [ericperez](https://github.com/ericperez)
 
 * * *
