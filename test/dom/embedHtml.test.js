@@ -160,7 +160,7 @@ describe('embedHtml', function () {
 		done();
 	});
 	
-	it('should be able to add an external script to the page dynamically after the page has loaded (and execute it)', function (done) {
+		it('should be able to add an external script to the page dynamically after the page has loaded (and execute it)', function (done) {
 		var htmlString = '<script src="/base/public/set-global-var.js"></script>';
 		embedHtml(htmlString);
 		
@@ -214,4 +214,21 @@ describe('embedHtml', function () {
 		}, 300);
 	});
 	
+	//This test has to be run independently because it performs document open/write/close
+	xit('should be able to handle a deeply-nested script that document.writes another external script during page load', function (done) {
+		var writeScript,
+			htmlString = '<div><span><script>document.write("<scri" + "pt id=\'write-script\' src=\'/base/public/set-global-var.js\'></scr" + "ipt>");</script></span></div>';
+		document.open('text/html', 'replace');
+		embedHtml(htmlString);
+		document.close();
+		
+		setTimeout(function () {
+			writeScript = document.querySelector('#write-script');
+			expect(writeScript).to.not.be(undefined);
+			expect(window.embedHtml).to.be(true);
+			delete window.embedHtml; //jshint ignore: line
+			done();
+		}, 300);
+	});
+
 });
