@@ -7,8 +7,13 @@ var isSafariBrowser = function () {
 	return uaString.indexOf('safari') > -1 && uaString.indexOf('chrom') === -1;
 };
 
+var isChromeBrowser = function () {
+    return navigator.userAgent.indexOf('Chrom') >= 0 && typeof window.chrome === 'object' && typeof window.EventSource === 'function';
+};
+
 var expect = require('expect.js'),
-	isSafari = isSafariBrowser();
+	isSafari = isSafariBrowser(),
+    isChrome = isChromeBrowser();
 
 /** @type {ReportData} */
 var rdSingleton = require('../lib/reportData').provider('test.reportData');
@@ -81,7 +86,7 @@ describe('reportData', function() {
 
 	// sendBeacon
     describe('sendBeacon:enabled ', function () {
-        if (!(typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function'))) {
+        if (!(!isChrome && typeof window.navigator === 'object' && (typeof window.navigator.sendBeacon === 'function'))) {
             return;
         }
 
