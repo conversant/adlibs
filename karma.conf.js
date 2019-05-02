@@ -40,8 +40,8 @@ module.exports = function(config) {
 	
 		// Number of browsers to run in parallel [set to 1 to avoid timing-based tests from failing]
 		concurrency: 1,
-		
-        browsers: ['Firefox', 'Chrome', 'Safari']
+		// Using SafariNative launcher to due changes in Mojave: https://github.com/karma-runner/karma-safari-launcher/issues/29
+		browsers: ['Firefox', 'Chrome', 'SafariNative']
 
     });
 

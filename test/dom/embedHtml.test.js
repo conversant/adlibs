@@ -160,7 +160,7 @@ describe('embedHtml', function () {
 		done();
 	});
 	
-		it('should be able to add an external script to the page dynamically after the page has loaded (and execute it)', function (done) {
+	it('should be able to add an external script to the page dynamically after the page has loaded (and execute it)', function (done) {
 		var htmlString = '<script src="/base/public/set-global-var.js"></script>';
 		embedHtml(htmlString);
 		
@@ -230,5 +230,102 @@ describe('embedHtml', function () {
 			done();
 		}, 300);
 	});
-
+    
+    it('should be able to add a script to the page dynamically while the page is open (and execute it) using reference to the window', function (done) {
+        var nestedIframe = document.createElement('iframe');
+        nestedIframe.id = 'nestedIframe';
+        document.body.appendChild(nestedIframe);
+        
+        var iframeWindow = nestedIframe.contentWindow;
+        iframeWindow.document.open();
+        var htmlString = '<div></div><script>window.testVar6 = true;</script></div>';
+        
+        embedHtml(htmlString, undefined, function() {
+            expect(iframeWindow.testVar6).to.be(true);
+            expect(iframeWindow.document.getElementsByTagName('ins').length).to.be(0);
+            
+            expect(window.testVar6).to.be(undefined);
+            
+            done();
+        }, iframeWindow);
+        delete window.nestedIframe;
+    });
+    
+    it('should be able to add a script to the page dynamically after the page has loaded (and execute it) using reference to the window', function (done) {
+        var nestedIframe = document.createElement('iframe');
+        nestedIframe.id = 'nestedIframe';
+        document.body.appendChild(nestedIframe);
+    
+        var iframeWindow = nestedIframe.contentWindow;
+        var htmlString = '<div></div><script>window.testVar7 = true;</script></div>';
+        
+        embedHtml(htmlString, undefined, function () {
+            expect(window.testVar7).to.be(undefined);
+    
+            if (iframeWindow.document.readyState === 'complete' || iframeWindow.document.readyState === 'interactive') {
+                expect(iframeWindow.document.getElementsByTagName('ins').length).to.be.greaterThan(0);
+            } else {
+                expect(iframeWindow.document.getElementsByTagName('ins').length).to.be(0);
+			}
+        
+            expect(iframeWindow.testVar7).to.be(true);
+        
+            done();
+        }, iframeWindow);
+        delete window.nestedIframe;
+    });
+    it('should be able to add new lines when using doc.writeln', function (done) {
+        var htmlString = '<script id="testWriteln1">document.writeln("<pre>hello"); document.writeln("bye</pre>")</script>';
+        embedHtml(htmlString);
+        expect(document.body.innerText).to.contain('hello\nbye');
+        delete window.testWriteln1;
+        done();
+    });
+    it('should not add new lines when using doc.write', function (done) {
+    	var htmlString = '<script id="testWriteln2">document.write("helloAgain");document.write("byeAgain")</script>';
+        embedHtml(htmlString);
+        expect(document.body.innerText).to.contain('helloAgainbyeAgain');
+        delete window.testWriteln2;
+        done();
+    });
+    
+    it('should be able to add new lines when using doc.writeln with window reference', function (done) {
+        var nestedIframe = document.createElement('iframe');
+        nestedIframe.id = 'nestedIframe';
+        document.body.appendChild(nestedIframe);
+    
+        var iframeWindow = nestedIframe.contentWindow;
+        iframeWindow.open();
+        var htmlString = '<script id="testWriteln3">document.writeln("<pre>helloReference");document.writeln("byeReference</pre>")</script>';
+        embedHtml(htmlString, undefined, function () {
+            if (iframeWindow.document.readyState === 'complete' || iframeWindow.document.readyState === 'interactive') {
+                expect(document.body.innerText).to.contain('helloReference\nbyeReference');
+            } else {
+                expect(iframeWindow.document.body.innerText).to.contain('helloReference\nbyeReference');
+            }
+        
+            delete window.nestedIframe;
+            done();
+        }, iframeWindow);
+    });
+    it('should not add new lines when using doc.write with window reference', function (done) {
+        var nestedIframe = document.createElement('iframe');
+        nestedIframe.id = 'nestedIframe';
+        document.body.appendChild(nestedIframe);
+    
+        var iframeWindow = nestedIframe.contentWindow;
+        iframeWindow.open();
+        var htmlString = '<script id="testWriteln4">document.write("helloAgainReference");document.write("byeAgainReference")</script>';
+        embedHtml(htmlString, undefined, function () {
+            if (iframeWindow.document.readyState === 'complete' || iframeWindow.document.readyState === 'interactive') {
+                expect(document.body.innerText).to.contain('helloAgainReferencebyeAgainReference');
+            } else {
+                expect(iframeWindow.document.body.innerText).to.contain('helloAgainReferencebyeAgainReference');
+            }
+            
+            delete window.nestedIframe;
+            done();
+        }, iframeWindow);
+    });
+    
 });
