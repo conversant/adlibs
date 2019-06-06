@@ -18,9 +18,7 @@ module.exports = function(config) {
 
         webpack: {
 			devtool: 'inline-source-map',
-			module: {
-				postLoaders: []
-			}
+			module: {}
 		},
 
         webpackMiddleware: {
@@ -40,13 +38,13 @@ module.exports = function(config) {
 	
 		// Number of browsers to run in parallel [set to 1 to avoid timing-based tests from failing]
 		concurrency: 1,
-		// Using SafariNative launcher to due changes in Mojave: https://github.com/karma-runner/karma-safari-launcher/issues/29
-		browsers: ['Firefox', 'Chrome', 'SafariNative']
+		browsers: ['Firefox', 'Chrome']
 
     });
 
 	if (process.argv.indexOf('--with-coverage') > -1) {
-		config.webpack.module.postLoaders.push({
+		config.webpack.module.push({
+            enforce: 'post',
 			test: /\.js$/,
 			exclude: /((test|node_modules)\/)|(lib\/detect\/(browser.js|environment.js))/,
 			loader: 'istanbul-instrumenter'
