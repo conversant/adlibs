@@ -93,9 +93,9 @@ describe('reportData', function() {
         describe('reportFunction:set_baseUrl ', function (){
             describe('set_baseUrl.sendBeaconParm = true ', function () {
             it('url:baseUrl', function () {
-                var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                var beacon = sinon.stub(window.navigator, 'sendBeacon').callsFake(function (url, data) {
                 });
-                var imageStub = sinon.stub(window, 'Image', function () {
+                var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                     this.src = '';
                 });
 
@@ -121,9 +121,9 @@ describe('reportData', function() {
             });
 
             it('url:singleParamUrl', function () {
-                var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                var beacon = sinon.stub(window.navigator, 'sendBeacon').callsFake(function (url, data) {
                 });
-                var imageStub = sinon.stub(window, 'Image', function () {
+                var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                     this.src = '';
                 });
 
@@ -153,9 +153,9 @@ describe('reportData', function() {
                     return;
                 }
 
-                var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                var beacon = sinon.stub(window.navigator, 'sendBeacon').callsFake(function (url, data) {
                 });
-                var imageStub = sinon.stub(window, 'Image', function () {
+                var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                     this.src = '';
                 });
 
@@ -182,9 +182,9 @@ describe('reportData', function() {
         });
             describe('set_baseUrl.sendBeaconParm = false ', function () {
                 it('url:baseUrl', function () {
-                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon').callsFake(function (url, data) {
                     });
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -210,9 +210,9 @@ describe('reportData', function() {
                 });
 
                 it('url:singleParamUrl', function () {
-                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon').callsFake(function (url, data) {
                     });
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -242,9 +242,9 @@ describe('reportData', function() {
                         return;
                     }
 
-                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon').callsFake(function (url, data) {
                     });
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -273,9 +273,9 @@ describe('reportData', function() {
 
         describe('reportFunction:log(with url) ', function () {
             it('url:baseUrl', function () {
-                var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                var beacon = sinon.stub(window.navigator, 'sendBeacon').callsFake(function (url, data) {
                 });
-                var imageStub = sinon.stub(window, 'Image', function () {
+                var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                     this.src = '';
                 });
 
@@ -297,9 +297,9 @@ describe('reportData', function() {
             });
 
             it('url:singleParamUrl', function () {
-                var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                var beacon = sinon.stub(window.navigator, 'sendBeacon').callsFake(function (url, data) {
                 });
-                var imageStub = sinon.stub(window, 'Image', function () {
+                var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                     this.src = '';
                 });
 
@@ -320,9 +320,9 @@ describe('reportData', function() {
             });
 
             it('url:twoParamUrl', function () {
-                var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                var beacon = sinon.stub(window.navigator, 'sendBeacon').callsFake(function (url, data) {
                 });
-                var imageStub = sinon.stub(window, 'Image', function () {
+                var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                     this.src = '';
                 });
 
@@ -346,9 +346,9 @@ describe('reportData', function() {
         describe('reportFunction:runQueue ', function () {
             describe('runQueue.sendBeaconParm = true ', function () {
                 it('url:baseUrl', function () {
-                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon').callsFake(function (url, data) {
                     });
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -374,9 +374,9 @@ describe('reportData', function() {
                 });
 
                 it('url:singleParamUrl', function () {
-                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon').callsFake(function (url, data) {
                     });
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -402,9 +402,9 @@ describe('reportData', function() {
                 });
 
                 it('url:twoParamUrl', function () {
-                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon').callsFake(function (url, data) {
                     });
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -432,9 +432,9 @@ describe('reportData', function() {
 
             describe('runQueue.sendBeaconParm = false ', function () {
                 it('url:baseUrl', function () {
-                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon').callsFake(function (url, data) {
                     });
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -460,9 +460,9 @@ describe('reportData', function() {
                 });
 
                 it('url:singleParamUrl', function () {
-                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon').callsFake(function (url, data) {
                     });
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -488,9 +488,9 @@ describe('reportData', function() {
                 });
 
                 it('url:twoParamUrl', function () {
-                    var beacon = sinon.stub(window.navigator, 'sendBeacon', function (url, data) {
+                    var beacon = sinon.stub(window.navigator, 'sendBeacon').callsFake(function (url, data) {
                     });
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -528,7 +528,7 @@ describe('reportData', function() {
                     window.navigator.sendBeacon = undefined;
                 }
 
-                var imageStub = sinon.stub(window, 'Image', function () {
+                var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                     this.src = '';
                 });
 
@@ -557,7 +557,7 @@ describe('reportData', function() {
                     window.navigator.sendBeacon = undefined;
                 }
 
-                var imageStub = sinon.stub(window, 'Image', function () {
+                var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                     this.src = '';
                 });
 
@@ -586,7 +586,7 @@ describe('reportData', function() {
                     window.navigator.sendBeacon = undefined;
                 }
 
-                var imageStub = sinon.stub(window, 'Image', function () {
+                var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                     this.src = '';
                 });
 
@@ -618,7 +618,7 @@ describe('reportData', function() {
                         window.navigator.sendBeacon = undefined;
                     }
 
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
                     this.server = sinon.fakeServer.create();
@@ -653,7 +653,7 @@ describe('reportData', function() {
                         window.navigator.sendBeacon = undefined;
                     }
 
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
                     this.server = sinon.fakeServer.create();
@@ -687,7 +687,7 @@ describe('reportData', function() {
                         window.navigator.sendBeacon = undefined;
                     }
 
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
                     this.server = sinon.fakeServer.create();
@@ -722,7 +722,7 @@ describe('reportData', function() {
                         window.navigator.sendBeacon = undefined;
                     }
 
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -747,7 +747,7 @@ describe('reportData', function() {
                         window.navigator.sendBeacon = undefined;
                     }
 
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -772,7 +772,7 @@ describe('reportData', function() {
                         window.navigator.sendBeacon = undefined;
                     }
 
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -801,7 +801,7 @@ describe('reportData', function() {
                         window.navigator.sendBeacon = undefined;
                     }
 
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -830,7 +830,7 @@ describe('reportData', function() {
                         window.navigator.sendBeacon = undefined;
                     }
 
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -859,7 +859,7 @@ describe('reportData', function() {
                         window.navigator.sendBeacon = undefined;
                     }
 
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -890,7 +890,7 @@ describe('reportData', function() {
                         window.navigator.sendBeacon = undefined;
                     }
 
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -919,7 +919,7 @@ describe('reportData', function() {
                         window.navigator.sendBeacon = undefined;
                     }
 
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
@@ -948,7 +948,7 @@ describe('reportData', function() {
                         window.navigator.sendBeacon = undefined;
                     }
 
-                    var imageStub = sinon.stub(window, 'Image', function () {
+                    var imageStub = sinon.stub(window, 'Image').callsFake(function () {
                         this.src = '';
                     });
 
