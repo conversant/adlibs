@@ -22,7 +22,8 @@ var isMobile = function () {
 
 describe('embedHtml', function () {
 	this.timeout(10000);
-	
+	const timeout = 1000;
+
 	it('should be able to add three elements in series', function (done) {
 		var custom0 = '<div id="custom0"></div>';
 		embedHtml(custom0);
@@ -100,16 +101,17 @@ describe('embedHtml', function () {
 		}
 		
 		// set up mock mraid
-		window.mraid = document.createElement('div');
+		window.mraid = {};
 		window.mraid.getState = function () {
 			return 'loading';
 		};
+		window.mraid.dispatchEvent = function (event) {
+			custom1 = '<div id="custom1"></div>';
+			embedHtml(custom1);
+		};
 		setTimeout(function () {
 			window.mraid.dispatchEvent(readyEvent);
-		}, 2000);
-		
-		custom1 = '<div id="custom1"></div>';
-		embedHtml(custom1);
+		}, mraidTime);
 		
 		setTimeout(function () {
 			expect(document.getElementById('custom1')).to.not.equal(null);
@@ -168,7 +170,7 @@ describe('embedHtml', function () {
 			expect(window.embedHtml).to.be(true);
 			delete window.embedHtml; //jshint ignore: line
 			done();
-		}, 300);
+		}, timeout);
 	});
 	
 	it('should be able to add a deeply nested external script to the page dynamically after the page has loaded (and execute it)', function (done) {
@@ -179,7 +181,7 @@ describe('embedHtml', function () {
 			expect(window.embedHtml).to.be(true);
 			delete window.embedHtml; //jshint ignore: line
 			done();
-		}, 300);
+		}, timeout);
 	});
 	
 	it('should be able to handle a deeply-nested script that document.writes another external script after the page has loaded', function (done) {
@@ -193,7 +195,7 @@ describe('embedHtml', function () {
 			expect(window.embedHtml).to.be(true);
 			delete window.embedHtml; //jshint ignore: line
 			done();
-		}, 300);
+		}, timeout);
 	});
 	
 	it('Should append an HTML string to the default parent element', function() {
@@ -211,7 +213,7 @@ describe('embedHtml', function () {
 			expect(script.getAttribute('data-foo')).to.be('bar');
 			expect(window.APPEND_HTML_TEST).to.equal(true);
 			done();
-		}, 300);
+		}, timeout);
 	});
 	
 	//This test has to be run independently because it performs document open/write/close
@@ -228,7 +230,7 @@ describe('embedHtml', function () {
 			expect(window.embedHtml).to.be(true);
 			delete window.embedHtml; //jshint ignore: line
 			done();
-		}, 300);
+		}, timeout);
 	});
     
     it('should be able to add a script to the page dynamically while the page is open (and execute it) using reference to the window', function (done) {

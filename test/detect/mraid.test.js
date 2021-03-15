@@ -2,20 +2,21 @@
 
 'use strict';
 
-var detectMraid = require('../../lib/detect/mraid'),
+const detectMraid = require('../../lib/detect/mraid'),
 	defaults = require('../../lib/defaults'),
 	expect = require('expect.js');
 
 describe('Mraid test', function () {
 
-	var mockWindow;
+	let mockWindow;
 
 	beforeEach(function () {
-		mockWindow = defaults({}, window);
+		mockWindow = typeof(window) !== 'undefined' ? window : {};
+        delete mockWindow.mraid;
 	});
 
 	it('Should return -1 for version as mraid is not present on the window', function () {
-		expect(detectMraid.getVersion(mockWindow)).to.equal('-1');
+		expect(detectMraid.getVersion({})).to.equal('-1');
 	});
 
 	it('Should return 2.0.0 for version as mraid is on the window', function () {
@@ -26,25 +27,28 @@ describe('Mraid test', function () {
 	});
 
 	it('Should execute ready immediately. Mraid is not present', function () {
-		var readyResult = 'waiting';
+		let readyResult = 'waiting';
 		detectMraid.ready(function () {
 			readyResult = 'ready';
 		}, mockWindow);
 
-		expect(readyResult).to.equal('ready');
+        expect(readyResult).to.equal('ready');
 	});
 
-	it('Should execute immediately. Mraid will not be present on default window object', function () {
-		var readyResult = 'waiting';
+	it('Should execute immediately. Mraid will not be present on default window object', function (done) {
+		let readyResult = 'waiting';
 		detectMraid.ready(function () {
 			readyResult = 'ready';
-		});
+            done();
+		}, mockWindow);
 
-		expect(readyResult).to.equal('ready');
+        expect(readyResult).to.equal('ready');
+    
 	});
 
+
 	it('Should listen for a ready event, as mraid is present', function () {
-		var readyResult = 'waiting';
+		let readyResult = 'waiting';
 		mockWindow.mraid = {};
 		detectMraid.ready(function () {
 			readyResult = 'ready';
@@ -54,9 +58,8 @@ describe('Mraid test', function () {
 	});
 
 	it('Should return a single value telling us mraid is not present', function () {
-		var diagnosticResult = 'MRAID is type: boolean';
-
-		var diagnostic = detectMraid.diagnostic(mockWindow);
+		const diagnosticResult = 'MRAID is type: boolean';
+		const diagnostic = detectMraid.diagnostic(mockWindow);
 
 		expect(diagnostic.version).to.equal(null);
 		expect(diagnostic.issues.length).to.equal(1);
@@ -80,7 +83,7 @@ describe('Mraid test', function () {
             useCustomClose: function () {}
         };
 
-	    var diagnostic = detectMraid.diagnostic(mockWindow);
+	    const diagnostic = detectMraid.diagnostic(mockWindow);
 
 	    expect(diagnostic.version).to.equal('1.0');
         expect(diagnostic.issues.length).to.equal(0);
@@ -103,7 +106,7 @@ describe('Mraid test', function () {
             useCustomClose: function () {}
         };
 
-        var diagnostic = detectMraid.diagnostic(mockWindow);
+        const diagnostic = detectMraid.diagnostic(mockWindow);
 
         expect(diagnostic.version).to.equal('2.0');
         expect(diagnostic.issues.length).to.equal(10);
@@ -136,18 +139,18 @@ describe('Mraid test', function () {
             supports: function () {}
         };
 
-        var diagnostic = detectMraid.diagnostic(mockWindow);
+        const diagnostic = detectMraid.diagnostic(mockWindow);
 
         expect(diagnostic.version).to.equal('2.0');
         expect(diagnostic.issues.length).to.equal(0);
 	});
 
 	it('Should report mraid missing because mraid is not an object as defined by the spec', function () {
-        var diagnosticResult = 'MRAID is type: function';
+        const diagnosticResult = 'MRAID is type: function';
 
 	    mockWindow.mraid = function () {};
 
-	    var diagnostic = detectMraid.diagnostic(mockWindow);
+	    const diagnostic = detectMraid.diagnostic(mockWindow);
 
 	    expect(diagnostic.version).to.equal(null);
         expect(diagnostic.issues.length).to.equal(1);
@@ -155,11 +158,11 @@ describe('Mraid test', function () {
     });
 
 	it('Should report a bad implementation where MRAID is a number', function () {
-        var diagnosticResult = 'MRAID is type: number';
+        const diagnosticResult = 'MRAID is type: number';
 
         mockWindow.mraid = 32;
 
-        var diagnostic = detectMraid.diagnostic(mockWindow);
+        const diagnostic = detectMraid.diagnostic(mockWindow);
 
         expect(diagnostic.version).to.equal(null);
         expect(diagnostic.issues.length).to.equal(1);
@@ -170,7 +173,7 @@ describe('Mraid test', function () {
 
 	    mockWindow.mraid = {};
 
-	    var diagnostic = detectMraid.diagnostic(mockWindow);
+	    const diagnostic = detectMraid.diagnostic(mockWindow);
 
 	    expect(diagnostic.version).to.equal('-1');
 	    expect(diagnostic.issues.length).to.equal(12);

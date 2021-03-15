@@ -1,11 +1,10 @@
 # AdLibs
 
-[![Build Status](https://travis-ci.org/conversant/adlibs.svg?branch=master)](https://travis-ci.org/conversant/adlibs) [![Coverage Status](https://coveralls.io/repos/github/conversant/adlibs/badge.svg)](https://coveralls.io/github/conversant/adlibs) [![Code Climate](https://codeclimate.com/github/conversant/ad-libs.js/badges/gpa.svg)](https://codeclimate.com/github/conversant/ad-libs.js) [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/conversant/ad-libs.js.svg)](http://isitmaintained.com/project/conversant/ad-libs.js "Average time to resolve an issue") [![Percentage of issues still open](http://isitmaintained.com/badge/open/conversant/ad-libs.js.svg)](http://isitmaintained.com/project/conversant/ad-libs.js "Percentage of issues still open") [![Dependency Status](https://david-dm.org/conversant/ad-libs.js.svg?style=flat-square)](https://david-dm.org/conversant/ad-libs.js)
-
+[![Build Status](https://travis-ci.org/conversant/ad-libs.js.svg?branch=master)](https://travis-ci.org/conversant/ad-libs.js) [![Coverage Status](https://coveralls.io/repos/github/conversant/ad-libs.js/badge.svg)](https://coveralls.io/github/conversant/ad-libs.js) [![Code Climate](https://codeclimate.com/github/conversant/ad-libs.js/badges/gpa.svg)](https://codeclimate.com/github/conversant/ad-libs.js) [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/conversant/ad-libs.js.svg)](http://isitmaintained.com/project/conversant/ad-libs.js "Average time to resolve an issue") [![Percentage of issues still open](http://isitmaintained.com/badge/open/conversant/ad-libs.js.svg)](http://isitmaintained.com/project/conversant/ad-libs.js "Percentage of issues still open") [![Dependency Status](https://david-dm.org/conversant/ad-libs.js.svg?style=flat-square)](https://david-dm.org/conversant/ad-libs.js)
 
 | ________________ | The gist of it... |
 |:---|:---|
-| ![adlibs](https://github.com/conversant/adlibs/raw/master/doc/Ad-libs-js.png "Adlibs") | A collection of cross-browser methods for use with front-end development. adlibs is a tool that supports various browser and OS combinations dating back to IE9. It uses feature detection to determine the user's environment and outputs details pertaining to that OS and browser. adlibs also allows developers to safely execute front end methods such as domReady and XMLHttpRequests across all browsers. |
+| ![adlibs](https://github.com/conversant/ad-libs.js/raw/master/doc/Ad-libs-js.png "Adlibs") | A collection of cross-browser methods for use with front-end development. adlibs is a tool that supports various browser and OS combinations dating back to IE9. It uses feature detection to determine the user's environment and outputs details pertaining to that OS and browser. adlibs also allows developers to safely execute front end methods such as domReady and XMLHttpRequests across all browsers. |
 
 ## Installation
 ```bash
@@ -61,9 +60,6 @@ console.log(browser.os.name)
 <dt><a href="#module_Environment">Environment</a></dt>
 <dd><p>Environment Detection - Gets Data Pertaining to User&#39;s Environment</p>
 </dd>
-<dt><a href="#module_embedHtml">embedHtml</a></dt>
-<dd><p>Safely handles embedding of arbitrary HTML strings into the DOM (including embedding scripts that call document.write when the document has already been closed.)</p>
-</dd>
 <dt><a href="#module_Mraid">Mraid</a></dt>
 <dd><p>Mraid Detection</p>
 </dd>
@@ -73,8 +69,9 @@ console.log(browser.os.name)
 <dt><a href="#module_addEventListener">addEventListener</a> ⇒ <code>function</code></dt>
 <dd><p>Add an event listener to the element, which will execute the given callback.</p>
 </dd>
-<dt><a href="#module_appendHtml">appendHtml [deprecated]</a> ⇒ <code>Array</code></dt>
-<dd><p>Appends all elements in the html string to the parent element. Correctly handles scripts with src attributes and inline javascript and ensures that the script will execute.  NOTE: Only Element nodes in the html string will be appended. All other node types will be ignored (i.e. Text, Comment).</p>
+<dt><del><a href="#module_appendHtml">appendHtml</a> ⇒ <code>Array</code></del></dt>
+<dd><p>Appends all elements in the html string to the parent element. Correctly handles scripts with src attributes and inline javascript and ensures that the script will execute.
+NOTE: Only Element nodes in the html string will be appended. All other node types will be ignored (i.e. Text, Comment).</p>
 </dd>
 <dt><a href="#module_domReady">domReady</a></dt>
 <dd><p>Executes the provided callback when the DOM is ready. Allows code to act on the DOM before the window &quot;load&quot; event fires.</p>
@@ -85,7 +82,9 @@ console.log(browser.os.name)
 <dd><p>Creates a new DOM Event and triggers it on the provided element.</p>
 </dd>
 <dt><a href="#module_evaluator">evaluator</a> ⇒ <code>Object</code></dt>
-<dd><p>Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly. Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won&#39;t function for this module. For more info on eval visit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval</a></p>
+<dd><p>Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly.
+    Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won&#39;t function for this module.
+    For more info on eval visit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval</a></p>
 </dd>
 <dt><a href="#module_jsonp">jsonp</a> ⇒ <code>Object</code></dt>
 <dd><p>Perform a cross domain request via JSONP. Provides the same interface as xhr.js. The request is made by appending a &#39;callback&#39; parameter to the request url, and it is expected that the server will respond with the content wrapped in a function call, using the provided value of the callback parameter. If callbackFn isn&#39;t defined, a unique name will be generated.</p>
@@ -114,6 +113,49 @@ console.log(browser.os.name)
 </dd>
 </dl>
 
+## Functions
+
+<dl>
+<dt><a href="#insertAfter">insertAfter(elemToInsert, targetElem)</a></dt>
+<dd><p>Utility Function to Insert &#39;elemToInsert&#39; after &#39;targetElem&#39; in the DOM</p>
+</dd>
+<dt><a href="#isAScript">isAScript(inputElem)</a></dt>
+<dd><p>Returns true if inputElem is a script element; false otherwise</p>
+</dd>
+<dt><a href="#addToDom">addToDom(elem, target)</a></dt>
+<dd><p>Adds &#39;elem&#39; to the DOM with target/parent element &#39;target&#39;
+Scripts are treated differently than other elements because they have to be to work correctly</p>
+</dd>
+<dt><a href="#customCloneScript">customCloneScript(inputScriptElem, win)</a> ⇒ <code>Element</code></dt>
+<dd><p>Clones a script element in a way that is compatible with dynamic DOM-ready loading
+Unfortunately, node.cloneNode() will not work in place of this function in this case
+nor can it be used inside this function</p>
+</dd>
+<dt><a href="#cloneElem">cloneElem(elemToClone, win)</a> ⇒ <code>Node</code> | <code>Element</code></dt>
+<dd><p>Creates a deep clone of the element passed in (with special logic for scripts)
+Scripts have to be handled differently because the script code will not execute unless they are processed this way</p>
+</dd>
+<dt><a href="#recursiveCloneAndAddToDom">recursiveCloneAndAddToDom(inputElem, targetElem, win)</a> ⇒ <code>Node</code> | <code>Element</code></dt>
+<dd><p>Recursively iterates through &#39;inputElem&#39; child elements, creates clones of them, and attaches them to &#39;targetElem&#39;
+Why? Because script elements (including nested ones) need to be cloned a specific way in order for the code they represent to be executed.</p>
+</dd>
+<dt><a href="#insertInlineHtmlString">insertInlineHtmlString(htmlString, [parentElem], win)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Adds &#39;htmlString&#39; as a child to element &#39;parentElem&#39; in a way that&#39;s safe to use after the document has been closed</p>
+</dd>
+<dt><a href="#createInsContainer">createInsContainer(win)</a> ⇒ <code>HTMLModElement</code></dt>
+<dd><p>Returns an &#39;ins&#39; element with a unique ID and class &#39;adlibs-ins&#39;</p>
+</dd>
+<dt><a href="#docWriteHtmlString">docWriteHtmlString(htmlString, win)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Uses document.writeln to add an HTML string to the page</p>
+</dd>
+<dt><a href="#isNativeFunction">isNativeFunction(value)</a> ⇒ <code>any</code></dt>
+<dd><p>Returns true if a function is the native implementation; false otherwise</p>
+</dd>
+<dt><a href="#embedHtml">embedHtml(htmlString, [parentElem], [callback], [win])</a></dt>
+<dd><p>If the doc readyState is complete or interactive, use custom methods to safely write &#39;htmlString&#39; to the page; otherwise, use native document.write</p>
+</dd>
+</dl>
+
 <a name="module_canHas"></a>
 
 ## canHas
@@ -131,12 +173,12 @@ console.log(browser.os.name)
 ### canHas.can(obj, propertyName) ⇒ <code>Boolean</code>
 Can this object use this property?
 
-**Kind**: static method of <code>[canHas](#module_canHas)</code>  
+**Kind**: static method of [<code>canHas</code>](#module_canHas)  
 
 | Param |
 | --- |
-| obj |
-| propertyName |
+| obj | 
+| propertyName | 
 
 **Example**  
 ```js
@@ -147,7 +189,7 @@ var can = require('adlibs/lib/canHas').can;
 ### canHas.has(globalObjectName, [scope]) ⇒ <code>\*</code>
 Does this window have this object in it?
 
-**Kind**: static method of <code>[canHas](#module_canHas)</code>  
+**Kind**: static method of [<code>canHas</code>](#module_canHas)  
 
 | Param | Description |
 | --- | --- |
@@ -163,19 +205,19 @@ var has = require('adlibs/lib/canHas').has;
 ### canHas.own(obj, propertyName) ⇒ <code>Boolean</code>
 Check to see if this object owns the method as opposed to just inheriting it from another object.
 
-**Kind**: static method of <code>[canHas](#module_canHas)</code>  
+**Kind**: static method of [<code>canHas</code>](#module_canHas)  
 
 | Param |
 | --- |
-| obj |
-| propertyName |
+| obj | 
+| propertyName | 
 
 <a name="module_canHas.run"></a>
 
 ### canHas.run(obj, [methodName]) ⇒ <code>function</code>
 Return a runnable method by default.
 
-**Kind**: static method of <code>[canHas](#module_canHas)</code>  
+**Kind**: static method of [<code>canHas</code>](#module_canHas)  
 
 | Param | Description |
 | --- | --- |
@@ -187,23 +229,23 @@ Return a runnable method by default.
 ### canHas.forIn(obj, callback)
 For each in, shorthanded because manually writing hasOwnProperty each and every time is not a good use of time.
 
-**Kind**: static method of <code>[canHas](#module_canHas)</code>  
+**Kind**: static method of [<code>canHas</code>](#module_canHas)  
 
 | Param |
 | --- |
-| obj |
-| callback |
+| obj | 
+| callback | 
 
 <a name="module_canHas.keys"></a>
 
 ### canHas.keys(obj) ⇒ <code>\*</code>
 A substitute for Object.keys for when browsers don't attempt to convert non-objects to arrays
 
-**Kind**: static method of <code>[canHas](#module_canHas)</code>  
+**Kind**: static method of [<code>canHas</code>](#module_canHas)  
 
 | Param |
 | --- |
-| obj |
+| obj | 
 
 <a name="module_comparableBits"></a>
 
@@ -222,7 +264,7 @@ This is due to Javascript using double-precision floating-point format numbers. 
 ### comparableBits.factory ⇒ <code>ComparableBits</code>
 Create a new instance of the ComparableBits module.
 
-**Kind**: static property of <code>[comparableBits](#module_comparableBits)</code>  
+**Kind**: static property of [<code>comparableBits</code>](#module_comparableBits)  
 **Example**  
 ```js
 var bits = require('adlibs/lib/comparableBits').factory();
@@ -235,18 +277,18 @@ bits.compare(someAction, 0x1, callback) // -> executes callback
 ### comparableBits.provider ⇒ <code>ComparableBits</code>
 Tie into an existing instance of the ComparableBits module.
 
-**Kind**: static property of <code>[comparableBits](#module_comparableBits)</code>  
+**Kind**: static property of [<code>comparableBits</code>](#module_comparableBits)  
 
 | Param |
 | --- |
-| packageName |
+| packageName | 
 
 <a name="module_comparableBits.make"></a>
 
 ### comparableBits.make(bit, [data]) ⇒ <code>Action</code>
 Creates the action object with it's attributed bitmask flag
 
-**Kind**: static method of <code>[comparableBits](#module_comparableBits)</code>  
+**Kind**: static method of [<code>comparableBits</code>](#module_comparableBits)  
 **Returns**: <code>Action</code> - Returns the created Action object  
 
 | Param | Type | Description |
@@ -263,7 +305,7 @@ var make = require('adlibs/lib/comparableBits').make;
 ### comparableBits.compare(action, bitSig, [callback]) ⇒ <code>Boolean</code>
 Encapsulates a bitmask service which takes a bitmask and compares it to the attributed action's flag
 
-**Kind**: static method of <code>[comparableBits](#module_comparableBits)</code>  
+**Kind**: static method of [<code>comparableBits</code>](#module_comparableBits)  
 **Returns**: <code>Boolean</code> - Returns true if the action's flags do match either of the provided bitmasks  
 
 | Param | Type | Description |
@@ -320,7 +362,7 @@ var browser = require("adlibs/lib/detect/browser")
         * [.mathMLSupport(d)](#module_Browser.mathMLSupport) ⇒ <code>Boolean</code>
         * [.isMobile([win])](#module_Browser.isMobile) ⇒ <code>Boolean</code>
         * [.getVersion(uaVersion, minVersion, [maxVersion])](#module_Browser.getVersion) ⇒ <code>Number</code>
-        * [.looksLike(regex, ua)](#module_Browser.looksLike) ⇒ <code>\*</code> &#124; <code>Boolean</code>
+        * [.looksLike(regex, ua)](#module_Browser.looksLike) ⇒ <code>\*</code> \| <code>Boolean</code>
         * [.parseIntIfMatch(ua, regex, [radix])](#module_Browser.parseIntIfMatch) ⇒ <code>Number</code>
         * [.parseFloatIfMatch(ua, regex)](#module_Browser.parseFloatIfMatch) ⇒
         * [.getAndroidVersion(win, uaVersion)](#module_Browser.getAndroidVersion) ⇒ <code>Number</code>
@@ -343,51 +385,51 @@ var browser = require("adlibs/lib/detect/browser")
 ### browser.mathMLSupport(d) ⇒ <code>Boolean</code>
 Check for MathML support in browsers to help detect certain browser version numbers where this is the only difference.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 **Returns**: <code>Boolean</code> - returns true if browser has mathml support  
 
 | Param | Type |
 | --- | --- |
-| d | <code>Document</code> |
+| d | <code>Document</code> | 
 
 <a name="module_Browser.isMobile"></a>
 
 ### browser.isMobile([win]) ⇒ <code>Boolean</code>
 Performs a simple test to see if we're on mobile or not.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 **Returns**: <code>Boolean</code> - returns true if mobile  
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> |
+| [win] | <code>Window</code> | 
 
 <a name="module_Browser.getVersion"></a>
 
 ### browser.getVersion(uaVersion, minVersion, [maxVersion]) ⇒ <code>Number</code>
 Uses the min and max versions of a browser to determine its version.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 **Returns**: <code>Number</code> - returns version number  
 
 | Param | Type |
 | --- | --- |
-| uaVersion | <code>Number</code> |
-| minVersion | <code>Number</code> |
-| [maxVersion] | <code>Number</code> |
+| uaVersion | <code>Number</code> | 
+| minVersion | <code>Number</code> | 
+| [maxVersion] | <code>Number</code> | 
 
 <a name="module_Browser.looksLike"></a>
 
-### browser.looksLike(regex, ua) ⇒ <code>\*</code> &#124; <code>Boolean</code>
+### browser.looksLike(regex, ua) ⇒ <code>\*</code> \| <code>Boolean</code>
 Searches for a match between the regex and specified string.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
-**Returns**: <code>\*</code> &#124; <code>Boolean</code> - returns true if match found  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
+**Returns**: <code>\*</code> \| <code>Boolean</code> - returns true if match found  
 
 | Param | Type |
 | --- | --- |
-| regex | <code>RegExp</code> |
-| ua | <code>String</code> |
+| regex | <code>RegExp</code> | 
+| ua | <code>String</code> | 
 
 <a name="module_Browser.parseIntIfMatch"></a>
 
@@ -395,14 +437,14 @@ Searches for a match between the regex and specified string.
 Parses the result of the RegExp match if it exists.
 Gracefully falls back to the default version if not.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 **Returns**: <code>Number</code> - returns the regex match or default version  
 
 | Param | Type |
 | --- | --- |
-| ua | <code>String</code> |
-| regex | <code>RegExp</code> |
-| [radix] | <code>Number</code> |
+| ua | <code>String</code> | 
+| regex | <code>RegExp</code> | 
+| [radix] | <code>Number</code> | 
 
 <a name="module_Browser.parseFloatIfMatch"></a>
 
@@ -410,155 +452,155 @@ Gracefully falls back to the default version if not.
 Parses the floating point value of the RegExp match if found.
 Gracefully falls back to the default if not.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 **Returns**: returns the regex match or the default version  
 
 | Param | Type |
 | --- | --- |
-| ua | <code>String</code> |
-| regex | <code>RegExp</code> |
+| ua | <code>String</code> | 
+| regex | <code>RegExp</code> | 
 
 <a name="module_Browser.getAndroidVersion"></a>
 
 ### browser.getAndroidVersion(win, uaVersion) ⇒ <code>Number</code>
 Determines the version of Android being used.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 **Returns**: <code>Number</code> - returns the Android version  
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> |
-| uaVersion | <code>Number</code> |
+| win | <code>Window</code> | 
+| uaVersion | <code>Number</code> | 
 
 <a name="module_Browser.getChromiumVersion"></a>
 
 ### browser.getChromiumVersion(win, uaVersion) ⇒ <code>Number</code>
 Determines the version of Chrome being used.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 **Returns**: <code>Number</code> - returns the Chrome version  
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> |
-| uaVersion | <code>Number</code> |
+| win | <code>Window</code> | 
+| uaVersion | <code>Number</code> | 
 
 <a name="module_Browser.getSafariVersion"></a>
 
 ### browser.getSafariVersion(win, uaVersion) ⇒ <code>Number</code>
 Returns the version of the Safari browser.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 **Returns**: <code>Number</code> - returns the version of Safari  
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> |
-| uaVersion | <code>Number</code> |
+| win | <code>Window</code> | 
+| uaVersion | <code>Number</code> | 
 
 <a name="module_Browser.getKindleVersion"></a>
 
 ### browser.getKindleVersion(win, uaVersion) ⇒ <code>Number</code>
 Creates a Browser instance with its attributed Kindle values.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> |
-| uaVersion | <code>Number</code> |
+| win | <code>Window</code> | 
+| uaVersion | <code>Number</code> | 
 
 <a name="module_Browser.getOtherOS"></a>
 
 ### browser.getOtherOS(win, ua) ⇒ <code>Browser</code>
 Creates a Browser instance with its attributed OS and device type values.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 **Returns**: <code>Browser</code> - returns the browser instance  
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> |
-| ua | <code>String</code> |
+| win | <code>Window</code> | 
+| ua | <code>String</code> | 
 
 <a name="module_Browser.getAppleOS"></a>
 
 ### browser.getAppleOS(win, ua) ⇒ <code>Browser</code>
 Creates a Browser instance with its attributed Apple values.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 **Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> |
-| ua | <code>String</code> |
+| win | <code>Window</code> | 
+| ua | <code>String</code> | 
 
 <a name="module_Browser.getMicrosoftOS"></a>
 
 ### browser.getMicrosoftOS(win, ua) ⇒ <code>Browser</code>
 Creates a Browser instance with its attributed Windows values.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 **Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> |
-| ua | <code>String</code> |
+| win | <code>Window</code> | 
+| ua | <code>String</code> | 
 
 <a name="module_Browser.getAndroidOS"></a>
 
 ### browser.getAndroidOS(win, ua) ⇒ <code>Browser</code>
 Creates a Browser instance with its attributed Android values.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 **Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> |
-| ua | <code>String</code> |
+| win | <code>Window</code> | 
+| ua | <code>String</code> | 
 
 <a name="module_Browser.getKindleOS"></a>
 
 ### browser.getKindleOS(win, ua) ⇒ <code>Browser</code>
 Returns the Kindle's OS.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 **Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> |
-| ua | <code>String</code> |
+| win | <code>Window</code> | 
+| ua | <code>String</code> | 
 
 <a name="module_Browser.getOsFromUa"></a>
 
 ### browser.getOsFromUa(win, ua) ⇒ <code>Browser</code>
 Reads the user agent string to determine OS.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 **Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
-| win | <code>Window</code> |
-| ua | <code>String</code> |
+| win | <code>Window</code> | 
+| ua | <code>String</code> | 
 
 <a name="module_Browser.detect"></a>
 
 ### browser.detect([win], [userAgent]) ⇒ <code>Browser</code>
 Returns an object containing browser details (e.g. name, os, version, etc.).
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 **Returns**: <code>Browser</code> - returns the Browser instance  
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> |
-| [userAgent] | <code>String</code> |
+| [win] | <code>Window</code> | 
+| [userAgent] | <code>String</code> | 
 
 **Example**  
 ```js
@@ -571,22 +613,22 @@ console.log(os); // outputs OS name (e.g. Windows, Mac, Android, etc.)
 ### browser.read(key) ⇒ <code>\*</code>
 Retrieve any results in the map by name because they're returned in an array without names.
 
-**Kind**: static method of <code>[Browser](#module_Browser)</code>  
+**Kind**: static method of [<code>Browser</code>](#module_Browser)  
 
 | Param | Type |
 | --- | --- |
-| key | <code>String</code> |
+| key | <code>String</code> | 
 
 <a name="module_Browser..save"></a>
 
-### browser~save(result) ⇒ <code>Number</code>
+### Browser~save(result) ⇒ <code>Number</code>
 Saves a property to the results array and returns its index.
 
-**Kind**: inner method of <code>[Browser](#module_Browser)</code>  
+**Kind**: inner method of [<code>Browser</code>](#module_Browser)  
 
 | Param | Type |
 | --- | --- |
-| result | <code>\*</code> |
+| result | <code>\*</code> | 
 
 <a name="module_Capabilities"></a>
 
@@ -602,7 +644,7 @@ var capabilities = require("adlibs/lib/detect/capabilities");
 ### capabilities.detect() ⇒ <code>Object</code>
 Detects browser's capabilities and returns an object.
 
-**Kind**: static method of <code>[Capabilities](#module_Capabilities)</code>  
+**Kind**: static method of [<code>Capabilities</code>](#module_Capabilities)  
 **Example**  
 ```js
 // Outputs whether the browser supports h264 video ( 1 if yes, else 0)
@@ -626,36 +668,12 @@ var environment = require("adlibs/lib/detect/environment");
     * [.getScreenSize()](#module_Environment.getScreenSize) ⇒ <code>Object</code>
     * [.getAdDocSize()](#module_Environment.getAdDocSize) ⇒ <code>Object</code>
 
-
-<a name="module_embedHtml"></a>
-
-## embedHtml
-If the doc readyState is complete or interactive, use custom methods to safely write 'htmlString' to the page; otherwise, use native document.write
-
-| Param | Type |
-| --- | --- |
-| htmlString | <code>String</code> |
-| [callback] | function |
-
-
-**Example**  
-```js
-var embedHtml = require('adlibs/lib/dom/embedHtml'),
-  htmlString = '<span>Hello World</span>',
-  callbackFunc = function(container) {
-    console.log(container.innerHTML);
-  };
-
-embedHtml(htmlString, callbackFunc);
-```
-
-
 <a name="module_Environment.detect"></a>
 
 ### environment.detect() ⇒ <code>Object</code>
 Detect environmental variables and return them wrapped within an object.
 
-**Kind**: static method of <code>[Environment](#module_Environment)</code>  
+**Kind**: static method of [<code>Environment</code>](#module_Environment)  
 **Returns**: <code>Object</code> - returns the environment object  
 **Example**  
 ```js
@@ -666,23 +684,23 @@ console.log(flash) // outputs the version of Flash
 <a name="module_Environment.getFlashVersion"></a>
 
 ### environment.getFlashVersion() ⇒ <code>Number</code>
-**Kind**: static method of <code>[Environment](#module_Environment)</code>  
+**Kind**: static method of [<code>Environment</code>](#module_Environment)  
 <a name="module_Environment.getFrameDepth"></a>
 
 ### environment.getFrameDepth() ⇒ <code>String</code>
-**Kind**: static method of <code>[Environment](#module_Environment)</code>  
+**Kind**: static method of [<code>Environment</code>](#module_Environment)  
 <a name="module_Environment.getAvailableScreenSize"></a>
 
 ### environment.getAvailableScreenSize() ⇒ <code>Object</code>
-**Kind**: static method of <code>[Environment](#module_Environment)</code>  
+**Kind**: static method of [<code>Environment</code>](#module_Environment)  
 <a name="module_Environment.getScreenSize"></a>
 
 ### environment.getScreenSize() ⇒ <code>Object</code>
-**Kind**: static method of <code>[Environment](#module_Environment)</code>  
+**Kind**: static method of [<code>Environment</code>](#module_Environment)  
 <a name="module_Environment.getAdDocSize"></a>
 
 ### environment.getAdDocSize() ⇒ <code>Object</code>
-**Kind**: static method of <code>[Environment](#module_Environment)</code>  
+**Kind**: static method of [<code>Environment</code>](#module_Environment)  
 <a name="module_Mraid"></a>
 
 ## Mraid
@@ -698,13 +716,14 @@ console.log(mraid.getVersion()) // outputs mraid version;
 * [Mraid](#module_Mraid)
     * [.ready(cb, [If])](#module_Mraid.ready)
     * [.getVersion([If])](#module_Mraid.getVersion) ⇒ <code>String</code>
+    * [.diagnostic(win)](#module_Mraid.diagnostic) ⇒ <code>Object</code>
 
 <a name="module_Mraid.ready"></a>
 
 ### mraid.ready(cb, [If])
 Executes cb when mraid is ready.
 
-**Kind**: static method of <code>[Mraid](#module_Mraid)</code>  
+**Kind**: static method of [<code>Mraid</code>](#module_Mraid)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -716,11 +735,20 @@ Executes cb when mraid is ready.
 ### mraid.getVersion([If]) ⇒ <code>String</code>
 Gets mraid version.
 
-**Kind**: static method of <code>[Mraid](#module_Mraid)</code>  
+**Kind**: static method of [<code>Mraid</code>](#module_Mraid)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | [If] | <code>Window</code> | not given, uses the current window. |
+
+<a name="module_Mraid.diagnostic"></a>
+
+### mraid.diagnostic(win) ⇒ <code>Object</code>
+**Kind**: static method of [<code>Mraid</code>](#module_Mraid)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| win | <code>Object</code> | Window Object |
 
 <a name="module_Safeframe"></a>
 
@@ -747,88 +775,88 @@ var safeframe = require("adlibs/lib/detect/safeframe");
 ### Safeframe.getVersion([win]) ⇒ <code>String</code>
 Get version of safeframe.
 
-**Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
+**Kind**: static method of [<code>Safeframe</code>](#module_Safeframe)  
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> |
+| [win] | <code>Window</code> | 
 
 <a name="module_Safeframe.getSpecVersion"></a>
 
 ### Safeframe.getSpecVersion([win]) ⇒ <code>String</code>
 Gets specVersion of safeframe.
 
-**Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
+**Kind**: static method of [<code>Safeframe</code>](#module_Safeframe)  
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> |
+| [win] | <code>Window</code> | 
 
 <a name="module_Safeframe.getInfo"></a>
 
 ### Safeframe.getInfo([win]) ⇒ <code>Array</code>
 Gets info of safeframe.
 
-**Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
+**Kind**: static method of [<code>Safeframe</code>](#module_Safeframe)  
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> |
+| [win] | <code>Window</code> | 
 
 <a name="module_Safeframe.getConf"></a>
 
 ### Safeframe.getConf([win]) ⇒ <code>Array</code>
 Gets config of safeframe host.
 
-**Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
+**Kind**: static method of [<code>Safeframe</code>](#module_Safeframe)  
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> |
+| [win] | <code>Window</code> | 
 
 <a name="module_Safeframe.getSupport"></a>
 
 ### Safeframe.getSupport([win]) ⇒ <code>Array</code>
 Returns array of supported fields for sf.ext.
 
-**Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
+**Kind**: static method of [<code>Safeframe</code>](#module_Safeframe)  
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> |
+| [win] | <code>Window</code> | 
 
 <a name="module_Safeframe.getInView"></a>
 
 ### Safeframe.getInView([win]) ⇒ <code>Number</code>
 Gets inview percentage of safeframe.
 
-**Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
+**Kind**: static method of [<code>Safeframe</code>](#module_Safeframe)  
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> |
+| [win] | <code>Window</code> | 
 
 <a name="module_Safeframe.getWinFocus"></a>
 
 ### Safeframe.getWinFocus([win]) ⇒ <code>Number</code>
 Returns if safeframe window has focus.
 
-**Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
+**Kind**: static method of [<code>Safeframe</code>](#module_Safeframe)  
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> |
+| [win] | <code>Window</code> | 
 
 <a name="module_Safeframe.getMetrics"></a>
 
 ### Safeframe.getMetrics([win]) ⇒ <code>Array</code>
 Returns safeframe metrics.
 
-**Kind**: static method of <code>[Safeframe](#module_Safeframe)</code>  
+**Kind**: static method of [<code>Safeframe</code>](#module_Safeframe)  
 
 | Param | Type |
 | --- | --- |
-| [win] | <code>Window</code> |
+| [win] | <code>Window</code> | 
 
 <a name="module_addEventListener"></a>
 
@@ -839,9 +867,9 @@ Add an event listener to the element, which will execute the given callback.
 
 | Param | Type |
 | --- | --- |
-| element | <code>Element</code> |
-| eventName | <code>String</code> |
-| callback | <code>function</code> |
+| element | <code>Element</code> | 
+| eventName | <code>String</code> | 
+| callback | <code>function</code> | 
 
 **Example**  
 ```js
@@ -852,15 +880,19 @@ addEventListener(el, 'onLoad', cb);
 ```
 <a name="module_appendHtml"></a>
 
-## appendHtml ⇒ <code>Array</code>
-Appends all elements in the html string to the parent element. Correctly handles scripts with src attributes and inline javascript and ensures that the script will execute.  NOTE: Only Element nodes in the html string will be appended. All other node types will be ignored (i.e. Text, Comment).
+## ~~appendHtml ⇒ <code>Array</code>~~
+***Deprecated***
+
+Appends all elements in the html string to the parent element. Correctly handles scripts with src attributes and inline javascript and ensures that the script will execute.
+NOTE: Only Element nodes in the html string will be appended. All other node types will be ignored (i.e. Text, Comment).
 
 **Returns**: <code>Array</code> - returns a list of any exceptions that occurred  
+**Note**: This module is deprecated but remains for backwards compatibility; please use 'embedHtml' instead  
 
 | Param | Type |
 | --- | --- |
-| parentEl | <code>Element</code> |
-| html | <code>String</code> |
+| parentEl | <code>Element</code> | 
+| html | <code>String</code> | 
 
 **Example**  
 ```js
@@ -894,7 +926,7 @@ domReady(cb, window);
 ## getExecutingScript
 <a name="module_getExecutingScript..getExecutingScript"></a>
 
-### getExecutingScript~getExecutingScript([validatorFunc], [testScript]) ⇒ <code>HTMLScriptElement</code> &#124; <code>null</code>
+### getExecutingScript~getExecutingScript([validatorFunc], [testScript]) ⇒ <code>HTMLScriptElement</code> \| <code>null</code>
 Returns the script element that loaded the currently executing javascript code.
 
 The validatorFunc function takes a script Element as a single argument, and should
@@ -904,7 +936,7 @@ scripts on the page where document.currentScript is not supported.
 When the executing script has been located, it will be marked with an attribute
 key/value pair represented at getExecutingScript.LOAD_ATTR and getExecutingScript.LOAD_STARTED.
 
-**Kind**: inner method of <code>[getExecutingScript](#module_getExecutingScript)</code>  
+**Kind**: inner method of [<code>getExecutingScript</code>](#module_getExecutingScript)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -919,18 +951,21 @@ Creates a new DOM Event and triggers it on the provided element.
 
 | Param | Type |
 | --- | --- |
-| element | <code>Element</code> |
-| eventName | <code>String</code> |
+| element | <code>Element</code> | 
+| eventName | <code>String</code> | 
 
 <a name="module_evaluator"></a>
 
 ## evaluator ⇒ <code>Object</code>
-Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly. Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won't function for this module. That's right - we have one letter vars in our source code. Ain't eval grand? For more info on eval visit: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
+Runs eval against the value passed to it. This function exists because eval prevents Uglify from minifying correctly.
+	Encapsulating eval in its own module prevents the above issue. Variables and properties are one letter vars because Uglify won't function for this module.
+	For more info on eval visit: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
 
+**Returns**: <code>Object</code> - evalResult  
 
 | Param | Type |
 | --- | --- |
-| v | <code>String</code> |
+| scriptString | <code>String</code> | 
 
 <a name="module_jsonp"></a>
 
@@ -959,7 +994,7 @@ Dynamically loads scripts in parallel, and executes a single callback after all 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| urls | <code>String</code> &#124; <code>Array</code> | A single url, or a list of urls of scripts to load. |
+| urls | <code>String</code> \| <code>Array</code> | A single url, or a list of urls of scripts to load. |
 | onLoaded | <code>function</code> | Callback is executed when all scripts have finished loading. |
 | onError | <code>function</code> | Callback is executed if one or more scripts fail to load, and passed 							  a single argument: the list of script urls that failed to load. |
 | [requestTimeout] | <code>Number</code> | When supplied, this will explicitly timeout the script request 							  and report back to onError, or, if onError is not supplied, to onLoaded. 							  IMPORTANT: This does not cancel the script load, just reports that it 							  has exceeded the timeout duration. |
@@ -977,7 +1012,7 @@ Dynamically loads scripts in parallel, and executes a single callback after all 
 ### measurePerformance.factory ⇒ <code>MeasurePerformance</code>
 Create a new instance of the performance module.
 
-**Kind**: static property of <code>[measurePerformance](#module_measurePerformance)</code>  
+**Kind**: static property of [<code>measurePerformance</code>](#module_measurePerformance)  
 **Example**  
 ```js
 var perf = require('adlibs/lib/measurePerformance').factory();
@@ -990,11 +1025,11 @@ console.log(perf.report()); // outputs report based on performance events such a
 ### measurePerformance.provider ⇒ <code>MeasurePerformance</code>
 Tie into an existing instance of the performance module.
 
-**Kind**: static property of <code>[measurePerformance](#module_measurePerformance)</code>  
+**Kind**: static property of [<code>measurePerformance</code>](#module_measurePerformance)  
 
 | Param |
 | --- |
-| packageName |
+| packageName | 
 
 <a name="module_parseConfig"></a>
 
@@ -1030,13 +1065,13 @@ A module to mark the timestamps for script performance
 ### perfMarker.factory ⇒ <code>PerfMarker</code>
 Creates a new instance of PerfMarker.
 
-**Kind**: static property of <code>[perfMarker](#module_perfMarker)</code>  
+**Kind**: static property of [<code>perfMarker</code>](#module_perfMarker)  
 <a name="module_perfMarker.provider"></a>
 
 ### perfMarker.provider ⇒ <code>PerfMarker</code>
 Ties into an existing instance of PerfMarker.
 
-**Kind**: static property of <code>[perfMarker](#module_perfMarker)</code>  
+**Kind**: static property of [<code>perfMarker</code>](#module_perfMarker)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1047,15 +1082,24 @@ Ties into an existing instance of PerfMarker.
 ## reportData
 
 * [reportData](#module_reportData)
-    * [.factory](#module_reportData.factory) ⇒ <code>ReportData</code>
-    * [.provider](#module_reportData.provider) ⇒ <code>ReportData</code>
+    * _static_
+        * [.factory](#module_reportData.factory) ⇒ <code>ReportData</code>
+        * [.provider](#module_reportData.provider) ⇒ <code>ReportData</code>
+    * _inner_
+        * [~xhrTrack(trackURL)](#module_reportData..xhrTrack) ⇒ <code>String</code>
+        * [~imgTrack(trackURL)](#module_reportData..imgTrack)
+        * [~isChrome()](#module_reportData..isChrome) ⇒ <code>boolean</code>
+        * [~isSafari()](#module_reportData..isSafari) ⇒ <code>boolean</code>
+        * [~objectToQueryString(params)](#module_reportData..objectToQueryString) ⇒ <code>String</code>
+        * [~isSendBeaconAvailable()](#module_reportData..isSendBeaconAvailable) ⇒ <code>Boolean</code>
+        * [~sendReport([url], [isUnloadEvent], [sendBeaconJsonString])](#module_reportData..sendReport) ⇒ <code>\*</code>
 
 <a name="module_reportData.factory"></a>
 
 ### reportData.factory ⇒ <code>ReportData</code>
 Create a new instance of the reportData module.
 
-**Kind**: static property of <code>[reportData](#module_reportData)</code>  
+**Kind**: static property of [<code>reportData</code>](#module_reportData)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1067,11 +1111,76 @@ Create a new instance of the reportData module.
 ### reportData.provider ⇒ <code>ReportData</code>
 Tie into an existing instance of the reportData module.
 
-**Kind**: static property of <code>[reportData](#module_reportData)</code>  
+**Kind**: static property of [<code>reportData</code>](#module_reportData)  
 
 | Param |
 | --- |
-| packageName |
+| packageName | 
+
+<a name="module_reportData..xhrTrack"></a>
+
+### reportData~xhrTrack(trackURL) ⇒ <code>String</code>
+Safari can't use tracking pixels on unload, but xhr is said to work. Caveat is it's a sync call so it hangs the browser a split second.
+
+**Kind**: inner method of [<code>reportData</code>](#module_reportData)  
+
+| Param | Type |
+| --- | --- |
+| trackURL | <code>String</code> | 
+
+<a name="module_reportData..imgTrack"></a>
+
+### reportData~imgTrack(trackURL)
+This method makes a call to a url but does not actually draw a pixel to a page in any way.
+The image will be cleaned up by the browser easily because it's not referenced again past this point.
+
+**Kind**: inner method of [<code>reportData</code>](#module_reportData)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| trackURL | <code>String</code> | returns {String} |
+
+<a name="module_reportData..isChrome"></a>
+
+### reportData~isChrome() ⇒ <code>boolean</code>
+Returns true if browser is Chrome; false otherwise
+
+**Kind**: inner method of [<code>reportData</code>](#module_reportData)  
+<a name="module_reportData..isSafari"></a>
+
+### reportData~isSafari() ⇒ <code>boolean</code>
+Returns true if browser is Safari; false otherwise
+
+**Kind**: inner method of [<code>reportData</code>](#module_reportData)  
+<a name="module_reportData..objectToQueryString"></a>
+
+### reportData~objectToQueryString(params) ⇒ <code>String</code>
+Iterate over an object literal's properties and convert those to a string to be appended to a url
+
+**Kind**: inner method of [<code>reportData</code>](#module_reportData)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| params | <code>Object</code> | key/value pairs to convert into a query string |
+
+<a name="module_reportData..isSendBeaconAvailable"></a>
+
+### reportData~isSendBeaconAvailable() ⇒ <code>Boolean</code>
+Utility function to determine if sendBeacon is natively supprted
+
+**Kind**: inner method of [<code>reportData</code>](#module_reportData)  
+<a name="module_reportData..sendReport"></a>
+
+### reportData~sendReport([url], [isUnloadEvent], [sendBeaconJsonString]) ⇒ <code>\*</code>
+Sends data utilizing sendBeacon if selected and available
+
+**Kind**: inner method of [<code>reportData</code>](#module_reportData)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [url] | <code>String</code> |  |
+| [isUnloadEvent] | <code>Boolean</code> |  |
+| [sendBeaconJsonString] | <code>String</code> | Json formated string of data to send |
 
 <a name="module_format"></a>
 
@@ -1091,7 +1200,7 @@ Deconstructs a URL into its components. It also parses the search component (the
 
 | Param | Type |
 | --- | --- |
-| url | <code>String</code> |
+| url | <code>String</code> | 
 
 **Example**  
 ```js
@@ -1121,12 +1230,12 @@ var xhr = require('adlibs/lib/xhr');
 ### xhr.supportsCORS() ⇒ <code>Boolean</code>
 Determines if CORS is supported.
 
-**Kind**: static method of <code>[xhr](#module_xhr)</code>  
+**Kind**: static method of [<code>xhr</code>](#module_xhr)  
 **Returns**: <code>Boolean</code> - returns whether CORS is supported  
 <a name="module_xhr..xhr"></a>
 
 ### xhr~xhr(options, callback) ⇒ <code>Object</code>
-**Kind**: inner method of <code>[xhr](#module_xhr)</code>  
+**Kind**: inner method of [<code>xhr</code>](#module_xhr)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1139,12 +1248,154 @@ Determines if CORS is supported.
 var resp = xhr({url: 'www.example.com'}).send();
 
 ```
+<a name="insertAfter"></a>
+
+## insertAfter(elemToInsert, targetElem)
+Utility Function to Insert 'elemToInsert' after 'targetElem' in the DOM
+
+**Kind**: global function  
+
+| Param |
+| --- |
+| elemToInsert | 
+| targetElem | 
+
+<a name="isAScript"></a>
+
+## isAScript(inputElem)
+Returns true if inputElem is a script element; false otherwise
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| inputElem | <code>Node</code> \| <code>Element</code> | 
+
+<a name="addToDom"></a>
+
+## addToDom(elem, target)
+Adds 'elem' to the DOM with target/parent element 'target'
+Scripts are treated differently than other elements because they have to be to work correctly
+
+**Kind**: global function  
+
+| Param |
+| --- |
+| elem | 
+| target | 
+
+<a name="customCloneScript"></a>
+
+## customCloneScript(inputScriptElem, win) ⇒ <code>Element</code>
+Clones a script element in a way that is compatible with dynamic DOM-ready loading
+Unfortunately, node.cloneNode() will not work in place of this function in this case
+nor can it be used inside this function
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| inputScriptElem | <code>Element</code> | Input Script Element |
+| win | <code>Object</code> |  |
+
+<a name="cloneElem"></a>
+
+## cloneElem(elemToClone, win) ⇒ <code>Node</code> \| <code>Element</code>
+Creates a deep clone of the element passed in (with special logic for scripts)
+Scripts have to be handled differently because the script code will not execute unless they are processed this way
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| elemToClone |  | 
+| win | <code>Object</code> | 
+
+<a name="recursiveCloneAndAddToDom"></a>
+
+## recursiveCloneAndAddToDom(inputElem, targetElem, win) ⇒ <code>Node</code> \| <code>Element</code>
+Recursively iterates through 'inputElem' child elements, creates clones of them, and attaches them to 'targetElem'
+Why? Because script elements (including nested ones) need to be cloned a specific way in order for the code they represent to be executed.
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| inputElem | <code>Node</code> \| <code>Element</code> | 
+| targetElem | <code>Node</code> \| <code>Element</code> | 
+| win | <code>Object</code> | 
+
+<a name="insertInlineHtmlString"></a>
+
+## insertInlineHtmlString(htmlString, [parentElem], win) ⇒ <code>boolean</code>
+Adds 'htmlString' as a child to element 'parentElem' in a way that's safe to use after the document has been closed
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| htmlString | <code>String</code> | HTML String to Add to the page |
+| [parentElem] | <code>Node</code> \| <code>Element</code> | Parent element to attach 'htmlString' as a child to; defaults to document.body |
+| win | <code>Object</code> |  |
+
+<a name="createInsContainer"></a>
+
+## createInsContainer(win) ⇒ <code>HTMLModElement</code>
+Returns an 'ins' element with a unique ID and class 'adlibs-ins'
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| win | <code>Object</code> | 
+
+<a name="docWriteHtmlString"></a>
+
+## docWriteHtmlString(htmlString, win) ⇒ <code>boolean</code>
+Uses document.writeln to add an HTML string to the page
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| htmlString | <code>string</code> | HTML String to Add to the page |
+| win | <code>Object</code> |  |
+
+<a name="isNativeFunction"></a>
+
+## isNativeFunction(value) ⇒ <code>any</code>
+Returns true if a function is the native implementation; false otherwise
+
+**Kind**: global function  
+**Ref**: https://davidwalsh.name/detect-native-function  
+
+| Param | Type |
+| --- | --- |
+| value | <code>function</code> | 
+
+<a name="embedHtml"></a>
+
+## embedHtml(htmlString, [parentElem], [callback], [win])
+If the doc readyState is complete or interactive, use custom methods to safely write 'htmlString' to the page; otherwise, use native document.write
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| htmlString | <code>string</code> |  |
+| [parentElem] | <code>HTMLElement</code> | Parent element to attach 'htmlString' as a child to (this is only used if the document readyState is complete or interactive) |
+| [callback] | <code>function</code> | Callback function |
+| [win] | <code>Object</code> | Optional window reference to write into |
+
 
 # adlibs Developers
-* [gblosser](https://github.com/gblosser42)
 * [j-brown](https://github.com/j-brown)
-* [jeffreytgilbert](https://github.com/jeffreytgilbert)
 * [msahagu2](https://github.com/msahagu2)
 * [ericperez](https://github.com/ericperez)
+* [gblosser](https://github.com/gblosser42)
+* [jeffreytgilbert](https://github.com/jeffreytgilbert)
+* [ggustilo](https://github.com/ggustilo)
+* [larrymyers](https://github.com/larrymyers)
+
 
 * * *
