@@ -1,6 +1,6 @@
 {
   "name": "adlibs",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "description": "A collection of common client side commonjs modules",
   "scripts": {
     "test": "karma start --single-run",
