@@ -40,6 +40,16 @@ describe('XHR', function() {
 			done();
 		}
 	});
+	
+	it('Should return an wrapped JSON object after making a XHR request with type JSON.', function(done) {
+		var xhr = XHR({ method: 'GET', url: '/base/public/test-json-file.json' , responseType: 'json'}, function(status, body) {
+			expect(status).to.equal(200);
+			expect(body.message).to.equal('hello world');
+			done();
+		}).send();
+		
+		expect(xhr.xhr).to.not.equal(undefined);
+	});
 
 	it('Should determine if the browser XHR implementation supports cross origin requests.', function() {
 		expect(XHR.supportsCORS()).to.be.a('boolean');
